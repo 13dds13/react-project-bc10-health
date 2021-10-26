@@ -1,8 +1,14 @@
-import React from 'react'
+import React from "react";
+import Header from "./header";
+import Main from "./main";
+
 const App = () => {
-    return (
-        <h1>Hello</h1>
-    );
-}
+  return (
+    <>
+      <Header />
+      <Main/>
+    </>
+  );
+};
 
 export default App;
