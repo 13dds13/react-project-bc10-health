@@ -10,7 +10,7 @@ import { MainStyled } from "./MainStyled";
 const Main = () => {
   return (
     <MainStyled>
-      <CalloriesText />
+      {/* <CalloriesText /> */}
       <Suspense fallback={<h2>...loading</h2>}>
         <Switch>
           {mainRoutes.map(
