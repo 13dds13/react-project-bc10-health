@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import { useDispatch } from "react-redux";
 // import { mainRoutes } from "../routes/mainRoutes";
@@ -18,14 +17,3 @@ const AuthPage = () => {
 };
 
 export default AuthPage;
-=======
-import React from 'react'
-
-const AuthPage = () => {
-  return (
-    <h2>AuthPage</h2>
-  );
-}
-
-export default AuthPage;
->>>>>>> dev
