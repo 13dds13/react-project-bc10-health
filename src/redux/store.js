@@ -14,7 +14,7 @@ import isLoadingReduser from "./isLoadingReduser/isLoadingReduser";
 
 const store = configureStore({
   reducer: {
-    user: authRedusers,
+    authData: authRedusers,
     error: errorReducer,
     isLoading: isLoadingReduser,
   },
