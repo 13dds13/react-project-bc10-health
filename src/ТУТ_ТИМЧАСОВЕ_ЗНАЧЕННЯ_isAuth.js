@@ -1,3 +1,3 @@
- const isAuth = false;
+ const isAuth = true;
 
  export default isAuth;
