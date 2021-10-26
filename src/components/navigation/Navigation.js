@@ -6,7 +6,7 @@ import { NavigationStyled } from "./NavigationStyled";
 
 const Navigation = () => {
   return <NavigationStyled>
-    <ul className='navigation-list'>
+    <ul className='nav__list'>
       {mainRoutes.map(({name, path, exact, isPrivate, isRestricted}) => <NavigationItem
       key={path}
       name={name}

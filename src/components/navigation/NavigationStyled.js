@@ -1,17 +1,33 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const NavigationStyled = styled.nav `
-  height: 60px;
-  background-color: lightgrey;
+export const NavigationStyled = styled.nav`
+  margin: 0 15px;
 
-  .navigation-list {
+  .nav__list {
     display: flex;
-    text-decoration: none;
-    justify-content: space-between;
     list-style: none;
 
     margin: 0;
     padding: 0;
-
   }
-`
+  .nav__item {
+    &:not(:last-child) {
+      padding-right: 15px;
+      justify-content: flex-end;
+      
+    }
+  }
+
+  .nav__link {
+    text-decoration: none;
+    text-transform: uppercase;
+
+    color: #212121;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .nav__link-active {
+    color: #9b9faa;
+  }
+`;
