@@ -12,7 +12,11 @@ const NavigationItem = ({
   hideModal,
   isOpenModal,
 }) => {
-  const onHandleClick = () => hideModal((prev) => !prev);
+  const onHandleClick = () => {
+    if (width < 1024 && isOpenModal) {
+      hideModal((prev) => !prev);
+    }
+  };
 
   return (
     <>

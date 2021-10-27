@@ -40,14 +40,14 @@ export const HeaderStyled = styled.header`
     height: 20px;
   }
 
-  @media screen and (min-width: 768px) {
+  /* @media screen and (min-width: 768px) {
     padding: 0 69px 0 87px;
-  }
+  } */
 
   @media screen and (min-width: 1024px) {
     justify-content: flex-start;
     align-items: flex-end;
-    margin: 82px 0 144px 90px;
+    margin: 82px 0 144px 0px;
     border-bottom: none;
 
     .header__wrap {
