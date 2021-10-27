@@ -22,8 +22,10 @@ const App = () => {
   const onClick = () => dispatch(authLogout());
   return (
     <>
-      {isAuth && <button onClick={onClick}>Sign out</button>}
-      <Header />
+      <div className="container">
+        {isAuth && <button onClick={onClick}>Sign out</button>}
+        <Header />
+      </div>
       <Main />
     </>
   );
