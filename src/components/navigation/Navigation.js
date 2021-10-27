@@ -5,11 +5,13 @@ import { mainRoutes } from "../../routes/mainRoutes";
 import NavigationItem from "./NavigationItem";
 import { NavigationStyled } from "./NavigationStyled";
 
-const Navigation = () => {
+const Navigation = ({isOpenModal, hideModal, width}) => {
+
   const isAuth = useSelector(getIsAuth);
+
   return (
     <NavigationStyled>
-      <ul className="nav__list">
+      <ul className={isAuth && width < 1024 && isOpenModal ? "nav__list-for-modal" : "nav__list"} >
         {mainRoutes.map(({ name, path, exact, isPrivate, isRestricted }) => (
           <NavigationItem
             key={path}
@@ -19,6 +21,9 @@ const Navigation = () => {
             isPrivate={isPrivate}
             isRestricted={isRestricted}
             isAuth={isAuth}
+            width={width}
+            hideModal={hideModal}
+            isOpenModal={isOpenModal}
           />
         ))}
       </ul>
