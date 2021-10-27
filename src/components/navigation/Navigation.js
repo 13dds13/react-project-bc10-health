@@ -9,7 +9,7 @@ const Navigation = () => {
   const isAuth = useSelector(getIsAuth);
   return (
     <NavigationStyled>
-      <ul className="navigation-list">
+      <ul className="nav__list">
         {mainRoutes.map(({ name, path, exact, isPrivate, isRestricted }) => (
           <NavigationItem
             key={path}
