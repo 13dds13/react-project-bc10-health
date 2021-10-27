@@ -6,9 +6,11 @@ export const HeaderStyled = styled.header`
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid #e0e0e0;
+  padding: 0 15px;
 
   .header__wrap {
     display: flex;
+    align-items: center;
   }
 
   .header__logo {
@@ -17,23 +19,40 @@ export const HeaderStyled = styled.header`
   }
 
   .header__text {
+    font-family: "Roboto", sans-serif;
+    font-weight: lighter;
+    letter-spacing: 2px;
     padding-left: 10px;
-    font-size: 16px;
-    align-self: flex-end;
+    font-size: 20px;
   }
 
   .header__text-color {
     color: #fc842d;
   }
 
+  .header__icon-menu {
+    width: 18px;
+    height: 12px;
+  }
+
+  .header__icon-close {
+    width: 20px;
+    height: 20px;
+  }
+
   @media screen and (min-width: 768px) {
     padding: 0 69px 0 87px;
   }
+
   @media screen and (min-width: 1024px) {
     justify-content: flex-start;
     align-items: flex-end;
-    padding: 82px 0 144px 90px;
+    margin: 82px 0 144px 90px;
     border-bottom: none;
+
+    .header__wrap {
+      align-items: flex-end;
+    }
 
     .header__logo {
       width: 77px;
