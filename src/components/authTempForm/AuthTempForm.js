@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./AuthTempForm.module.css";
+import { mainRoutes } from "../../routes/mainRoutes";
 
 const AuthForm = ({ handleSubmit, btnName }) => {
-  const [username, setName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,20 +15,20 @@ const AuthForm = ({ handleSubmit, btnName }) => {
     type === "password" && setPassword(value);
   };
 
-  const formReset = () => {
-    setName("");
-    setEmail("");
-    setPassword("");
-  };
+  // const formReset = () => {
+  //   setName("");
+  //   setEmail("");
+  //   setPassword("");
+  // };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    handleSubmit({ username, email, password });
+    handleSubmit({ username: name, email, password });
     // formReset();
   };
   return (
     <form onSubmit={onSubmit}>
-      {btnName === "Sign up" && (
+      {btnName === mainRoutes[4].name && (
         <label>
           name:{" "}
           <input
@@ -35,7 +36,7 @@ const AuthForm = ({ handleSubmit, btnName }) => {
             autoComplete="off"
             placeholder="type here..."
             onChange={onChange}
-            value={username}
+            value={name}
             required
             className={styles.input}
           />

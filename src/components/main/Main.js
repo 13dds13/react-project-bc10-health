@@ -1,15 +1,18 @@
-import React, { Suspense } from 'react'
-import { Switch } from 'react-router-dom';
-import { mainRoutes } from '../../routes/mainRoutes';
-import PrivateRoute from '../../routes/PrivateRoute';
-import PublicRoute from '../../routes/PublicRoute';
-import isAuth from '../../ТУТ_ТИМЧАСОВЕ_ЗНАЧЕННЯ_isAuth'; // використовується, поки немає STATE
-import { MainStyled } from './MainStyled'
+import React, { Suspense } from "react";
+import { useSelector } from "react-redux";
+import { Switch } from "react-router-dom";
+import { getIsAuth } from "../../redux/auth/authSelectors";
+import { mainRoutes } from "../../routes/mainRoutes";
+import PrivateRoute from "../../routes/PrivateRoute";
+import PublicRoute from "../../routes/PublicRoute";
+import { MainStyled } from "./MainStyled";
 
 const Main = () => {
+  const isAuth = useSelector(getIsAuth);
+
   return (
- <MainStyled>
-         <Suspense fallback={<h2>...loading</h2>}>
+    <MainStyled>
+      <Suspense fallback={<h2>...loading</h2>}>
         <Switch>
           {mainRoutes.map(
             ({ path, exact, component, isPrivate, isRestricted }) =>
@@ -34,8 +37,8 @@ const Main = () => {
           )}
         </Switch>
       </Suspense>
- </MainStyled>
+    </MainStyled>
   );
-}
+};
 
 export default Main;

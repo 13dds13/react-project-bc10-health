@@ -11,40 +11,40 @@ const NavigationItem = ({
 }) => {
   return <>
       {!isPrivate && !isRestricted && (
-        <li className='navItem'>
+        <li className='nav__item'>
           <NavLink
             to={path}
             exact={exact}
-            // className='navLink'
-            // activeClassName='activeNavLink'
+            className='nav__link'
+            activeClassName='nav__link-active'
             >
             {name}
           </NavLink>
         </li>
       )}
       {isPrivate && !isRestricted && isAuth && (
-        <li className='navItem'>
-          <NavLink
-            to={path}
-            exact={exact}
-            // className='navLink'
-            // activeClassName='activeNavLink'
-            >
-            {name}
-          </NavLink>
-        </li>
+        <li className='nav__item'>
+        <NavLink
+          to={path}
+          exact={exact}
+          className='nav__link'
+          activeClassName='nav__link-active'
+          >
+          {name}
+        </NavLink>
+      </li>
       )}
       {!isPrivate && isRestricted && !isAuth && (
-        <li className='navItem'>
-          <NavLink
-            to={path}
-            exact={exact}
-            // className='navLink'
-            // activeClassName='activeNavLink'
-            >
-            {name}
-          </NavLink>
-        </li>
+        <li className='nav__item'>
+        <NavLink
+          to={path}
+          exact={exact}
+          className='nav__link'
+          activeClassName='nav__link-active'
+          >
+          {name}
+        </NavLink>
+      </li>
       )}
   </>;
 };
