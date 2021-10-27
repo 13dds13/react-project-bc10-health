@@ -2,7 +2,7 @@ import { lazy } from "react";
 
 export const mainRoutes = [
   {
-    name: "Home",
+    // name: "Home",
     path: "/",
     exact: true,
     component: lazy(() =>
@@ -12,7 +12,7 @@ export const mainRoutes = [
     isRestricted: false,
   },
   {
-    name: "Diary",
+    name: "Дневник",
     path: "/diary",
     exact: true,
     component: lazy(() =>
@@ -22,7 +22,7 @@ export const mainRoutes = [
     isRestricted: false,
   },
   {
-    name: "Сalculator",
+    name: "Калькулятор",
     path: "/calculator",
     exact: true,
     component: lazy(() =>
@@ -32,7 +32,7 @@ export const mainRoutes = [
     isRestricted: false,
   },
   {
-    name: "Sing in",
+    name: "Вход",
     path: "/singin",
     exact: true,
     component: lazy(() =>
@@ -42,7 +42,7 @@ export const mainRoutes = [
     isRestricted: true,
   },
   {
-    name: "Sing up",
+    name: "Регистрация",
     path: "/singup",
     exact: true,
     component: lazy(() =>
