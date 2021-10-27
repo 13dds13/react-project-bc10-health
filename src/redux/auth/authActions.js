@@ -15,3 +15,5 @@ export const logoutAuthError = createAction("auth/logoutAuthError");
 export const refreshAuthRequest = createAction("auth/refreshAuthRequest");
 export const refreshAuthSuccess = createAction("auth/refreshAuthSuccess");
 export const refreshAuthError = createAction("auth/refreshAuthError");
+
+export const getUserSuccess = createAction("auth/getUserSuccess");

@@ -6,37 +6,39 @@ import {
   loginAuthSuccess,
   logoutAuthSuccess,
   refreshAuthSuccess,
+  getUserSuccess,
 } from "./authActions";
 
 const persistConfig = {
-  key: "token",
+  key: "refresh",
   version: 1,
   storage,
-  whitelist: "token",
+  whitelist: ["refreshToken", "sid"],
 };
 
-const userData = createReducer(
+const userInfo = createReducer(
   {},
   {
-    [registerAuthSuccess]: (_, { payload }) => payload,
+    [registerAuthSuccess]: (_, { payload }) => ({ user: payload }),
     [loginAuthSuccess]: (_, { payload }) => payload,
     [logoutAuthSuccess]: () => ({}),
-    [refreshAuthSuccess]: (state, { payload }) => ({ ...payload, ...state }),
+    [refreshAuthSuccess]: (state, { payload }) => ({ ...state, ...payload }),
+    [getUserSuccess]: (state, { payload }) => ({ ...state, user: payload }),
   }
 );
 
-const isLogged = createReducer(false, {
+const isAuth = createReducer(false, {
   [registerAuthSuccess]: () => true,
   [loginAuthSuccess]: () => true,
   [logoutAuthSuccess]: () => false,
   [refreshAuthSuccess]: () => true,
 });
 
-const persistedUsersData = persistReducer(persistConfig, userData);
+const persistedUsersData = persistReducer(persistConfig, userInfo);
 
 const userRedusers = combineReducers({
-  userData: persistedUsersData,
-  isLogged,
+  userInfo: persistedUsersData,
+  isAuth,
 });
 
 export default userRedusers;

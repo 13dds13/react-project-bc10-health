@@ -11,8 +11,12 @@ import {
   refreshAuthRequest,
   refreshAuthSuccess,
   refreshAuthError,
+  getUserSuccess,
 } from "./authActions";
+import { apiBaseURL, register, login, logout, refresh } from "../../db.json";
 import axios from "axios";
+
+axios.defaults.baseURL = apiBaseURL;
 
 const token = {
   set(token) {
@@ -27,49 +31,58 @@ export const authRegistration = (userData) => (dispatch) => {
   dispatch(registerAuthRequest());
 
   axios
-    .post("https://slimmom-backend.herokuapp.com/auth/register", userData)
-    .then(({ data }) => {
-      dispatch(registerAuthSuccess(data));
-      // token.set(data.token);
-    })
+    .post(register, userData)
+    .then(({ data }) => dispatch(registerAuthSuccess(data)))
     .catch((error) => dispatch(registerAuthError(error.response.data.message)));
 };
 
-// export const usersLogin = (userData) => (dispatch) => {
-//   dispatch(loginUsersRequest());
-//   axios
-//     .post(baseURL + users.login, userData)
-//     .then(({ data }) => {
-//       const {
-//         user: { name, email },
-//         token,
-//       } = data;
-//       dispatch(loginUsersSuccess({ name, email, token }));
-//       axios.defaults.headers.common["Authorization"] = token;
-//     })
-//     .catch((error) => error && dispatch(loginUsersError(errorMsg.badLogin)));
-// };
+export const authLogin = (userData) => (dispatch) => {
+  dispatch(loginAuthRequest());
+  const { email, password } = userData;
+  axios
+    .post(login, {
+      email,
+      password,
+    })
+    .then(({ data }) => {
+      dispatch(loginAuthSuccess(data));
+      token.set(data.accessToken);
+    })
+    .catch((error) => dispatch(loginAuthError(error.response.data.message)));
+};
 
-// export const usersRefresh = (token) => (dispatch) => {
-//   dispatch(refreshUsersRequest());
-//   axios.defaults.headers.common["Authorization"] = token;
-//   axios(baseURL + users.refresh)
-//     .then(({ data }) => {
-//       return dispatch(refreshUsersSuccess(data));
-//     })
-//     .catch(
-//       (error) => error && dispatch(refreshUsersError(errorMsg.fatalError))
-//     );
-// };
+export const authLogout = () => (dispatch) => {
+  dispatch(logoutAuthRequest());
 
-// export const usersLogout = () => (dispatch) => {
-//   dispatch(logoutUsersRequest());
+  axios
+    .post(logout)
+    .then(() => {
+      token.unset();
+      return dispatch(logoutAuthSuccess());
+    })
+    .catch((error) => dispatch(logoutAuthError(error.response.data.message)));
+};
 
-//   axios
-//     .post(baseURL + users.logout)
-//     .then(() => {
-//       axios.defaults.headers.common["Authorization"] = "";
-//       return dispatch(logoutUsersSuccess());
-//     })
-//     .catch((error) => error && dispatch(logoutUsersError(errorMsg.fatalError)));
-// };
+export const authRefresh = (refreshToken, sid) => (dispatch) => {
+  dispatch(refreshAuthRequest());
+  token.set(refreshToken);
+  axios
+    .post(refresh, { sid })
+    .then(({ data }) => {
+      const {
+        newAccessToken: accessToken,
+        newRefreshToken: refreshToken,
+        sid,
+      } = data;
+      token.set(accessToken);
+      dispatch(
+        refreshAuthSuccess({
+          accessToken,
+          refreshToken,
+          sid,
+        })
+      );
+      axios("/user").then(({ data }) => dispatch(getUserSuccess(data)));
+    })
+    .catch((error) => dispatch(refreshAuthError(error.response.data.message)));
+};
