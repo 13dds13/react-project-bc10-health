@@ -15,7 +15,6 @@ const Header = () => {
 
   const [width, setWidth] = useState(window.innerWidth);
   const [isOpenModal, setIsOpenModal] = useState(false);
-  // const [breakPoint, setBreakPoint] = useState(768);
 
   const breakPointTabletMobile = 320;
   const breakPointTablet = 768;
