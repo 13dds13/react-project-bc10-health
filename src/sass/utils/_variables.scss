@@ -1,11 +1,13 @@
 :root {
   --main-bg-color: #ffffff;
+  --modal--bg-colour: rgba(33, 33, 33, 0.12);
   --btn-text-color: #ffffff;
   --bold-text-colour: #212121;
   --not-bold-text-colour: #9b9faa;
   --accent-colour: #fc842d;
   --accent-bold-text-colour: #264061;
   --bg-modal-accent-colour: #264061;
+  --border-colour: #e0e0e0;
   --duration-main: 250ms; //время для анимации текста
   --timing-function-main: cubic-bezier(0.4, 0, 0.2, 1);
 }

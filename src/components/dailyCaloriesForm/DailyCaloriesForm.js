@@ -2,8 +2,9 @@ import React from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { setLocale } from "yup";
+import axios from "axios";
 
-const DailyCaloriesForm = () => {
+const DailyCaloriesForm = ({ getCalloriesData }) => {
   setLocale({
     number: {
       min: "Минимальное значение ${min}",
@@ -55,7 +56,25 @@ const DailyCaloriesForm = () => {
           bloodType: "",
         }}
         validateOnBlur
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => {
+          const preparedData = {
+            weight: Number(values.weight),
+            height: Number(values.height),
+            age: Number(values.age),
+            desiredWeight: Number(values.desiredWeight),
+            bloodType: Number(values.bloodType),
+          };
+          axios
+            .post("/daily-rate", preparedData)
+            .then(({ data }) => {
+              const readyObj = {
+                dailyRate: data.dailyRate,
+                notAllowedProducts: data.notAllowedProducts.slice(0, 5),
+              };
+              getCalloriesData(readyObj);
+            })
+            .catch((error) => console.log(error));
+        }}
         validationSchema={validationsSchema}
       >
         {({
