@@ -24,9 +24,9 @@ const App = () => {
   return (
     <>
       <div className="bg-img"></div>
+      {/* {isAuth && <button onClick={onClick}>Sign out</button>} */}
+      <Header />
       <div className="container">
-        {/* {isAuth && <button onClick={onClick}>Sign out</button>} */}
-        <Header />
         <Main />
       </div>
     </>

@@ -7,10 +7,14 @@ const Button = ({ buttonName, disabled, onClick, type, showModal }) => {
       <button
         className="btn btn_orange"
         type={type}
-        disabled={disabled}
+        // disabled={disabled}
         onClick={(e) => {
           e.preventDefault();
+          console.log(disabled);
           onClick();
+          if (!disabled) {
+            return;
+          }
           showModal();
         }}
       >

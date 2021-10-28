@@ -298,10 +298,9 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal }) => {
                 </div>
                 {errors.bloodType && <p>{errors.bloodType}</p>}
               </div>
-              {/* <div className="home__btn"> */}
               <Button
                 buttonName="Похудеть"
-                disabled={!isValid}
+                disabled={isValid}
                 onClick={handleSubmit}
                 type={`submit`}
                 showModal={showModal}
