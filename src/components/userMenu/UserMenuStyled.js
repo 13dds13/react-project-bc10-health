@@ -7,6 +7,8 @@ export const UserMenuStyled = styled.div`
   height: 40px;
   padding: 0 15px;
 
+  z-index: 1300;
+
   .user-menu {
     &__icon {
       width: 20px;

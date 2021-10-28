@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { ModalStyled } from "./ModalStyled";
 
 const Modal = ({ children, showModal }) => {
+
+const isOpenDiaryModal = useSelector(state => state.diaryModal.isOpenModal)
+
   const onEsc = (e) => {
     if (e.code === "Escape") {
       showModal();
@@ -25,7 +29,7 @@ const Modal = ({ children, showModal }) => {
   }, []);
 
   return (
-    <ModalStyled>
+    <ModalStyled isOpenDiaryModal={isOpenDiaryModal}>
       <div className="overlay" onClick={handleBackdropClick}>
         <div className="modal">{children}</div>
       </div>

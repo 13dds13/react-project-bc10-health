@@ -39,7 +39,7 @@ export const NavigationStyled = styled.nav`
       text-decoration: none;
       text-transform: uppercase;
 
-      color: #9b9faa;
+      color: var(--not-bold-text-colour);
       font-size: 14px;
       font-weight: 700;
     }
@@ -48,7 +48,7 @@ export const NavigationStyled = styled.nav`
       text-decoration: none;
       text-transform: uppercase;
 
-      color: #fff;
+      color: var(--not-bold-text-colour);
 
       font-family: Verdana;
       font-style: normal;
@@ -61,11 +61,11 @@ export const NavigationStyled = styled.nav`
     }
 
     &__link-active {
-      color: #212121;
+      color: var(--bold-text-colour);
     }
 
     &__link-active-for-modal {
-      color: #9b9faa;
+      color:var(--btn-text-color) ;
     }
   }
 

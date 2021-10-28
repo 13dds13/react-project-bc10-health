@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
+
 export const ModalContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-
+  /* ====================== */
   margin-top: 80px;
+  /* ================= */
 
   width: 100vw;
   height: 100vh;
@@ -15,7 +17,7 @@ export const ModalContainer = styled.div`
   background-color: #264061;
   z-index: 1200;
   overflow: auto;
-  
+
   .Modal {
     position: relative;
     background-color: #3d3d3d;
