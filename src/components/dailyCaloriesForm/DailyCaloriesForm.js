@@ -5,7 +5,7 @@ import { setLocale } from "yup";
 import { DailyCaloriesFormStyled } from "./DailyCaloriesForm.styled";
 import axios from "axios";
 
-const DailyCaloriesForm = ({ getCalloriesData }) => {
+const DailyCaloriesForm = ({ getCalloriesData, title }) => {
   setLocale({
     number: {
       min: "Минимальное значение ${min}",
@@ -62,7 +62,7 @@ const DailyCaloriesForm = ({ getCalloriesData }) => {
             bloodType: "",
           }}
           validateOnBlur
-        onSubmit={(values) => {
+        onSubmit={(values, actions) => {
           const preparedData = {
             weight: Number(values.weight),
             height: Number(values.height),
@@ -82,7 +82,7 @@ const DailyCaloriesForm = ({ getCalloriesData }) => {
             })
             .catch((error) => console.log(error));
         }}
-          }}
+
           validationSchema={validationsSchema}
         >
           {({
