@@ -8,15 +8,13 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import authRedusers from "./auth/authReducers";
-import errorReducer from "./errorReducer/errorReducer";
-import isLoadingReduser from "./isLoadingReduser/isLoadingReduser";
+import authReducers from "./auth/authReducers";
+import userReducers from "./user/userReducers";
 
 const store = configureStore({
   reducer: {
-    authData: authRedusers,
-    error: errorReducer,
-    isLoading: isLoadingReduser,
+    auth: authReducers,
+    user: userReducers,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

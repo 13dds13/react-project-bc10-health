@@ -11,7 +11,7 @@ import Modal from "../modal_1";
 const Header = () => {
   let history = useHistory();
 
-  const isAuth = useSelector((state) => state.authData.isAuth);
+  const isAuth = useSelector((state) => state.auth.isAuth);
 
   const [width, setWidth] = useState(window.innerWidth);
   const [isOpenModal, setIsOpenModal] = useState(false);
