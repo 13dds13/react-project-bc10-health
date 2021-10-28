@@ -3,17 +3,24 @@ import styled from "styled-components";
 export const UserMenuStyled = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
 
   height: 40px;
-  /* background-color: #eff1f3; */
+  padding: 0 15px;
 
   .user-menu {
+    &__icon {
+      width: 20px;
+      height: 20px;
+    }
+    &__text-wrap {
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+
     &__text,
     &__button {
       font-size: 14px;
       font-family: "Montserrat", sans-serif;
-      /* font-weight: 700; */
     }
 
     &__text {
@@ -21,22 +28,22 @@ export const UserMenuStyled = styled.div`
       margin: 0;
       padding: 0 15px 0 0;
 
-      border-right: 2px solid #e0e0e0;
+      border-right: 2px solid var(--border-colour);
     }
     &__button {
       border: none;
       outline: none;
       background-color: Transparent;
-      padding: 0 15px;
+      padding: 0 0 0 15px;
 
       &:hover {
-        color: #9b9faa;
+        color: var(--not-bold-text-colour)
       }
     }
   }
 
   @media screen and (max-width: 767px) {
-    background-color: #eff1f3;
+    background-color: var(--secondary-bg-colour);
   }
 
   @media screen and (min-width: 768px) {

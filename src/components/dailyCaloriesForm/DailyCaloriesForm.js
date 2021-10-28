@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { setLocale } from "yup";
 import { DailyCaloriesFormStyled } from "./DailyCaloriesForm.styled";
 import axios from "axios";
 import { Button } from "../button/Button";
+import { useEffect } from "react";
 
-const DailyCaloriesForm = ({ getCalloriesData, showModal }) => {
+const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    if (!data.weight) {
+      return;
+    }
+
+    const preparedData = {
+      weight: Number(data.weight),
+      height: Number(data.height),
+      age: Number(data.age),
+      desiredWeight: Number(data.desiredWeight),
+      bloodType: Number(data.bloodType),
+    };
+    axios
+      .post(url, preparedData)
+      .then(({ data }) => {
+        const readyObj = {
+          dailyRate: data.dailyRate,
+          notAllowedProducts: data.notAllowedProducts.slice(0, 5),
+        };
+        getCalloriesData(readyObj);
+        // actions.resetForm();
+      })
+      .catch((error) => console.log(error));
+  }, [data, getCalloriesData, url]);
   setLocale({
     number: {
       min: "Минимальное значение ${min}",
@@ -64,24 +91,7 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal }) => {
           }}
           validateOnBlur
           onSubmit={(values) => {
-            const preparedData = {
-              weight: Number(values.weight),
-              height: Number(values.height),
-              age: Number(values.age),
-              desiredWeight: Number(values.desiredWeight),
-              bloodType: Number(values.bloodType),
-            };
-            axios
-              .post("/daily-rate", preparedData)
-              .then(({ data }) => {
-                const readyObj = {
-                  dailyRate: data.dailyRate,
-                  notAllowedProducts: data.notAllowedProducts.slice(0, 5),
-                };
-                getCalloriesData(readyObj);
-                // actions.resetForm();
-              })
-              .catch((error) => console.log(error));
+            setData(values);
           }}
           validationSchema={validationsSchema}
         >
@@ -305,15 +315,6 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal }) => {
                 type={`submit`}
                 showModal={showModal}
               />
-              {/* </div> */}
-              {/* <button
-                disabled={!isValid}
-                onClick={handleSubmit}
-                type={`submit`}
-                className="dailyCalories-form__btn"
-              >
-                Похудеть
-              </button> */}
             </div>
           )}
         </Formik>

@@ -3,3 +3,4 @@ export const getRefreshToken = (state) => state.auth.authData.refreshToken;
 export const getAccessToken = (state) => state.auth.authData.accessToken;
 export const getSid = (state) => state.auth.authData.sid;
 export const getUserName = (state) => state.auth.authData.username;
+export const getUserId = (state) => state.auth.authData.id;

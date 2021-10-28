@@ -21,6 +21,7 @@ const HomePage = () => {
         <DailyCaloriesForm
           getCalloriesData={getCalloriesData}
           showModal={showModal}
+          url="/daily-rate"
         />
       </HomePageStyled>
       {isModal && (
