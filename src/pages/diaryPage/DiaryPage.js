@@ -1,3 +1,5 @@
+
+import ProductForm from "../../components/productForm/ProductForm";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "./react-datapicker.css"
@@ -13,9 +15,10 @@ const DiaryPage = () => {
       <svg className="dataPicker__svg" width="18" height="20">
         <use href={sprite + "#calendar"}/>
       </svg>
+   <ProductForm />
 </div>
     </>
   );
-}
+};
 
 export default DiaryPage;
