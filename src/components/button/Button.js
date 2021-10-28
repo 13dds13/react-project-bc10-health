@@ -10,7 +10,7 @@ const Button = ({ buttonName, disabled, onClick, type, showModal }) => {
         // disabled={disabled}
         onClick={(e) => {
           e.preventDefault();
-          console.log(disabled);
+          // console.log(disabled);
           onClick();
           if (!disabled) {
             return;
