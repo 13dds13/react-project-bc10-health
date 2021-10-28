@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../../components/button/Button";
 import CalloriesText from "../../components/calloriesText/CalloriesText";
 import DailyCaloriesForm from "../../components/dailyCaloriesForm/DailyCaloriesForm";
@@ -9,25 +9,26 @@ import { HomePageStyled } from "./HomePageStyled";
 // import styles from "./HomePage.module.css"
 
 const HomePage = () => {
-  const getCalloriesData = (data) => data;
+  const [isModal, setIsModal] = useState(false);
+  const [modalData, setModalData] = useState({});
+  const getCalloriesData = (data) => setModalData(data);
+
+  const showModal = () => setIsModal(!isModal);
 
   return (
-    <div className="bg-img">
-      <div className="container">
-        <HomePageStyled>
-          <h1 className="home__title">
-            Просчитай свою суточную норму калорий прямо сейчас
-          </h1>
-          <div className="home__btn">
-            <Button buttonName="Похудеть" />
-          </div>
-          <DailyCaloriesForm getCalloriesData={getCalloriesData} />
-        </HomePageStyled>
-        {/* <Modal>
-          <ModalText />
-        </Modal> */}
-      </div>
-    </div>
+    <>
+      <HomePageStyled>
+        <DailyCaloriesForm
+          getCalloriesData={getCalloriesData}
+          showModal={showModal}
+        />
+      </HomePageStyled>
+      {isModal && (
+        <Modal showModal={showModal}>
+          <ModalText modalData={modalData} />
+        </Modal>
+      )}
+    </>
   );
 };
 

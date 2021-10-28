@@ -16,11 +16,7 @@ export const DailyCaloriesFormStyled = styled.div`
     padding-top: 30px;
     width: 290px;
     @media screen and (min-width: 768px) {
-      padding-top: 100px;
       width: 605px;
-    }
-    @media screen and (min-width: 1024px) {
-      padding-top: 137px;
     }
     &__title {
       color: var(--bold-text-colour);
