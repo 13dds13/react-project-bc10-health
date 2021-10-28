@@ -4,8 +4,9 @@ import * as yup from "yup";
 import { setLocale } from "yup";
 import { DailyCaloriesFormStyled } from "./DailyCaloriesForm.styled";
 import axios from "axios";
+import { Button } from "../button/Button";
 
-const DailyCaloriesForm = ({ getCalloriesData, title }) => {
+const DailyCaloriesForm = ({ getCalloriesData, showModal }) => {
   setLocale({
     number: {
       min: "Минимальное значение ${min}",
@@ -50,8 +51,8 @@ const DailyCaloriesForm = ({ getCalloriesData, title }) => {
     <DailyCaloriesFormStyled>
       <form className="dailyCalories-form">
         <h1 className="dailyCalories-form__title">
-          {title}
-          {/* Просчитай свою суточную норму калорий прямо сейчас */}
+          {/* {title} */}
+          Просчитай свою суточную норму калорий прямо сейчас
         </h1>
         <Formik
           initialValues={{
@@ -62,27 +63,26 @@ const DailyCaloriesForm = ({ getCalloriesData, title }) => {
             bloodType: "",
           }}
           validateOnBlur
-        onSubmit={(values, actions) => {
-          const preparedData = {
-            weight: Number(values.weight),
-            height: Number(values.height),
-            age: Number(values.age),
-            desiredWeight: Number(values.desiredWeight),
-            bloodType: Number(values.bloodType),
-          };
-          axios
-            .post("/daily-rate", preparedData)
-            .then(({ data }) => {
-              const readyObj = {
-                dailyRate: data.dailyRate,
-                notAllowedProducts: data.notAllowedProducts.slice(0, 5),
-              };
-              getCalloriesData(readyObj);
-              actions.resetForm();
-            })
-            .catch((error) => console.log(error));
-        }}
-
+          onSubmit={(values) => {
+            const preparedData = {
+              weight: Number(values.weight),
+              height: Number(values.height),
+              age: Number(values.age),
+              desiredWeight: Number(values.desiredWeight),
+              bloodType: Number(values.bloodType),
+            };
+            axios
+              .post("/daily-rate", preparedData)
+              .then(({ data }) => {
+                const readyObj = {
+                  dailyRate: data.dailyRate,
+                  notAllowedProducts: data.notAllowedProducts.slice(0, 5),
+                };
+                getCalloriesData(readyObj);
+                // actions.resetForm();
+              })
+              .catch((error) => console.log(error));
+          }}
           validationSchema={validationsSchema}
         >
           {({
@@ -298,14 +298,22 @@ const DailyCaloriesForm = ({ getCalloriesData, title }) => {
                 </div>
                 {errors.bloodType && <p>{errors.bloodType}</p>}
               </div>
-              <button
+              <Button
+                buttonName="Похудеть"
+                disabled={isValid}
+                onClick={handleSubmit}
+                type={`submit`}
+                showModal={showModal}
+              />
+              {/* </div> */}
+              {/* <button
                 disabled={!isValid}
                 onClick={handleSubmit}
                 type={`submit`}
                 className="dailyCalories-form__btn"
               >
                 Похудеть
-              </button>
+              </button> */}
             </div>
           )}
         </Formik>

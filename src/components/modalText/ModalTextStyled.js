@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ModalTextStyled = styled.div`
   .modal-text-box {
     background-color: var(--main-bg-color);
-    height: 598px;
+    height: 100%;
     font-family: Verdana;
     letter-spacing: 0.04em;
     width: 320px;

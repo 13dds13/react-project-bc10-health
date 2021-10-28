@@ -35,46 +35,50 @@ const Header = () => {
   return (
     <>
       <HeaderStyled>
-        <div className="header__wrap" onClick={goHomePage}>
-          <img className="header__logo" src={logo} alt={"logo"} />
-          {width >= breakPointTablet && !isAuth && (
-            <p className="header__text">
-              Slim <span className="header__text-color">Mom</span>
-            </p>
-          )}
-          {isAuth && (
-            <p className="header__text">
-              Slim <span className="header__text-color">Mom</span>
-            </p>
-          )}
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          {width >= breakPointTablet &&
-            width < breakPointTabletDesktop &&
-            isAuth && <UserMenu />}
+          <div className="header__wrap" onClick={goHomePage}>
+            <img className="header__logo" src={logo} alt={"logo"} />
+            {width >= breakPointTablet && !isAuth && (
+              <p className="header__text">
+                Slim <span className="header__text-color">Mom</span>
+              </p>
+            )}
+            {isAuth && (
+              <p className="header__text">
+                Slim <span className="header__text-color">Mom</span>
+              </p>
+            )}
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            {width >= breakPointTablet &&
+              width < breakPointTabletDesktop &&
+              isAuth && <UserMenu />}
 
-          {width < breakPointTabletDesktop && isAuth ? (
-            !isOpenModal ? (
-              <svg className="header__icon-menu" onClick={setModalState}>
-                <use href={sprite + "#icon-menu"} />
-              </svg>
+            {width < breakPointTabletDesktop && isAuth ? (
+              !isOpenModal ? (
+                <svg className="header__icon-menu" onClick={setModalState}>
+                  <use href={sprite + "#icon-menu"} />
+                </svg>
+              ) : (
+                <svg className="header__icon-close" onClick={setModalState}>
+                  <use href={sprite + "#icon-close"} />
+                </svg>
+              )
             ) : (
-              <svg className="header__icon-close" onClick={setModalState}>
-                <use href={sprite + "#icon-close"} />
-              </svg>
-            )
-          ) : (
-            <Navigation />
+              <Navigation />
+            )}
+          </div>
+
+          {width > 1023 && isAuth && <UserMenu />}
+
+          {isOpenModal && (
+            <Modal hideModal={setIsOpenModal}>
+              <Navigation
+                isOpenModal={isOpenModal}
+                hideModal={setIsOpenModal}
+                width={width}
+              />
+            </Modal>
           )}
-        </div>
-
-        {width > 1023 && isAuth && <UserMenu />}
-
-        {isOpenModal && (
-          <Modal hideModal={setIsOpenModal}>
-            <Navigation isOpenModal={isOpenModal} hideModal={setIsOpenModal} width={width} />
-          </Modal>
-        )}
       </HeaderStyled>
       {width < breakPointTablet && isAuth && <UserMenu />}
     </>
