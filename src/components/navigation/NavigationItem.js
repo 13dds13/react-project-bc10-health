@@ -8,45 +8,67 @@ const NavigationItem = ({
   isPrivate,
   isRestricted,
   isAuth,
+  width,
+  hideModal,
+  isOpenModal,
 }) => {
-  return <>
+  const onHandleClick = () => {
+    if (width < 1024 && isOpenModal) {
+      hideModal((prev) => !prev);
+    }
+  };
+
+  return (
+    <>
       {!isPrivate && !isRestricted && (
-        <li className='nav__item'>
+        <li className="nav__item">
           <NavLink
             to={path}
             exact={exact}
-            className='nav__link'
-            activeClassName='nav__link-active'
-            >
+            className="nav__link"
+            activeClassName="nav__link-active"
+          >
             {name}
           </NavLink>
         </li>
       )}
       {isPrivate && !isRestricted && isAuth && (
-        <li className='nav__item'>
-        <NavLink
-          to={path}
-          exact={exact}
-          className='nav__link'
-          activeClassName='nav__link-active'
+        <li
+          className={
+            width < 1024 && isOpenModal ? "nav__item-for-modal" : "nav__item"
+          }
+        >
+          <NavLink
+            onClick={onHandleClick}
+            to={path}
+            exact={exact}
+            className={
+              width < 1024 && isOpenModal ? "nav__link-for-modal" : "nav__link"
+            }
+            activeClassName={
+              width < 1024 && isOpenModal
+                ? "nav__link-active-for-modal"
+                : "nav__link-active"
+            }
           >
-          {name}
-        </NavLink>
-      </li>
+            {name}
+          </NavLink>
+        </li>
       )}
       {!isPrivate && isRestricted && !isAuth && (
-        <li className='nav__item'>
-        <NavLink
-          to={path}
-          exact={exact}
-          className='nav__link'
-          activeClassName='nav__link-active'
+        <li className="nav__item">
+          <NavLink
+            to={path}
+            exact={exact}
+            className="nav__link"
+            activeClassName="nav__link-active"
           >
-          {name}
-        </NavLink>
-      </li>
+            {name}
+          </NavLink>
+        </li>
       )}
-  </>;
+    </>
+  );
 };
 
 export default NavigationItem;

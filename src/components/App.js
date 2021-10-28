@@ -20,11 +20,11 @@ const App = () => {
     !isAuth && refreshToken && dispatch(authRefresh(refreshToken, sid));
   }, [dispatch, isAuth, refreshToken, sid]);
 
-  const onClick = () => dispatch(authLogout());
+  // const onClick = () => dispatch(authLogout());
   return (
     <>
       <div className="container">
-        {isAuth && <button onClick={onClick}>Sign out</button>}
+        {/* {isAuth && <button onClick={onClick}>Sign out</button>} */}
         <Header />
       </div>
       <Main />
