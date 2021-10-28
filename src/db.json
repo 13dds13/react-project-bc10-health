@@ -1,7 +1,10 @@
 {
   "apiBaseURL": "https://slimmom-backend.herokuapp.com",
-  "register": "/auth/register",
-  "login": "/auth/login",
-  "logout": "/auth/logout",
-  "refresh": "/auth/refresh"
+  "endpoint": {
+    "register": "/auth/register",
+    "login": "/auth/login",
+    "logout": "/auth/logout",
+    "refresh": "/auth/refresh",
+    "user": "/user"
+  }
 }

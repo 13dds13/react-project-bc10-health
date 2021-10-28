@@ -2,8 +2,11 @@ import styled from "styled-components";
 
 export const CalloriesTextStyled = styled.div`
   .callories-text {
-    @for-tablet {
+    @media screen and (min-width: 768px) {
       display: flex;
+    }
+    @media screen and (min-width: 1024px) {
+      display: block;
     }
     &__box {
       color: var(--not-bold-text-colour);
@@ -15,8 +18,11 @@ export const CalloriesTextStyled = styled.div`
       width: 290px;
       height: 152px;
       margin-bottom: 40px;
+      @media screen and (min-width: 768px) {
+        margin-left: 60px;
+      }
 
-      @for-desktop {
+      @media screen and (min-width: 1024px) {
         width: 330px;
         height: 168px;
         margin-bottom: 60px;

@@ -1,3 +1,3 @@
-export const getIsAuth = (state) => state.authData.isAuth;
-export const getRefreshToken = (state) => state.authData.userInfo.refreshToken;
-export const getSid = (state) => state.authData.userInfo.sid;
+export const getIsAuth = (state) => state.auth.isAuth;
+export const getRefreshToken = (state) => state.auth.authData.refreshToken;
+export const getSid = (state) => state.auth.authData.sid;
