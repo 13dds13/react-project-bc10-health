@@ -1,17 +1,15 @@
 import styled from "styled-components";
 
 export const ButtonStyled = styled.div`
-   {
-    /* font-family: Roboto, sans-serif; */
-    font-size: 14px;
+  /* font-family: Roboto, sans-serif; */
+  font-size: 14px;
 
-    font-weight: 700;
-    border: 2px solid #fc842d;
-    width: 176px;
-    height: 44px;
-    border-radius: 30px;
-    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  }
+  font-weight: 700;
+  border: 2px solid #fc842d;
+  width: 176px;
+  height: 44px;
+  border-radius: 30px;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
 
   .btn_orange {
     background-color: #fc842d;
