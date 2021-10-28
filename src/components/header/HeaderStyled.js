@@ -5,7 +5,6 @@ export const HeaderStyled = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid #e0e0e0;
   padding: 0 15px;
 
   .header__wrap {
@@ -27,7 +26,7 @@ export const HeaderStyled = styled.header`
   }
 
   .header__text-color {
-    color: #fc842d;
+    color: var(--accent-colour);
   }
 
   .header__icon-menu {
@@ -40,15 +39,15 @@ export const HeaderStyled = styled.header`
     height: 20px;
   }
 
-  /* @media screen and (min-width: 768px) {
-    padding: 0 69px 0 87px;
-  } */
-
+  .border-line {
+    color: var(--border-colour);
+    margin: 0;
+    padding: 0;
+  }
   @media screen and (min-width: 1024px) {
     justify-content: flex-start;
     align-items: flex-end;
     margin: 82px 0 144px 0px;
-    border-bottom: none;
 
     .header__wrap {
       align-items: flex-end;
@@ -62,7 +61,7 @@ export const HeaderStyled = styled.header`
     .header__text {
       margin: 0;
       padding-right: 22px;
-      border-right: 2px solid #e0e0e0;
+      border-right: 2px solid var(--border-colour);
     }
   }
 `;
