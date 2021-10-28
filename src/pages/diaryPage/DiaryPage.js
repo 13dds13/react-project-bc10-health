@@ -14,29 +14,28 @@ const DiaryPage = () => {
 
   const dispatch = useDispatch();
   const onHandleCliсk = () => dispatch(setDiaryValue());
+
   return (
     <>
       <h2>DiaryPage</h2>
-      <div className={"dataPicker__box"}>
-        <DatePicker
-          dateFormat="dd.MM.yyyy"
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-        />
-        <svg className="dataPicker__svg" width="18" height="20">
-          <use href={sprite + "#calendar"} />
-        </svg>
-        <ProductForm />
-
-        <button type="button" onClick={onHandleCliсk}>
-          openModal
-        </button>
-        {isModalOpen && (
-          <Modal hideModal={onHandleCliсk}>
-            <h2>тут форма</h2>
-          </Modal>
-        )}
-      </div>
+      <button type="button" onClick={onHandleCliсk}>
+        openModal
+      </button>
+      {isModalOpen && (
+        <Modal hideModal={onHandleCliсk} showModal={onHandleCliсk}>
+          <div className={"dataPicker__box"}>
+            <DatePicker
+              dateFormat="dd.MM.yyyy"
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+            />
+            <svg className="dataPicker__svg" width="18" height="20">
+              <use href={sprite + "#calendar"} />
+            </svg>
+            <ProductForm />
+          </div>
+        </Modal>
+      )}
     </>
   );
 };

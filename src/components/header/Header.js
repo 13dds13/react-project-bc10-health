@@ -92,7 +92,10 @@ const Header = () => {
           }}
         />
       )}
-      <div className="container">
+      <div className="container" style={{
+          paddingLeft: "0",
+          paddingRight: "0",
+      }}>
         {width < breakPointTablet && isAuth && <UserMenu width={width} />}
       </div>
     </>

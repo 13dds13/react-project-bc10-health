@@ -6,13 +6,26 @@ import { mainRoutes } from "../../routes/mainRoutes";
 import PrivateRoute from "../../routes/PrivateRoute";
 import PublicRoute from "../../routes/PublicRoute";
 import { MainStyled } from "./MainStyled";
+import Loader from "react-loader-spinner";
 
 const Main = () => {
   const isAuth = useSelector(getIsAuth);
 
   return (
     <MainStyled>
-      <Suspense fallback={<h2>...loading</h2>}>
+      <Suspense
+        fallback={
+          <Loader
+            type="ThreeDots"
+            color="var(--accent-colour)"
+            height={80}
+            width={80}
+            style={{
+              textAlign: "center",
+            }}
+          />
+        }
+      >
         <Switch>
           {mainRoutes.map(
             ({ path, exact, component, isPrivate, isRestricted }) =>

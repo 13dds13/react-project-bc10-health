@@ -15,7 +15,7 @@ export const ModalContainer = styled.div`
   justify-content: center;
   /* align-items: center; */
   background-color: #264061;
-  z-index: 1200;
+  z-index: 1300;
   overflow: auto;
 
   .Modal {

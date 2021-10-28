@@ -8,7 +8,7 @@ export const ModalStyled = styled.div`
       left: 0;
 
       /* ================= */
-      margin-top: ${(props) => (props.isOpenDiaryModal ? "120px" : "100px")};
+      margin-top: ${(props) => (props.isOpenDiaryModal ? "122px" : "100px")};
       /* ================= */
 
 

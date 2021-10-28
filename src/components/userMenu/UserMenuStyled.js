@@ -38,6 +38,8 @@ export const UserMenuStyled = styled.div`
       background-color: Transparent;
       padding: 0 0 0 15px;
 
+      color: var(--not-bold-text-colour);
+
       &:hover {
         color: var(--not-bold-text-colour)
       }
@@ -55,5 +57,6 @@ export const UserMenuStyled = styled.div`
   @media screen and (min-width: 1024px) {
     align-items: flex-end;
     margin-left: auto;
+    margin-right: 0;
   }
 `;
