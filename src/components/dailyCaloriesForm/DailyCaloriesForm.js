@@ -2,8 +2,11 @@ import React from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { setLocale } from "yup";
+import { DailyCaloriesFormStyled } from "./DailyCaloriesForm.styled";
 
-const DailyCaloriesForm = () => {
+const DailyCaloriesForm = ({
+  title = "Просчитай свою суточную норму калорий прямо сейчас",
+}) => {
   setLocale({
     number: {
       min: "Минимальное значение ${min}",
@@ -16,170 +19,283 @@ const DailyCaloriesForm = () => {
       .number()
       .min(20)
       .max(500)
-      .typeError("Должно быть числовое значение от 20  до 500")
+      .typeError("Числовое значение от 20  до 500")
       .required("Обязательное поле"),
 
     height: yup
       .number()
       .min(100)
       .max(250)
-      .typeError("Должно быть числовое значение от 100  до 250")
+      .typeError("Числовое значение от 100  до 250")
       .required("Обязательное поле"),
 
     age: yup
       .number()
       .min(18)
       .max(100)
-      .typeError("Должно быть числовое значение от 18  до 100")
+      .typeError("Числовое значение от 18  до 100")
       .required("Обязательное поле"),
 
     desiredWeight: yup
       .number()
       .min(20)
       .max(500)
-      .typeError("Должно быть числовое значение от 20  до 500")
+      .typeError("Числовое значение от 20  до 500")
       .required("Обязательное поле"),
 
     bloodType: yup.number().required(""),
   });
 
+  // let checked = true;
   return (
-    <form>
-      <h1>Просчитай свою суточную норму калорий прямо сейчас</h1>
-      <Formik
-        initialValues={{
-          weight: "",
-          height: "",
-          age: "",
-          desiredWeight: "",
-          bloodType: "",
-        }}
-        validateOnBlur
-        onSubmit={(values) => console.log(values)}
-        validationSchema={validationsSchema}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          isValid,
-          handleSubmit,
-          dirty,
-        }) => (
-          <div>
-            <p>
-              <label htmlFor={`height`}>Рост, см *</label>
-              <input
-                // type={`number`}
-                name={`height`}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.height}
-                className={`input`}
-                placeholder=" "
-                autoComplete="off"
-              />
-            </p>
-            {touched.height && errors.height && <p>{errors.height}</p>}
+    <DailyCaloriesFormStyled>
+      <form className="dailyCalories-form">
+        <h1 className="dailyCalories-form__title">
+          {title}
+          {/* Просчитай свою суточную норму калорий прямо сейчас */}
+        </h1>
+        <Formik
+          initialValues={{
+            weight: "",
+            height: "",
+            age: "",
+            desiredWeight: "",
+            bloodType: "",
+          }}
+          validateOnBlur
+          onSubmit={(values, actions) => {
+            console.log(values);
+            actions.resetForm();
+            // checked
+          }}
+          validationSchema={validationsSchema}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            isValid,
+            handleSubmit,
+            dirty,
+          }) => (
+            <div className="dailyCalories-form__input-wrapper">
+              <div className="group">
+                <div className="sub-group">
+                  <div className="dailyCalories-form__sub-wrapper">
+                    <label
+                      className="dailyCalories-form__label"
+                      htmlFor={`height`}
+                    >
+                      Рост, см *
+                    </label>
 
-            <p>
-              <label htmlFor={`age`}>Возраст, лет *</label>
-              <input
-                // type={`number`}
-                name={`age`}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.age}
-                className={`input`}
-                placeholder=" "
-                autoComplete="off"
-              />
-            </p>
-            {touched.age && errors.age && <p>{errors.age}</p>}
+                    <input
+                      id={`height`}
+                      // type={`number`}
+                      name={`height`}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.height}
+                      className="dailyCalories-form__input"
+                      placeholder=" "
+                      autoComplete="off"
+                    />
 
-            <p>
-              <label htmlFor={`weight`}>Текущий вес, кг *</label>
-              <input
-                // type={`number`}
-                name={`weight`}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.weight}
-                className={`input`}
-                placeholder=" "
-                autoComplete="off"
-              />
-            </p>
-            {touched.weight && errors.weight && <p>{errors.weight}</p>}
+                    {touched.height && errors.height && (
+                      <span className="dailyCalories-form__alert">
+                        {errors.height}
+                      </span>
+                    )}
+                  </div>
 
-            <p>
-              <label htmlFor={`desiredWeight`}>Желаемый вес, кг *</label>
-              <input
-                // type={`number`}
-                name={`desiredWeight`}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.desiredWeight}
-                className={`input`}
-                placeholder=" "
-                autoComplete="off"
-              />
-            </p>
-            {touched.desiredWeight && errors.desiredWeight && (
-              <p>{errors.desiredWeight}</p>
-            )}
+                  <hr className="dailyCalories-form__line" />
 
-            <p>
-              <label htmlFor={`bloodType`}>Группа крови *</label>
-              <input
-                type={`radio`}
-                name={`bloodType`}
-                onChange={handleChange}
-                // onBlur={handleBlur}
-                value={1}
-                className={`bloodSelector`}
-                // checked
-              />
-              1
-              <input
-                type={`radio`}
-                name={`bloodType`}
-                onChange={handleChange}
-                // onBlur={handleBlur}
-                value={2}
-                className={`bloodSelector`}
-              />
-              2
-              <input
-                type={`radio`}
-                name={`bloodType`}
-                onChange={handleChange}
-                // onBlur={handleBlur}
-                value={3}
-                className={`bloodSelector`}
-              />
-              3
-              <input
-                type={`radio`}
-                name={`bloodType`}
-                onChange={handleChange}
-                // onBlur={handleBlur}
-                value={4}
-                className={`bloodSelector`}
-              />
-              4
-            </p>
-            {errors.bloodType && <p>{errors.bloodType}</p>}
+                  <div className="dailyCalories-form__sub-wrapper">
+                    <label
+                      className="dailyCalories-form__label"
+                      htmlFor={`age`}
+                    >
+                      Возраст, лет *
+                    </label>
 
-            <button disabled={!isValid} onClick={handleSubmit} type={`submit`}>
-              Похудеть
-            </button>
-          </div>
-        )}
-      </Formik>
-    </form>
+                    <input
+                      id={`age`}
+                      // type={`number`}
+                      name={`age`}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.age}
+                      className="dailyCalories-form__input"
+                      placeholder=" "
+                      autoComplete="off"
+                    />
+                    {touched.age && errors.age && (
+                      <span className="dailyCalories-form__alert">
+                        {errors.age}
+                      </span>
+                    )}
+                  </div>
+
+                  <hr className="dailyCalories-form__line" />
+
+                  <div className="dailyCalories-form__sub-wrapper">
+                    <label
+                      className="dailyCalories-form__label"
+                      htmlFor={`weight`}
+                    >
+                      Текущий вес, кг *
+                    </label>
+
+                    <input
+                      id={`weight`}
+                      // type={`number`}
+                      name={`weight`}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.weight}
+                      className="dailyCalories-form__input"
+                      placeholder=" "
+                      autoComplete="off"
+                    />
+
+                    {touched.weight && errors.weight && (
+                      <span className="dailyCalories-form__alert">
+                        {errors.weight}
+                      </span>
+                    )}
+                  </div>
+
+                  <hr className="dailyCalories-form__line" />
+                </div>
+                <div className="sub-group">
+                  <div className="dailyCalories-form__sub-wrapper">
+                    <label
+                      className="dailyCalories-form__label"
+                      htmlFor={`desiredWeight`}
+                    >
+                      Желаемый вес, кг *
+                    </label>
+
+                    <input
+                      id={`desiredWeight`}
+                      // type={`number`}
+                      name={`desiredWeight`}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.desiredWeight}
+                      className="dailyCalories-form__input"
+                      placeholder=" "
+                      autoComplete="off"
+                    />
+
+                    {touched.desiredWeight && errors.desiredWeight && (
+                      <span className="dailyCalories-form__alert">
+                        {errors.desiredWeight}
+                      </span>
+                    )}
+                  </div>
+
+                  <hr className="dailyCalories-form__line" />
+
+                  <div>
+                    <label
+                      className="dailyCalories-form__radio-label"
+                      htmlFor={`bloodType`}
+                    >
+                      Группа крови *
+                    </label>
+
+                    <div className="dailyCalories-form__radio-input-wrapper">
+                      <input
+                        id="blood-1"
+                        type={`radio`}
+                        name={`bloodType`}
+                        onChange={handleChange}
+                        // onBlur={handleBlur}
+                        value={1}
+                        className="dailyCalories-form__blood-selector"
+                        // checked={checked ? false : true}
+                      />
+                      <label
+                        className="dailyCalories-form__blood-selector-label"
+                        htmlFor="blood-1"
+                      >
+                        1
+                      </label>
+                    </div>
+
+                    <div className="dailyCalories-form__radio-input-wrapper">
+                      <input
+                        id="blood-2"
+                        type={`radio`}
+                        name={`bloodType`}
+                        onChange={handleChange}
+                        // onBlur={handleBlur}
+                        value={2}
+                        className="dailyCalories-form__blood-selector"
+                      />
+                      <label
+                        className="dailyCalories-form__blood-selector-label"
+                        htmlFor="blood-2"
+                      >
+                        2
+                      </label>
+                    </div>
+
+                    <div className="dailyCalories-form__radio-input-wrapper">
+                      <input
+                        id="blood-3"
+                        type={`radio`}
+                        name={`bloodType`}
+                        onChange={handleChange}
+                        // onBlur={handleBlur}
+                        value={3}
+                        className="dailyCalories-form__blood-selector"
+                      />
+                      <label
+                        className="dailyCalories-form__blood-selector-label"
+                        htmlFor="blood-3"
+                      >
+                        3
+                      </label>
+                    </div>
+
+                    <div className="dailyCalories-form__radio-input-wrapper">
+                      <input
+                        id="blood-4"
+                        type={`radio`}
+                        name={`bloodType`}
+                        onChange={handleChange}
+                        // onBlur={handleBlur}
+                        value={4}
+                        className="dailyCalories-form__blood-selector"
+                      />
+                      <label
+                        className="dailyCalories-form__blood-selector-label"
+                        htmlFor="blood-4"
+                      >
+                        4
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                {errors.bloodType && <p>{errors.bloodType}</p>}
+              </div>
+              <button
+                disabled={!isValid}
+                onClick={handleSubmit}
+                type={`submit`}
+                className="dailyCalories-form__btn"
+              >
+                Похудеть
+              </button>
+            </div>
+          )}
+        </Formik>
+      </form>
+    </DailyCaloriesFormStyled>
   );
 };
 

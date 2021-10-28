@@ -6,8 +6,11 @@ import {
   getRefreshToken,
   getSid,
 } from "../redux/auth/authSelectors";
+
 import Header from "./header";
 import Main from "./main";
+
+import DailyCaloriesForm from "./dailyCaloriesForm";
 
 const App = () => {
   const isAuth = useSelector(getIsAuth);
@@ -25,6 +28,7 @@ const App = () => {
       {isAuth && <button onClick={onClick}>Sign out</button>}
       <Header />
       <Main />
+      <DailyCaloriesForm />
     </>
   );
 };
