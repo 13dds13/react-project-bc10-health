@@ -7,29 +7,29 @@ export const ModalStyled = styled.div`
       top: 0;
       left: 0;
 
-      /* margin-top: 80px; */
+      /* ================= */
+      margin-top: ${(props) => (props.isOpenDiaryModal ? "120px" : "100px")};
+      /* ================= */
 
-      /* ================= */
-      margin-top: ${(props) => (props.isOpenDiaryModal ? "120px" : "80px")};
-      /* ================= */
 
       width: 100vw;
       height: 100vh;
       display: flex;
       justify-content: center;
-      /* align-items: center; */
-      /* background-color: #264061; */
+
+      align-items: center;
        /* ================= */
        background-color: ${(props) => (props.isOpenDiaryModal ? "var(--main-bg-color)" : "var(--bg-modal-accent-colour)")};
       /* ================= */
+
       z-index: 1200;
       overflow: auto;
 
       .Modal {
         position: relative;
-        background-color: #3d3d3d;
+        /* background-color: #3d3d3d; */
         border-radius: 14px;
-        overflow: hidden;
+      z-index: 999;
       }
     }
   }
