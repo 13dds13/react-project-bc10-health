@@ -1,21 +1,34 @@
 import React from "react";
 import sprite from "../../images/sprite.svg";
-import styles from "./Buttot.module.css";
 
-const Button = ({ buttonName, type }) => {
+import { ButtonStyled } from "./ButtonStyled";
+
+const Button = ({ buttonName, disabled, onClick, type, showModal }) => {
   return (
-    <button className={`${styles.btn} ${styles.btn_orange}`} type={type}>
-      {buttonName}
-    </button>
+    <ButtonStyled>
+      <button
+        className="btn btn_orange"
+        type={type}
+        // disabled={disabled}
+        onClick={(e) => {
+          e.preventDefault();
+          // console.log(disabled);
+          onClick();
+          if (!disabled) {
+            return;
+          }
+          showModal();
+        }}
+      >
+        {buttonName}
+      </button>
+    </ButtonStyled>
   );
 };
 
 const ButtonAdd = ({ type }) => {
   return (
-    <button
-      className={`${styles.btn_add} ${styles.btn_orange_add}`}
-      type={type}
-    >
+    <button className="btn_add btn_orange_add" type={type}>
       <svg width="20" height="20" fill="white">
         <use href={sprite + "#add"} />
       </svg>
