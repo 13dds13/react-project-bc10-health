@@ -27,6 +27,9 @@
   height: 50px;
   border-radius: 30px;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn_orange_add {

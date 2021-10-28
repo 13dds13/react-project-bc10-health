@@ -1,0 +1,9 @@
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
+<symbol id="add" viewBox="0 0 32 32"><path d="M32 18.286H18.286V32h-4.571V18.286H.001v-4.571h13.714V.001h4.571v13.714H32v4.571z"/></symbol>
+<symbol id="burger" viewBox="0 0 48 32"><path d="M0 32h48v-5.333H0V32zm0-13.333h48v-5.333H0v5.333zM0 0v5.333h48V0H0z"/></symbol>
+<symbol id="arrow" viewBox="0 0 53 32"><path stroke-width="7.111" d="M49.778 5.333V16H7.111m0 0L19.555 3.556M7.111 16l12.444 12.444"/></symbol>
+<symbol id="close" viewBox="0 0 32 32"><path d="M31.555 3.577 28.422.444 16 12.866 3.578.444.445 3.577l12.422 12.422L.445 28.421l3.133 3.133L16 19.132l12.422 12.422 3.133-3.133-12.422-12.422L31.555 3.577z"/></symbol>
+<symbol id="calendar" viewBox="0 0 29 32">
+<path fill="#9b9faa" style="fill: var(--color1, #9b9faa)" d="M22.4 14.4h-3.2v3.2h3.2v-3.2zM16 14.4h-3.2v3.2h3.2v-3.2zM9.6 14.4h-3.2v3.2h3.2v-3.2z"></path>
+<path fill="#9b9faa" style="fill: var(--color1, #9b9faa)" d="M25.6 3.2h-1.6v-3.2h-3.2v3.2h-12.8v-3.2h-3.2v3.2h-1.6c-1.776 0-3.184 1.44-3.184 3.2l-0.016 22.4c0 1.767 1.433 3.2 3.2 3.2v0h22.4c1.76 0 3.2-1.44 3.2-3.2v-22.4c0-1.76-1.44-3.2-3.2-3.2zM25.6 28.8h-22.4v-17.6h22.4v17.6z"></path>
+</symbol></defs></svg>
