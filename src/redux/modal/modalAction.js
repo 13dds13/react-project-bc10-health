@@ -1,3 +1,3 @@
 import { createAction } from "@reduxjs/toolkit";
 
-export const setModalValue = createAction("dearyModal/seModalValue");
+export const setModalValue = createAction("modal/seModalValue");
