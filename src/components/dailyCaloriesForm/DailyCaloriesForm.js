@@ -33,7 +33,9 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
         // actions.resetForm();
       })
       .catch((error) => console.log(error));
-  }, [data, getCalloriesData, url]);
+  }, [data]);
+
+
   setLocale({
     number: {
       min: "Минимальное значение ${min}",
