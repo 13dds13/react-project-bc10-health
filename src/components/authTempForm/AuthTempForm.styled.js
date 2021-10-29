@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const RegistrationFormStyled = styled.div`
+export const AuthFormStyled = styled.div`
   .registration-form {
     margin: 0;
     padding-top: 30px;
@@ -50,6 +50,7 @@ export const RegistrationFormStyled = styled.div`
       line-height: 1.22;
       letter-spacing: 0.04em;
       /* display: block; */
+      cursor: pointer;
     }
 
     &__line {
@@ -69,7 +70,7 @@ export const RegistrationFormStyled = styled.div`
       font-size: 14px;
       line-height: 1.22;
       letter-spacing: 0.04em;
-      width: 70%;
+      width: 65%;
       background-color: inherit;
       border: none;
       outline: none;
@@ -89,6 +90,27 @@ export const RegistrationFormStyled = styled.div`
       color: red;
       @media screen and (min-width: 768px) {
         top: 45px;
+      }
+    }
+    &__btn-wrapper {
+      width: 100%;
+      text-align: center;
+      @media screen and (min-width: 768px) {
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      @media screen and (min-width: 1280px) {
+        text-align: right;
+      }
+    }
+    &__second-btn-wrapper {
+      margin-top: 20px;
+
+      @media screen and (min-width: 768px) {
+        margin-top: 0px;
+        margin-left: 30px;
       }
     }
   }

@@ -3,11 +3,19 @@ import sprite from "../../images/sprite.svg";
 
 import { ButtonStyled } from "./ButtonStyled";
 
-const Button = ({ dirty, buttonName, isValid, onClick, type, showModal }) => {
+const Button = ({
+  dirty,
+  buttonName,
+  isValid,
+  onClick,
+  type,
+  showModal,
+  btn_mod = "btn_orange",
+}) => {
   return (
     <ButtonStyled>
       <button
-        className="btn btn_orange"
+        className={`btn ${btn_mod}`}
         type={type}
         disabled={!isValid || !dirty}
         onClick={(e) => {

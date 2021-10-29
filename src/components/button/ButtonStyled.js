@@ -11,6 +11,7 @@ export const ButtonStyled = styled.div`
     height: 44px;
     border-radius: 30px;
     box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+    cursor: pointer;
   }
 
   .btn_orange {
@@ -46,5 +47,11 @@ export const ButtonStyled = styled.div`
     font-size: 25px;
     font-weight: 200;
     fill: #fff;
+  }
+
+  .btn:disabled {
+    background-color: #fac9a6;
+    border: 2px solid #fac9a6;
+    cursor: not-allowed;
   }
 `;
