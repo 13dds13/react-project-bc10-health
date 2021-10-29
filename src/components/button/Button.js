@@ -3,18 +3,23 @@ import sprite from "../../images/sprite.svg";
 
 import { ButtonStyled } from "./ButtonStyled";
 
-const Button = ({ buttonName, disabled, onClick, type, showModal }) => {
+const Button = ({ dirty, buttonName, isValid, onClick, type, showModal }) => {
   return (
     <ButtonStyled>
       <button
         className="btn btn_orange"
         type={type}
-        // disabled={disabled}
+        // disabled={!isValid || !dirty}
         onClick={(e) => {
           e.preventDefault();
-          // console.log(disabled);
+          // console.log(isValid);
+          // console.log(dirty);
           onClick();
-          if (!disabled) {
+          if (!dirty) {
+            alert('Set the values')
+            return
+          }
+          if (!isValid) {
             return;
           }
           showModal();

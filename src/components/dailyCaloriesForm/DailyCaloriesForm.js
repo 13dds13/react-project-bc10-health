@@ -312,7 +312,8 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
               </div>
               <Button
                 buttonName="Похудеть"
-                disabled={isValid}
+                isValid={isValid}
+                dirty={dirty}
                 onClick={handleSubmit}
                 type={`submit`}
                 showModal={showModal}
