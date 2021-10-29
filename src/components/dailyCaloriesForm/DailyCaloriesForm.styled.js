@@ -55,6 +55,7 @@ export const DailyCaloriesFormStyled = styled.div`
       font-size: 14px;
       line-height: 1.22;
       letter-spacing: 0.04em;
+      width: 80%;
     }
 
     &__line {
@@ -86,7 +87,7 @@ export const DailyCaloriesFormStyled = styled.div`
       font-size: 14px;
       line-height: 1.22;
       letter-spacing: 0.04em;
-      width: 13%;
+      width: 18%;
       background-color: inherit;
       border: none;
       outline: none;
