@@ -34,7 +34,7 @@ class Modal extends Component {
   render() {
 
     return (
-      <ModalContainer onClick={this.handleBackdropClick} test={true}>
+      <ModalContainer onClick={this.handleBackdropClick}>
         <div className='modal'>{this.props.children}</div>
       </ModalContainer>
     );

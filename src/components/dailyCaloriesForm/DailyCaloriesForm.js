@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
-import * as yup from "yup";
-import { setLocale } from "yup";
+// import * as yup from "yup";
+// import { setLocale } from "yup";
 import { DailyCaloriesFormStyled } from "./DailyCaloriesForm.styled";
 import axios from "axios";
 import { Button } from "../button/Button";
 import { useEffect } from "react";
+import { validationsSchema } from "./validationSchema";
 
 const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
   const [data, setData] = useState({});
@@ -35,47 +36,6 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
       .catch((error) => console.log(error));
   }, [data]);
 
-
-  setLocale({
-    number: {
-      min: "Минимальное значение ${min}",
-      max: "Максимальное значение ${max}",
-    },
-  });
-
-  const validationsSchema = yup.object().shape({
-    weight: yup
-      .number()
-      .min(20)
-      .max(500)
-      .typeError("Числовое значение от 20  до 500")
-      .required("Обязательное поле"),
-
-    height: yup
-      .number()
-      .min(100)
-      .max(250)
-      .typeError("Числовое значение от 100  до 250")
-      .required("Обязательное поле"),
-
-    age: yup
-      .number()
-      .min(18)
-      .max(100)
-      .typeError("Числовое значение от 18  до 100")
-      .required("Обязательное поле"),
-
-    desiredWeight: yup
-      .number()
-      .min(20)
-      .max(500)
-      .typeError("Числовое значение от 20  до 500")
-      .required("Обязательное поле"),
-
-    bloodType: yup.number().required(""),
-  });
-
-  // let checked = true;
   return (
     <DailyCaloriesFormStyled>
       <form className="dailyCalories-form">
@@ -89,10 +49,11 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
             height: "",
             age: "",
             desiredWeight: "",
-            bloodType: "",
+            bloodType: "1",
           }}
           validateOnBlur
           onSubmit={(values) => {
+            showModal();
             setData(values);
           }}
           validationSchema={validationsSchema}
@@ -226,7 +187,7 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
 
                   <hr className="dailyCalories-form__line" />
 
-                  <div>
+                  <div className="dailyCalories-form__radio-form-wrapper">
                     <label
                       className="dailyCalories-form__radio-label"
                       htmlFor={`bloodType`}
@@ -235,89 +196,102 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
                     </label>
 
                     <div className="dailyCalories-form__radio-input-wrapper">
-                      <input
-                        id="blood-1"
-                        type={`radio`}
-                        name={`bloodType`}
-                        onChange={handleChange}
-                        // onBlur={handleBlur}
-                        value={1}
-                        className="dailyCalories-form__blood-selector"
-                        // checked={checked ? false : true}
-                      />
                       <label
                         className="dailyCalories-form__blood-selector-label"
                         htmlFor="blood-1"
                       >
-                        1
+                        <input
+                          id="blood-1"
+                          type={`radio`}
+                          name={`bloodType`}
+                          onChange={handleChange}
+                          // onBlur={handleBlur}
+                          value={1}
+                          className="dailyCalories-form__blood-selector"
+                          checked={values.bloodType === "1" ? true : false}
+                        />
+                        <span className="dailyCalories-form__blood-selector-name">
+                          1
+                        </span>
                       </label>
                     </div>
 
                     <div className="dailyCalories-form__radio-input-wrapper">
-                      <input
-                        id="blood-2"
-                        type={`radio`}
-                        name={`bloodType`}
-                        onChange={handleChange}
-                        // onBlur={handleBlur}
-                        value={2}
-                        className="dailyCalories-form__blood-selector"
-                      />
                       <label
                         className="dailyCalories-form__blood-selector-label"
                         htmlFor="blood-2"
                       >
-                        2
+                        <input
+                          id="blood-2"
+                          type={`radio`}
+                          name={`bloodType`}
+                          onChange={handleChange}
+                          // onBlur={handleBlur}
+                          value={2}
+                          className="dailyCalories-form__blood-selector"
+                          checked={values.bloodType === "2" ? true : false}
+                        />
+                        <span className="dailyCalories-form__blood-selector-name">
+                          2
+                        </span>
                       </label>
                     </div>
 
                     <div className="dailyCalories-form__radio-input-wrapper">
-                      <input
-                        id="blood-3"
-                        type={`radio`}
-                        name={`bloodType`}
-                        onChange={handleChange}
-                        // onBlur={handleBlur}
-                        value={3}
-                        className="dailyCalories-form__blood-selector"
-                      />
                       <label
                         className="dailyCalories-form__blood-selector-label"
                         htmlFor="blood-3"
                       >
-                        3
+                        <input
+                          id="blood-3"
+                          type={`radio`}
+                          name={`bloodType`}
+                          onChange={handleChange}
+                          // onBlur={handleBlur}
+                          value={3}
+                          className="dailyCalories-form__blood-selector"
+                          checked={values.bloodType === "3" ? true : false}
+                        />
+                        <span className="dailyCalories-form__blood-selector-name">
+                          3
+                        </span>
                       </label>
                     </div>
 
                     <div className="dailyCalories-form__radio-input-wrapper">
-                      <input
-                        id="blood-4"
-                        type={`radio`}
-                        name={`bloodType`}
-                        onChange={handleChange}
-                        // onBlur={handleBlur}
-                        value={4}
-                        className="dailyCalories-form__blood-selector"
-                      />
                       <label
                         className="dailyCalories-form__blood-selector-label"
                         htmlFor="blood-4"
                       >
-                        4
+                        <input
+                          id="blood-4"
+                          type={`radio`}
+                          name={`bloodType`}
+                          onChange={handleChange}
+                          // onBlur={handleBlur}
+                          value={4}
+                          className="dailyCalories-form__blood-selector"
+                          checked={values.bloodType === "4" ? true : false}
+                        />
+                        <span className="dailyCalories-form__blood-selector-name">
+                          4
+                        </span>
                       </label>
                     </div>
                   </div>
                 </div>
                 {errors.bloodType && <p>{errors.bloodType}</p>}
               </div>
-              <Button
-                buttonName="Похудеть"
-                isValid={isValid}
-                dirty={dirty}
-                onClick={handleSubmit}
-                type={`submit`}
-                showModal={showModal}
-              />
+              <div className="dailyCalories-form__btn-wrapper">
+                <Button
+                  buttonName="Похудеть"
+                  isValid={isValid}
+                  dirty={dirty}
+                  onClick={handleSubmit}
+                  type={`submit`}
+                  // showModal={showModal}
+                />
+              </div>
             </div>
           )}
         </Formik>

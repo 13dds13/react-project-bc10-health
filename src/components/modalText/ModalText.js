@@ -1,8 +1,11 @@
 import React from "react";
 import { Button } from "../button/Button";
 import { ModalTextStyled } from "./ModalTextStyled";
+import { useHistory } from "react-router-dom";
 
 const ModalText = ({ modalData }) => {
+  const history = useHistory();
+
   return (
     <ModalTextStyled>
       <div className="modal-text-box">
@@ -25,7 +28,16 @@ const ModalText = ({ modalData }) => {
             ))}
           </ol>
           <div className="modal-products__btn">
-            <Button buttonName="Начать худеть" />
+            <Button
+              buttonName="Начать худеть"
+              isValid={true}
+              dirty={true}
+              onClick={() => {
+                let path = `/singup`;
+                history.push(path);
+              }}
+              type={`button`}
+            />
           </div>
         </div>
       </div>

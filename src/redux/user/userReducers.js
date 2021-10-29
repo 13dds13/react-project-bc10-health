@@ -23,7 +23,7 @@ const userDataReducer = createReducer(
 const userSummaryReducer = createReducer(
   {},
   {
-    [userSummarySuccess]: (_, { payload }) => payload,
+    [userSummarySuccess]: (state, { payload }) => ({ ...state, ...payload }),
     [logoutAuthSuccess]: () => ({}),
   }
 );

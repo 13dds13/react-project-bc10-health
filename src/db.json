@@ -6,7 +6,7 @@
     "logout": "/auth/logout",
     "refresh": "/auth/refresh",
     "user": "/user",
-    "product": "/product?search=",
+    "productSearch": "/product?search=",
     "postOrDeleteEatenProduct": "/day",
     "dayInfo": "/day/info"
   }

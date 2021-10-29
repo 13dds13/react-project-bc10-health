@@ -11,7 +11,7 @@ const CalloriesText = () => {
   const notAllowedProducts = useSelector(getNotAllowedProducts);
 
   const {
-    date,
+    date = "",
     kcalLeft = "000",
     kcalConsumed = "000",
     dailyRate = "000",
@@ -39,7 +39,7 @@ const CalloriesText = () => {
             <div className="callories-text__item-box">
               <p className="callories-text__item"> n% от нормы</p>
               <span className="callories-text__count">
-                {Math.round(percentsOfDailyRate)} ккал
+                {Math.round(percentsOfDailyRate)} %
               </span>
             </div>
           </div>

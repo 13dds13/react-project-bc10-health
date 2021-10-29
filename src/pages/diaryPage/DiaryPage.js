@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
-import axios from "axios";
 import ProductForm from "../../components/productForm/ProductForm";
 import "./react-datapicker.css";
 import sprite from "../../images/sprite.svg";
-import { endpoint } from "../../db.json";
 import {
   addEatenProduct,
   deleteProduct,
@@ -13,44 +11,49 @@ import {
 } from "../../redux/user/userOperations";
 import EatenProductsList from "../../components/eatenProductsList/EatenProductsList";
 import getDateInFormat from "../../services/getDateInFormat";
-import { getDayId, getEatenProductsList } from "../../redux/user/userSelectors";
+import {
+  getDayId,
+  getDaySummary,
+  getEatenProductsList,
+} from "../../redux/user/userSelectors";
 import CalloriesText from "../../components/calloriesText/CalloriesText";
-import { setDiaryValue } from "../../redux/isOpenModalForDiaryMobilePage/diaryModalAction";
 import Modal from "../../components/modal";
 import { DiaryPageStyled } from "./DiaryPageStyles";
+import productSearch from "../../services/productSearch";
+import { getIsOpenModal } from "../../redux/modal/modalSelectors";
+import { setModalValue } from "../../redux/modal/modalAction";
 
 const DiaryPage = () => {
   const dayId = useSelector(getDayId);
   const [errorMsg, setErrorMsg] = useState("");
   const [startDate, setStartDate] = useState(new Date());
 
-  const isModalOpen = useSelector((state) => state.diaryModal.isOpenModal);
+  const isModalOpen = useSelector(getIsOpenModal);
 
   const dispatch = useDispatch();
-  const onHandleCliсk = () => dispatch(setDiaryValue());
+  const onHandleCliсk = () => dispatch(setModalValue());
 
   const [productName, setProductName] = useState("");
   const [productWeight, setProductWeight] = useState("");
   const [productsVariants, setProductsVariants] = useState([]);
   const eatenProductsList = useSelector(getEatenProductsList);
+  const { percentsOfDailyRate } = useSelector(getDaySummary);
 
   useEffect(() => {
+    setProductName("");
+    setProductWeight("");
     const date = getDateInFormat(startDate);
     dispatch(getDayInfo(date));
-  }, [dispatch, startDate]);
+  }, [dispatch, startDate, percentsOfDailyRate]);
 
   useEffect(() => {
-    productName &&
-      axios(`${endpoint.product}${productName}`)
-        .then(({ data }) => {
-          const variantsList = data.slice(0, 20);
-          setProductsVariants(variantsList);
-        })
-        .catch((error) => {
-          error.response.status === 400
-            ? setErrorMsg("Такого продукта в базе нет")
-            : setErrorMsg("Ой! Что-то пошло не так :(");
-        });
+    setErrorMsg("");
+    if (!productName) return;
+    productSearch(productName).then((searchData) =>
+      typeof searchData === "string"
+        ? setErrorMsg(searchData)
+        : setProductsVariants(searchData)
+    );
   }, [productName]);
 
   const isCurrentDay =
@@ -72,17 +75,13 @@ const DiaryPage = () => {
       return;
     }
     const productId = curProd._id;
-    const weight = Math.round(productWeight);
+    const weight = productWeight ? Math.round(productWeight) : 100;
     const date = getDateInFormat(startDate);
-
     dispatch(addEatenProduct({ date, productId, weight }));
-    dispatch(getDayInfo(date));
   };
 
-  const handleClick = (eatenProductId) => {
-    console.log({ dayId, eatenProductId });
-    // dispatch(deleteProduct({ dayId, eatenProductId }));
-  };
+  const handleClick = (eatenProductId) =>
+    dispatch(deleteProduct({ dayId, eatenProductId }));
 
   return (
     <>

@@ -58,8 +58,13 @@ export const getDayInfo = (date) => async (dispatch) => {
   try {
     dispatch(userDayInfoRequest());
     const { data } = await axios.post(endpoint.dayInfo, { date });
-    const { daySummary = {}, eatenProducts = [] } = data;
-    dispatch(userSummarySuccess(daySummary));
+    const { daySummary, eatenProducts = [] } = data;
+    if (!daySummary) {
+      dispatch(userSummarySuccess({ ...data, date }));
+      dispatch(userDayInfoSuccess(eatenProducts));
+      return;
+    }
+    dispatch(userSummarySuccess({ ...daySummary, dayId: data.id }));
     dispatch(userDayInfoSuccess(eatenProducts));
   } catch (error) {
     dispatch(userDayInfoError(error.response.data.message));
@@ -67,16 +72,13 @@ export const getDayInfo = (date) => async (dispatch) => {
 };
 
 export const deleteProduct = (dataToDelete) => async (dispatch) => {
-  console.log(dataToDelete);
   try {
     dispatch(userDayInfoRequest());
-    const { data } = await axios.delete(
-      endpoint.postOrDeleteEatenProduct,
-      dataToDelete
-    );
-    // const { daySummary = {}, eatenProducts = [] } = data;
-    console.log(data);
-    // dispatch(userSummarySuccess(data));
+    const { data } = await axios.delete(endpoint.postOrDeleteEatenProduct, {
+      data: dataToDelete,
+    });
+    const daySummary = data.newDaySummary;
+    dispatch(userSummarySuccess(daySummary));
   } catch (error) {
     dispatch(userDayInfoError(error.response.data.message));
   }

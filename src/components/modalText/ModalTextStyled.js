@@ -10,6 +10,7 @@ export const ModalTextStyled = styled.div`
     font-weight: bold;
     padding-right: 15px;
     padding-left: 15px;
+
     @media screen and (min-width: 768px) {
       text-align: center;
       height: 580px;
@@ -28,7 +29,7 @@ export const ModalTextStyled = styled.div`
     }
 
     &__title {
-      padding-top: 36px;
+      padding-top: 140px;
       font-size: 18px;
       line-height: 26px;
       margin-bottom: 40px;
