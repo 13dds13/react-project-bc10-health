@@ -18,6 +18,7 @@ import {
 } from "../../redux/user/userSelectors";
 import CalloriesText from "../../components/calloriesText/CalloriesText";
 import Modal from "../../components/modal";
+import { DiaryPageStyled } from "./DiaryPageStyles";
 import productSearch from "../../services/productSearch";
 import { getIsOpenModal } from "../../redux/modal/modalSelectors";
 import { setModalValue } from "../../redux/modal/modalAction";
@@ -84,6 +85,7 @@ const DiaryPage = () => {
 
   return (
     <>
+      <DiaryPageStyled>
       <div className={"dataPicker__box"}>
         <DatePicker
           dateFormat="dd.MM.yyyy"
@@ -105,12 +107,15 @@ const DiaryPage = () => {
           errorMsg={errorMsg}
         />
       )}
+      <div className="diaryFlexBox">
       <EatenProductsList
         eatenProductsList={eatenProductsList}
         isCurrentDay={isCurrentDay}
         handleClick={handleClick}
       />
-      <CalloriesText />
+        <CalloriesText />
+      </div>
+      </DiaryPageStyled>
       <button type="button" onClick={onHandleCliсk}>
         openModal
       </button>

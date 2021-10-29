@@ -1,12 +1,18 @@
 import styled from "styled-components";
 
 export const ProductFormStyled = styled.div`
+margin-top: 60px;
   .productForm-form {
+    display: none;
     margin: 0;
-    padding-top: 30px;
     width: 290px;
     @media screen and (min-width: 768px) {
       width: 605px;
+      display: block;
+    }
+    &__box {
+      display: flex;
+      margin-bottom: 60px;
     }
     &__title {
       color: var(--bold-text-colour);
@@ -22,7 +28,7 @@ export const ProductFormStyled = styled.div`
         font-size: 30px;
         line-height: 1.2;
       }
-      @media screen and (min-width: 1024px) {
+      @media screen and (min-width: 1280px) {
         margin-bottom: 68px;
         font-size: 34px;
         line-height: 1.2;
@@ -37,6 +43,10 @@ export const ProductFormStyled = styled.div`
     }
 
     &__label {
+      display: flex;
+      flex-direction: column;
+      margin-right: 30px;
+      width: auto;
       color: var(--not-bold-text-colour);
       font-family: Verdana;
       font-style: normal;
@@ -45,6 +55,10 @@ export const ProductFormStyled = styled.div`
       line-height: 1.22;
       letter-spacing: 0.04em;
       /* display: block; */
+      &_size {
+        width: 105px;
+        text-align: right;
+      }
     }
 
     &__line {
@@ -69,6 +83,7 @@ export const ProductFormStyled = styled.div`
     }
 
     &__input {
+      width: auto;
       color: var(--accent-colour);
       font-family: Verdana;
       font-style: normal;
@@ -78,7 +93,9 @@ export const ProductFormStyled = styled.div`
       letter-spacing: 0.04em;
       /* width: 25%; */
       background-color: inherit;
-      border: 1px solid #000000;
+      /* border: 1px solid #000000; */
+      border: none;
+      border-bottom: 1px solid #000000;
       outline: none;
     }
 
@@ -136,9 +153,10 @@ export const ProductFormStyled = styled.div`
       width: 240px;
     }
   }
+  
 `;
 
 // @media screen and (min-width: 768px) {
 //     padding: 0 69px 0 87px;
 //   }
-//   @media screen and (min-width: 1024px)
+//   @media screen and (min-width: 1280px)
