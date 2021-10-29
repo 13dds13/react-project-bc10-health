@@ -36,6 +36,7 @@ export const authLogin = (requestData) => async (dispatch) => {
       email,
       password,
     });
+    token.set(data.accessToken);
     const { accessToken, refreshToken, sid, user } = data;
     const { email: userEmail, username, id, userData } = user;
     const {
@@ -62,7 +63,6 @@ export const authLogin = (requestData) => async (dispatch) => {
     };
     dispatch(loginAuthSuccess(authData));
     dispatch(userDataSuccess(preparedUserData));
-    token.set(data.accessToken);
   } catch (error) {
     dispatch(loginAuthError(error.response.data.message));
   }
