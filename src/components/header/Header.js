@@ -12,6 +12,7 @@ const Header = () => {
   let history = useHistory();
 
   const isAuth = useSelector((state) => state.auth.isAuth);
+  const isOpenModalFromState = useSelector((state) => state.diaryModal.isOpenModal);
 
   const [width, setWidth] = useState(window.innerWidth);
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -92,11 +93,15 @@ const Header = () => {
           }}
         />
       )}
-      <div className="container" style={{
+      <div
+        className="container"
+        style={{
           paddingLeft: "0",
           paddingRight: "0",
-      }}>
+        }}
+      >
         {width < breakPointTablet && isAuth && <UserMenu width={width} />}
+        {width < breakPointTablet && !isAuth && isOpenModalFromState && <UserMenu width={width} />}
       </div>
     </>
   );
