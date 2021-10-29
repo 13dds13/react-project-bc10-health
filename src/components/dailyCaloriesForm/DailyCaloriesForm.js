@@ -289,7 +289,6 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
                   onClick={handleSubmit}
                   type={`submit`}
                   showModal={showModal}
-                  // className="dailyCalories-form__btn"
                 />
               </div>
             </div>
