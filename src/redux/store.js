@@ -9,14 +9,14 @@ import {
   REGISTER,
 } from "redux-persist";
 import authReducers from "./auth/authReducers";
-import diaryModalReducer from "./isOpenModalForDiaryMobilePage/diaryModalReducer";
+import modalReducer from "./modal/modalReducer";
 import userReducers from "./user/userReducers";
 
 const store = configureStore({
   reducer: {
     auth: authReducers,
     user: userReducers,
-    diaryModal: diaryModalReducer
+    modal: modalReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
