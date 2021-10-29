@@ -1,19 +1,4 @@
 @charset "UTF-8";
-input {
-  border: none;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 34px;
-  line-height: 1.2;
-  width: 175px;
-  color: #212121;
-}
-.dataPicker__box {
-  display: flex;
-}
-.dataPicker__svg {
-  padding-top: 15px;
-}
 .react-datepicker__year-read-view--down-arrow,
 .react-datepicker__month-read-view--down-arrow,
 .react-datepicker__month-year-read-view--down-arrow,
@@ -105,7 +90,7 @@ input {
   display: inline-block;
   padding: 0;
   border: 0;
-  width: 47%;
+  /* width: 47%; */
 }
 
 .react-datepicker {
@@ -647,7 +632,7 @@ input {
 .react-datepicker__input-container {
   position: relative;
   display: inline-block;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .react-datepicker__year-read-view,

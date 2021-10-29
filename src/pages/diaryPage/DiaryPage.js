@@ -18,6 +18,7 @@ import {
 } from "../../redux/user/userSelectors";
 import CalloriesText from "../../components/calloriesText/CalloriesText";
 import Modal from "../../components/modal";
+import { DiaryPageStyled } from "./DiaryPageStyles";
 import productSearch from "../../services/productSearch";
 import { getIsOpenModal } from "../../redux/modal/modalSelectors";
 import { setModalValue } from "../../redux/modal/modalAction";
@@ -94,41 +95,43 @@ const DiaryPage = () => {
 
   return (
     <>
-      <div className={"dataPicker__box"}>
-        <DatePicker
-          dateFormat="dd.MM.yyyy"
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-        />
-        <svg className="dataPicker__svg" width="18" height="20">
-          <use href={sprite + "#calendar"} />
-        </svg>
-      </div>
+      <DiaryPageStyled>
+        <div className={"dataPicker__box"}>
+          <DatePicker
+            dateFormat="dd.MM.yyyy"
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
+          <svg className="dataPicker__svg" width="18" height="20">
+            <use href={sprite + "#calendar"} />
+          </svg>
+        </div>
 
-      {isCurrentDay &&
-        width >
-          767 && (
-            <ProductForm
-              productName={productName}
-              productWeight={productWeight}
-              productsVariants={productsVariants}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-              errorMsg={errorMsg}
-            />
+        {isCurrentDay && width > 767 && (
+          <ProductForm
+            productName={productName}
+            productWeight={productWeight}
+            productsVariants={productsVariants}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            errorMsg={errorMsg}
+          />
+        )}
+        <div className="diaryFlexBox">
+          <EatenProductsList
+            eatenProductsList={eatenProductsList}
+            isCurrentDay={isCurrentDay}
+            handleClick={handleClick}
+          />
+          {width < 768 && (
+            <button type="button" onClick={onHandleCliсk}>
+              "добавить" => openModal
+            </button>
           )}
-      <EatenProductsList
-        eatenProductsList={eatenProductsList}
-        isCurrentDay={isCurrentDay}
-        handleClick={handleClick}
-      />
-      {width < 767 && (
-        <button type="button" onClick={onHandleCliсk}>
-          openModal
-        </button>
-      )}
+          <CalloriesText />
+        </div>
+      </DiaryPageStyled>
 
-      <CalloriesText />
       {isModalOpen && (
         <Modal hideModal={onHandleCliсk} showModal={onHandleCliсk}>
           <ProductForm

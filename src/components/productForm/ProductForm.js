@@ -1,4 +1,5 @@
 import React from "react";
+import { ButtonAdd } from "../button/Button";
 import { ProductFormStyled } from "./ProductForm.styled";
 
 const ProductForm = ({
@@ -23,6 +24,7 @@ const ProductForm = ({
     <ProductFormStyled>
       <form className="productForm-form" onSubmit={onSubmit}>
         {errorMsg && <p>{errorMsg}</p>}
+        <div className="productForm-form__box">
         <label className="productForm-form__label">
           Введите название продукта
           <input
@@ -34,14 +36,14 @@ const ProductForm = ({
             onChange={onChange}
             autoComplete="off"
           />
-          <datalist id="productSearch">
+          <datalist className="datalist" id="productSearch">
             {productsVariants &&
               productsVariants.map((product) => (
                 <option value={product.title.ru} key={product._id} />
               ))}
           </datalist>
         </label>
-        <label className="productForm-form__label">
+        <label className="productForm-form__label productForm-form__label_size">
           Граммы
           <input
             name="productWeight"
@@ -50,8 +52,10 @@ const ProductForm = ({
             className="productForm-form__input"
             onChange={onChange}
           />
-        </label>
-        <button type="submit">+</button>
+          </label>
+          <ButtonAdd/>
+        </div>
+        
       </form>
     </ProductFormStyled>
   );
