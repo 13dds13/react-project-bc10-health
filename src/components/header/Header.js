@@ -5,14 +5,16 @@ import logo from "../../images/logo-png 1.png";
 import sprite from "../../images/icons-header.svg";
 import { HeaderStyled } from "./HeaderStyled";
 import { useHistory } from "react-router-dom";
+import { getIsOpenModal } from "../../redux/modal/modalSelectors";
+import { getIsAuth } from "../../redux/auth/authSelectors";
 import UserMenu from "../userMenu";
 import Modal from "../modal_1";
 
 const Header = () => {
   let history = useHistory();
 
-  const isAuth = useSelector((state) => state.auth.isAuth);
-  const isOpenModalFromState = useSelector((state) => state.diaryModal.isOpenModal);
+  const isAuth = useSelector(getIsAuth);
+  const isOpenModalFromState = useSelector(getIsOpenModal);
 
   const [width, setWidth] = useState(window.innerWidth);
   const [isOpenModal, setIsOpenModal] = useState(false);

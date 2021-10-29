@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { getIsOpenModal } from "../../redux/modal/modalSelectors";
 import { ModalStyled } from "./ModalStyled";
 
 const Modal = ({ children, showModal }) => {
 
-const isOpenDiaryModal = useSelector(state => state.diaryModal.isOpenModal)
+const isOpenDiaryModal = useSelector(getIsOpenModal)
 
   const onEsc = (e) => {
     if (e.code === "Escape") {

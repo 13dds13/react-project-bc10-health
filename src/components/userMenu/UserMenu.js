@@ -5,22 +5,21 @@ import { UserMenuStyled } from "./UserMenuStyled";
 import { authLogout } from "../../redux/auth/authOperations";
 import { getIsAuth, getUserName } from "../../redux/auth/authSelectors";
 import { useLocation } from "react-router-dom";
-import { setDiaryValue } from "../../redux/isOpenModalForDiaryMobilePage/diaryModalAction";
+import { getIsOpenModal } from "../../redux/modal/modalSelectors";
+import { setModalValue } from "../../redux/modal/modalAction";
 
 const UserMenu = ({ width }) => {
+
   const dispatch = useDispatch();
   const location = useLocation();
+
   const path = location.pathname === "/diary" || location.pathname === "/";
-
-  // const isOpenModal = true;
-
-  const isOpenModal = useSelector((state) => state.diaryModal.isOpenModal);
+  const isOpenModal = useSelector(getIsOpenModal);
+  const userName = useSelector(getUserName);
+  const isAuth = useSelector(getIsAuth)
 
   const onHandleClick = () => dispatch(authLogout());
-  const onHandleSetModal = () => dispatch(setDiaryValue());
-
-  const userName = useSelector(getUserName);
-  const isAuth = useSelector(getIsAuth);
+  const onHandleSetModal = () => dispatch(setModalValue());
 
   return (
     <UserMenuStyled>

@@ -7,14 +7,16 @@ import Modal from "../../components/modal";
 import ModalText from "../../components/modalText";
 
 import { HomePageStyled } from "./HomePageStyled";
-import { setDiaryValue } from "../../redux/isOpenModalForDiaryMobilePage/diaryModalAction";
+import { getIsOpenModal } from "../../redux/modal/modalSelectors";
+import { setModalValue } from "../../redux/modal/modalAction";
+
 // import styles from "./HomePage.module.css"
 
 const HomePage = () => {
 
   const dispatch = useDispatch();
-  const isOpenModal = useSelector((state) => state.diaryModal.isOpenModal);
-  const onHandleSetModal = () => dispatch(setDiaryValue());
+  const isOpenModal = useSelector(getIsOpenModal);
+  const onHandleSetModal = () => dispatch(setModalValue());
 
   const [isModal, setIsModal] = useState(false);
   const [modalData, setModalData] = useState({});

@@ -15,18 +15,19 @@ import EatenProductsList from "../../components/eatenProductsList/EatenProductsL
 import getDateInFormat from "../../services/getDateInFormat";
 import { getDayId, getEatenProductsList } from "../../redux/user/userSelectors";
 import CalloriesText from "../../components/calloriesText/CalloriesText";
-import { setDiaryValue } from "../../redux/isOpenModalForDiaryMobilePage/diaryModalAction";
 import Modal from "../../components/modal";
+import { getIsOpenModal } from "../../redux/modal/modalSelectors";
+import { setModalValue } from "../../redux/modal/modalAction";
 
 const DiaryPage = () => {
   const dayId = useSelector(getDayId);
   const [errorMsg, setErrorMsg] = useState("");
   const [startDate, setStartDate] = useState(new Date());
 
-  const isModalOpen = useSelector((state) => state.diaryModal.isOpenModal);
+  const isModalOpen = useSelector(getIsOpenModal);
 
   const dispatch = useDispatch();
-  const onHandleCliсk = () => dispatch(setDiaryValue());
+  const onHandleCliсk = () => dispatch(setModalValue());
 
   const [productName, setProductName] = useState("");
   const [productWeight, setProductWeight] = useState("");
