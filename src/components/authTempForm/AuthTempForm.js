@@ -131,15 +131,30 @@ const AuthForm = ({ handleSubmit, btnName }) => {
               </div>
 
               <hr className="registration-form__line" />
+              <div className="registration-form__btn-wrapper">
+                <Button
+                  isValid={isValid}
+                  dirty={dirty}
+                  onClick={handleSubmit}
+                  type={`submit`}
+                  className="registration-form__btn"
+                  buttonName={btnName}
+                />
 
-              <Button
-                isValid={isValid}
-                dirty={dirty}
-                onClick={handleSubmit}
-                type={`submit`}
-                className="registration-form__btn"
-                buttonName={btnName}
-              />
+                {btnName === mainRoutes[3].name && (
+                  <div className="registration-form__second-btn-wrapper">
+                    <Button
+                      isValid={isValid}
+                      dirty={dirty}
+                      onClick={handleSubmit}
+                      type={`submit`}
+                      className="registration-form__second-btn"
+                      buttonName={`Регистрация`}
+                      btn_mod="btn_white"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </Formik>
