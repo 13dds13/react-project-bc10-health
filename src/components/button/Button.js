@@ -9,20 +9,19 @@ const Button = ({ dirty, buttonName, isValid, onClick, type, showModal }) => {
       <button
         className="btn btn_orange"
         type={type}
-        // disabled={!isValid || !dirty}
+        disabled={!isValid || !dirty}
         onClick={(e) => {
           e.preventDefault();
-          // console.log(isValid);
-          // console.log(dirty);
+          console.log(isValid);
+          console.log(dirty);
           onClick();
-          if (!dirty) {
-            alert('Set the values')
-            return
-          }
+          // if (!dirty) {
+          //   alert('Set the values')
+          //   return
+          // }
           if (!isValid) {
             return;
           }
-          showModal();
         }}
       >
         {buttonName}

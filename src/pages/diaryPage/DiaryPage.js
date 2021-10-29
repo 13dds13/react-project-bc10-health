@@ -13,7 +13,11 @@ import {
 } from "../../redux/user/userOperations";
 import EatenProductsList from "../../components/eatenProductsList/EatenProductsList";
 import getDateInFormat from "../../services/getDateInFormat";
-import { getDayId, getEatenProductsList } from "../../redux/user/userSelectors";
+import {
+  getDayId,
+  getDaySummary,
+  getEatenProductsList,
+} from "../../redux/user/userSelectors";
 import CalloriesText from "../../components/calloriesText/CalloriesText";
 import Modal from "../../components/modal";
 import { getIsOpenModal } from "../../redux/modal/modalSelectors";
@@ -33,13 +37,15 @@ const DiaryPage = () => {
   const [productWeight, setProductWeight] = useState("");
   const [productsVariants, setProductsVariants] = useState([]);
   const eatenProductsList = useSelector(getEatenProductsList);
+  const { percentsOfDailyRate } = useSelector(getDaySummary);
 
   useEffect(() => {
     const date = getDateInFormat(startDate);
     dispatch(getDayInfo(date));
-  }, [dispatch, startDate]);
+  }, [dispatch, startDate, percentsOfDailyRate]);
 
   useEffect(() => {
+    setErrorMsg("");
     productName &&
       axios(`${endpoint.product}${productName}`)
         .then(({ data }) => {
@@ -76,12 +82,10 @@ const DiaryPage = () => {
     const date = getDateInFormat(startDate);
 
     dispatch(addEatenProduct({ date, productId, weight }));
-    dispatch(getDayInfo(date));
   };
 
   const handleClick = (eatenProductId) => {
-    console.log({ dayId, eatenProductId });
-    // dispatch(deleteProduct({ dayId, eatenProductId }));
+    dispatch(deleteProduct({ dayId, eatenProductId }));
   };
 
   return (
