@@ -33,11 +33,13 @@ const Button = ({ dirty, buttonName, isValid, onClick, type, showModal }) => {
 
 const ButtonAdd = ({ type }) => {
   return (
+    <ButtonStyled>
     <button className="btn_add btn_orange_add" type={type}>
       <svg width="20" height="20" fill="white">
         <use href={sprite + "#add"} />
       </svg>
-    </button>
+      </button>
+      </ButtonStyled>
   );
 };
 

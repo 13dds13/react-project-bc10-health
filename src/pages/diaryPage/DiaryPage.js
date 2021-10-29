@@ -17,6 +17,7 @@ import { getDayId, getEatenProductsList } from "../../redux/user/userSelectors";
 import CalloriesText from "../../components/calloriesText/CalloriesText";
 import { setDiaryValue } from "../../redux/isOpenModalForDiaryMobilePage/diaryModalAction";
 import Modal from "../../components/modal";
+import { DiaryPageStyled } from "./DiaryPageStyles";
 
 const DiaryPage = () => {
   const dayId = useSelector(getDayId);
@@ -85,6 +86,7 @@ const DiaryPage = () => {
 
   return (
     <>
+      <DiaryPageStyled>
       <div className={"dataPicker__box"}>
         <DatePicker
           dateFormat="dd.MM.yyyy"
@@ -106,12 +108,15 @@ const DiaryPage = () => {
           errorMsg={errorMsg}
         />
       )}
+      <div className="diaryFlexBox">
       <EatenProductsList
         eatenProductsList={eatenProductsList}
         isCurrentDay={isCurrentDay}
         handleClick={handleClick}
       />
-      <CalloriesText />
+        <CalloriesText />
+      </div>
+      </DiaryPageStyled>
       <button type="button" onClick={onHandleCliсk}>
         openModal
       </button>
