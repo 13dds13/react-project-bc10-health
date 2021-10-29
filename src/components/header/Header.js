@@ -43,12 +43,12 @@ const Header = () => {
             <img className="header__logo" src={logo} alt={"logo"} />
             {width >= breakPointTablet && !isAuth && (
               <p className="header__text">
-                Slim <span className="header__text-color">Mom</span>
+                Slim<span className="header__text-color">Mom</span>
               </p>
             )}
             {isAuth && (
               <p className="header__text">
-                Slim <span className="header__text-color">Mom</span>
+                Slim<span className="header__text-color">Mom</span>
               </p>
             )}
           </div>

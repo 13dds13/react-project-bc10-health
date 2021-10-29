@@ -26,6 +26,16 @@ const DiaryPage = () => {
   const dayId = useSelector(getDayId);
   const [errorMsg, setErrorMsg] = useState("");
   const [startDate, setStartDate] = useState(new Date());
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const handleResizeWindow = () => setWidth(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResizeWindow);
+    return () => {
+      window.removeEventListener("resize", handleResizeWindow);
+    };
+  }, []);
 
   const isModalOpen = useSelector(getIsOpenModal);
 
@@ -95,25 +105,30 @@ const DiaryPage = () => {
         </svg>
       </div>
 
-      {isCurrentDay && (
-        <ProductForm
-          productName={productName}
-          productWeight={productWeight}
-          productsVariants={productsVariants}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          errorMsg={errorMsg}
-        />
-      )}
+      {isCurrentDay &&
+        width >
+          767 && (
+            <ProductForm
+              productName={productName}
+              productWeight={productWeight}
+              productsVariants={productsVariants}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              errorMsg={errorMsg}
+            />
+          )}
       <EatenProductsList
         eatenProductsList={eatenProductsList}
         isCurrentDay={isCurrentDay}
         handleClick={handleClick}
       />
+      {width < 767 && (
+        <button type="button" onClick={onHandleCliсk}>
+          openModal
+        </button>
+      )}
+
       <CalloriesText />
-      <button type="button" onClick={onHandleCliсk}>
-        openModal
-      </button>
       {isModalOpen && (
         <Modal hideModal={onHandleCliсk} showModal={onHandleCliсk}>
           <ProductForm
