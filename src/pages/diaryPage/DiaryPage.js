@@ -112,8 +112,20 @@ const DiaryPage = () => {
         handleClick={handleClick}
       />
       <CalloriesText />
+      <button type="button" onClick={onHandleCliсk}>
+        openModal
+      </button>
       {isModalOpen && (
-        <Modal hideModal={onHandleCliсk} showModal={onHandleCliсk}></Modal>
+        <Modal hideModal={onHandleCliсk} showModal={onHandleCliсk}>
+          <ProductForm
+            productName={productName}
+            productWeight={productWeight}
+            productsVariants={productsVariants}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            errorMsg={errorMsg}
+          />
+        </Modal>
       )}
     </>
   );
