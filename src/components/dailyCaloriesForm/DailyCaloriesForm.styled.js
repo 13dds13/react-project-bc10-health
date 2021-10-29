@@ -146,6 +146,12 @@ export const DailyCaloriesFormStyled = styled.div`
       width: 240px;
     }
   }
+
+  .btn-box {
+    @media screen and (min-width: 1280px) {
+      text-align: rightпше;
+    }
+  }
 `;
 
 // @media screen and (min-width: 768px) {

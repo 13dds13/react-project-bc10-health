@@ -35,7 +35,6 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
       .catch((error) => console.log(error));
   }, [data]);
 
-
   setLocale({
     number: {
       min: "Минимальное значение ${min}",
@@ -310,14 +309,16 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
                 </div>
                 {errors.bloodType && <p>{errors.bloodType}</p>}
               </div>
-              <Button
-                buttonName="Похудеть"
-                isValid={isValid}
-                dirty={dirty}
-                onClick={handleSubmit}
-                type={`submit`}
-                showModal={showModal}
-              />
+              <div className='btn-box'>
+                <Button
+                  buttonName="Похудеть"
+                  isValid={isValid}
+                  dirty={dirty}
+                  onClick={handleSubmit}
+                  type={`submit`}
+                  showModal={showModal}
+                />
+              </div>
             </div>
           )}
         </Formik>
