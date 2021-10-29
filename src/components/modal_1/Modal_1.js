@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ModalContainer } from "./ModalStyled_1";
 
 class Modal extends Component {
+
   componentDidMount() {
     window.addEventListener("keydown", this.handleEsc);
     const body = document.querySelector("body");
@@ -27,9 +28,13 @@ class Modal extends Component {
     this.props.hideModal();
   };
 
+
+
+
   render() {
+
     return (
-      <ModalContainer onClick={this.handleBackdropClick}>
+      <ModalContainer onClick={this.handleBackdropClick} test={true}>
         <div className='modal'>{this.props.children}</div>
       </ModalContainer>
     );

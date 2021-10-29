@@ -15,12 +15,19 @@ import EatenProductsList from "../../components/eatenProductsList/EatenProductsL
 import getDateInFormat from "../../services/getDateInFormat";
 import { getDayId, getEatenProductsList } from "../../redux/user/userSelectors";
 import CalloriesText from "../../components/calloriesText/CalloriesText";
+import { setDiaryValue } from "../../redux/isOpenModalForDiaryMobilePage/diaryModalAction";
+import Modal from "../../components/modal";
 
 const DiaryPage = () => {
-  const dispatch = useDispatch();
   const dayId = useSelector(getDayId);
   const [errorMsg, setErrorMsg] = useState("");
   const [startDate, setStartDate] = useState(new Date());
+
+  const isModalOpen = useSelector((state) => state.diaryModal.isOpenModal);
+
+  const dispatch = useDispatch();
+  const onHandleCliсk = () => dispatch(setDiaryValue());
+
   const [productName, setProductName] = useState("");
   const [productWeight, setProductWeight] = useState("");
   const [productsVariants, setProductsVariants] = useState([]);
@@ -105,6 +112,9 @@ const DiaryPage = () => {
         handleClick={handleClick}
       />
       <CalloriesText />
+      {isModalOpen && (
+        <Modal hideModal={onHandleCliсk} showModal={onHandleCliсk}></Modal>
+      )}
     </>
   );
 };

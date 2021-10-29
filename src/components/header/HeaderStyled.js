@@ -5,7 +5,7 @@ export const HeaderStyled = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 15px;
+  /* padding: 0 15px; */
 
   .header__wrap {
     display: flex;
@@ -47,7 +47,7 @@ export const HeaderStyled = styled.header`
   @media screen and (min-width: 1024px) {
     justify-content: flex-start;
     align-items: flex-end;
-    margin: 82px 0 144px 0px;
+    margin: 82px 0 110px 0px;
 
     .header__wrap {
       align-items: flex-end;
@@ -63,5 +63,9 @@ export const HeaderStyled = styled.header`
       padding-right: 22px;
       border-right: 2px solid var(--border-colour);
     }
+  }
+
+  @media screen and (max-width: 1023px) {
+    background-color: var(--main-bg-color);
   }
 `;
