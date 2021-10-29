@@ -53,6 +53,7 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
           }}
           validateOnBlur
           onSubmit={(values) => {
+            showModal();
             setData(values);
           }}
           validationSchema={validationsSchema}
@@ -288,7 +289,7 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
                   dirty={dirty}
                   onClick={handleSubmit}
                   type={`submit`}
-                  showModal={showModal}
+                  // showModal={showModal}
                 />
               </div>
             </div>

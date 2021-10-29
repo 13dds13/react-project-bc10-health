@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import { mainRoutes } from "../../routes/mainRoutes";
 import { Formik } from "formik";
 import { RegistrationFormStyled } from "./RegistrationForm.styled";
-import { validationsSchema } from "./validationSchema";
+import {
+  validationsSchemaRegistration,
+  validationsSchemaSignIn,
+} from "./validationSchema";
 import { Button } from "../button/Button";
 
 const AuthForm = ({ handleSubmit, btnName }) => {
@@ -24,8 +27,13 @@ const AuthForm = ({ handleSubmit, btnName }) => {
               email: values.email,
               password: values.password,
             });
+            console.log(values);
           }}
-          validationSchema={validationsSchema}
+          validationSchema={
+            btnName === mainRoutes[4].name
+              ? validationsSchemaRegistration
+              : validationsSchemaSignIn
+          }
         >
           {({
             values,
@@ -125,7 +133,8 @@ const AuthForm = ({ handleSubmit, btnName }) => {
               <hr className="registration-form__line" />
 
               <Button
-                disabled={!isValid}
+                isValid={isValid}
+                dirty={dirty}
                 onClick={handleSubmit}
                 type={`submit`}
                 className="registration-form__btn"
