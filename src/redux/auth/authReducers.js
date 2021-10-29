@@ -16,9 +16,9 @@ import {
   refreshAuthError,
 } from "./authActions";
 import {
-  userStatError,
-  userStatRequest,
-  userStatSuccess,
+  userDataError,
+  userDataRequest,
+  userDataSuccess,
 } from "../user/userActions";
 
 const persistConfig = {
@@ -48,12 +48,12 @@ const errorAuthReducer = createReducer("", {
   [loginAuthError]: (_, { payload }) => payload,
   [logoutAuthError]: (_, { payload }) => payload,
   [refreshAuthError]: (_, { payload }) => payload,
-  [userStatError]: (_, { payload }) => payload,
+  [userDataError]: (_, { payload }) => payload,
   [registerAuthRequest]: () => "",
   [loginAuthRequest]: () => "",
   [logoutAuthRequest]: () => "",
   [refreshAuthRequest]: () => "",
-  [userStatRequest]: () => "",
+  [userDataRequest]: () => "",
 });
 
 const isLoadingAuthReducer = createReducer("", {
@@ -69,9 +69,9 @@ const isLoadingAuthReducer = createReducer("", {
   [refreshAuthRequest]: () => true,
   [refreshAuthSuccess]: () => false,
   [refreshAuthError]: () => false,
-  [userStatRequest]: () => true,
-  [userStatSuccess]: () => false,
-  [userStatError]: () => false,
+  [userDataRequest]: () => true,
+  [userDataSuccess]: () => false,
+  [userDataError]: () => false,
 });
 
 const persistedAuthData = persistReducer(persistConfig, authDataReducer);

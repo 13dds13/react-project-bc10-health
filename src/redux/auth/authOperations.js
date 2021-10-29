@@ -14,8 +14,8 @@ import {
   refreshAuthError,
 } from "./authActions";
 import { apiBaseURL, endpoint } from "../../db.json";
-import { userStatSuccess } from "../user/userActions";
-import { getUserStat } from "../user/userOperations";
+import { userDataSuccess } from "../user/userActions";
+import { getUserData } from "../user/userOperations";
 
 axios.defaults.baseURL = apiBaseURL;
 
@@ -38,6 +38,15 @@ export const authLogin = (requestData) => async (dispatch) => {
     });
     const { accessToken, refreshToken, sid, user } = data;
     const { email: userEmail, username, id, userData } = user;
+    const {
+      notAllowedProducts: needToPrepare,
+      weigth,
+      height,
+      age,
+      bloodType,
+      desiredWeight,
+      dailyRate,
+    } = userData;
     const authData = {
       accessToken,
       refreshToken,
@@ -46,8 +55,13 @@ export const authLogin = (requestData) => async (dispatch) => {
       userEmail,
       id,
     };
+    const notAllowedProducts = needToPrepare.slice(0, 10);
+    const preparedUserData = {
+      notAllowedProducts,
+      userStat: { weigth, height, age, bloodType, desiredWeight, dailyRate },
+    };
     dispatch(loginAuthSuccess(authData));
-    dispatch(userStatSuccess(userData));
+    dispatch(userDataSuccess(preparedUserData));
     token.set(data.accessToken);
   } catch (error) {
     dispatch(loginAuthError(error.response.data.message));
@@ -95,7 +109,7 @@ export const authRefresh = (refreshToken, sid) => async (dispatch) => {
         sid,
       })
     );
-    dispatch(getUserStat());
+    dispatch(getUserData());
   } catch (error) {
     if (error.response.status === 401) {
       dispatch(logoutAuthSuccess());

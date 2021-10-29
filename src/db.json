@@ -6,6 +6,8 @@
     "logout": "/auth/logout",
     "refresh": "/auth/refresh",
     "user": "/user",
-    "product": "/product"
+    "product": "/product?search=",
+    "postOrDeleteEatenProduct": "/day",
+    "dayInfo": "/day/info"
   }
 }
