@@ -8,6 +8,7 @@
     "user": "/user",
     "productSearch": "/product?search=",
     "postOrDeleteEatenProduct": "/day",
-    "dayInfo": "/day/info"
+    "dayInfo": "/day/info",
+    "dailyRate": "/daily-rate"
   }
 }

@@ -1,5 +1,9 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { ProductFormStyled } from "./ProductForm.styled";
+import { mainRoutes } from "../../routes/mainRoutes";
+import { useSelector } from "react-redux";
+import { getDaySummary } from "../../redux/user/userSelectors";
 
 const ProductForm = ({
   productName,
@@ -9,6 +13,7 @@ const ProductForm = ({
   handleSubmit,
   errorMsg,
 }) => {
+  const { dailyRate } = useSelector(getDaySummary);
   const onChange = (e) => {
     const { name, value } = e.target;
     handleChange({ name, value });
@@ -21,6 +26,18 @@ const ProductForm = ({
 
   return (
     <ProductFormStyled>
+      {!dailyRate && (
+        <>
+          <p>
+            Перед первым использованием "Дневника" заполните, пожалуйста, свои
+            данные на странице:
+          </p>
+
+          <NavLink to={mainRoutes[2].path}>
+            <b>{mainRoutes[2].name}</b>
+          </NavLink>
+        </>
+      )}
       <form className="productForm-form" onSubmit={onSubmit}>
         {errorMsg && <p>{errorMsg}</p>}
         <label className="productForm-form__label">

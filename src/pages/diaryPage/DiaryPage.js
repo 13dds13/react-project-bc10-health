@@ -26,17 +26,13 @@ const DiaryPage = () => {
   const dayId = useSelector(getDayId);
   const [errorMsg, setErrorMsg] = useState("");
   const [startDate, setStartDate] = useState(new Date());
-
   const isModalOpen = useSelector(getIsOpenModal);
-
-  const dispatch = useDispatch();
-  const onHandleCliсk = () => dispatch(setModalValue());
-
   const [productName, setProductName] = useState("");
   const [productWeight, setProductWeight] = useState("");
   const [productsVariants, setProductsVariants] = useState([]);
   const eatenProductsList = useSelector(getEatenProductsList);
   const { percentsOfDailyRate } = useSelector(getDaySummary);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setProductName("");
@@ -62,6 +58,8 @@ const DiaryPage = () => {
     name === "productName" && setProductName(value);
     name === "productWeight" && setProductWeight(value);
   };
+
+  const onHandleCliсk = () => dispatch(setModalValue());
 
   const handleSubmit = () => {
     const curProd = productsVariants.find(
