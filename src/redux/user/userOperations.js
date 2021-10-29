@@ -60,7 +60,7 @@ export const getDayInfo = (date) => async (dispatch) => {
     const { data } = await axios.post(endpoint.dayInfo, { date });
     const { daySummary, eatenProducts = [] } = data;
     if (!daySummary) {
-      dispatch(userSummarySuccess({ ...data }));
+      dispatch(userSummarySuccess({ ...data, date }));
       dispatch(userDayInfoSuccess(eatenProducts));
       return;
     }

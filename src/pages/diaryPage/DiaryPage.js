@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
-import axios from "axios";
 import ProductForm from "../../components/productForm/ProductForm";
 import "./react-datapicker.css";
 import sprite from "../../images/sprite.svg";
-import { endpoint } from "../../db.json";
 import {
   addEatenProduct,
   deleteProduct,
@@ -20,6 +18,7 @@ import {
 } from "../../redux/user/userSelectors";
 import CalloriesText from "../../components/calloriesText/CalloriesText";
 import Modal from "../../components/modal";
+import productSearch from "../../services/productSearch";
 import { getIsOpenModal } from "../../redux/modal/modalSelectors";
 import { setModalValue } from "../../redux/modal/modalAction";
 
@@ -40,23 +39,20 @@ const DiaryPage = () => {
   const { percentsOfDailyRate } = useSelector(getDaySummary);
 
   useEffect(() => {
+    setProductName("");
+    setProductWeight("");
     const date = getDateInFormat(startDate);
     dispatch(getDayInfo(date));
   }, [dispatch, startDate, percentsOfDailyRate]);
 
   useEffect(() => {
     setErrorMsg("");
-    productName &&
-      axios(`${endpoint.product}${productName}`)
-        .then(({ data }) => {
-          const variantsList = data.slice(0, 20);
-          setProductsVariants(variantsList);
-        })
-        .catch((error) => {
-          error.response.status === 400
-            ? setErrorMsg("Такого продукта в базе нет")
-            : setErrorMsg("Ой! Что-то пошло не так :(");
-        });
+    if (!productName) return;
+    productSearch(productName).then((searchData) =>
+      typeof searchData === "string"
+        ? setErrorMsg(searchData)
+        : setProductsVariants(searchData)
+    );
   }, [productName]);
 
   const isCurrentDay =
@@ -78,15 +74,13 @@ const DiaryPage = () => {
       return;
     }
     const productId = curProd._id;
-    const weight = Math.round(productWeight);
+    const weight = productWeight ? Math.round(productWeight) : 100;
     const date = getDateInFormat(startDate);
-
     dispatch(addEatenProduct({ date, productId, weight }));
   };
 
-  const handleClick = (eatenProductId) => {
+  const handleClick = (eatenProductId) =>
     dispatch(deleteProduct({ dayId, eatenProductId }));
-  };
 
   return (
     <>
