@@ -1,0 +1,1 @@
+export const getIsOpenModal = (state) => state.modal.isOpenModal;
