@@ -12,6 +12,7 @@ import styled from "styled-components";
 
 export const DailyCaloriesFormStyled = styled.div`
   .dailyCalories-form {
+    display: block;
     margin: 0;
     padding-top: 30px;
     width: 290px;
@@ -54,7 +55,6 @@ export const DailyCaloriesFormStyled = styled.div`
       font-size: 14px;
       line-height: 1.22;
       letter-spacing: 0.04em;
-      /* display: block; */
     }
 
     &__line {
@@ -86,7 +86,7 @@ export const DailyCaloriesFormStyled = styled.div`
       font-size: 14px;
       line-height: 1.22;
       letter-spacing: 0.04em;
-      width: 25%;
+      width: 13%;
       background-color: inherit;
       border: none;
       outline: none;
@@ -114,10 +114,19 @@ export const DailyCaloriesFormStyled = styled.div`
     }
 
     &__blood-selector {
-      margin: 0 6px 0 0;
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      opacity: 0;
     }
 
-    &__blood-selector-label {
+    &__blood-selector-name {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      margin-right: 24px;
+
       color: var(--not-bold-text-colour);
       font-family: Verdana;
       font-style: normal;
@@ -125,13 +134,53 @@ export const DailyCaloriesFormStyled = styled.div`
       font-size: 14px;
       line-height: 1.22;
       letter-spacing: 0.04em;
-      margin: 0 28px 0 0;
     }
 
-    &__blood-selector-label:checked {
-      color: var(--accent-colour);
-      font-weight: 700;
+    &__blood-selector-name::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border: solid 1px var(--not-bold-text-colour);
+      margin-right: 6px;
+      border-radius: 100%;
     }
+
+    &__blood-selector-name::after {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border: solid 1px var(--accent-colour);
+      background-color: var(--accent-colour);
+      border-radius: 100%;
+      opacity: 0;
+    }
+
+    &__radio-form-wrapper {
+      margin-bottom: 40px;
+      @media screen and (min-width: 768px) {
+        margin-bottom: 60px;
+      }
+      @media screen and (min-width: 1280px) {
+        margin-bottom: 63px;
+      }
+    }
+
+    &__btn-wrapper {
+      width: inherit;
+      text-align: center;
+      @media screen and (min-width: 768px) {
+        text-align: left;
+      }
+      @media screen and (min-width: 1280px) {
+        text-align: right;
+      }
+    }
+    /* &__btn {
+      margin: 0 auto;
+    } */
   }
 
   .group {
@@ -145,6 +194,17 @@ export const DailyCaloriesFormStyled = styled.div`
     @media screen and (min-width: 768px) {
       width: 240px;
     }
+  }
+
+  .dailyCalories-form__blood-selector:checked
+    + .dailyCalories-form__blood-selector-name::after {
+    opacity: 1;
+  }
+
+  .dailyCalories-form__blood-selector:checked
+    + .dailyCalories-form__blood-selector-name {
+    color: var(--accent-colour);
+    font-weight: 700;
   }
 `;
 
