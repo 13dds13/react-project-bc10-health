@@ -1,15 +1,5 @@
 import styled from "styled-components";
 
-// --main-bg-color: #ffffff;
-//   --btn-text-color: #ffffff;
-//   --bold-text-colour: #212121;
-//   --not-bold-text-colour: #9b9faa;
-//   --accent-colour: #fc842d;
-//   --accent-bold-text-colour: #264061;
-//   --bg-modal-accent-colour: #264061;
-//   --duration-main: 250ms; //время для анимации текста
-//   --timing-function-main: cubic-bezier(0.4, 0, 0.2, 1);
-
 export const DailyCaloriesFormStyled = styled.div`
   .dailyCalories-form {
     display: block;
@@ -33,7 +23,7 @@ export const DailyCaloriesFormStyled = styled.div`
         font-size: 30px;
         line-height: 1.2;
       }
-      @media screen and (min-width: 1024px) {
+      @media screen and (min-width: 1280px) {
         margin-bottom: 68px;
         font-size: 34px;
         line-height: 1.2;
@@ -208,8 +198,3 @@ export const DailyCaloriesFormStyled = styled.div`
     font-weight: 700;
   }
 `;
-
-// @media screen and (min-width: 768px) {
-//     padding: 0 69px 0 87px;
-//   }
-//   @media screen and (min-width: 1024px)
