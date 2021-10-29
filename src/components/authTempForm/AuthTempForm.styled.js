@@ -50,6 +50,7 @@ export const AuthFormStyled = styled.div`
       line-height: 1.22;
       letter-spacing: 0.04em;
       /* display: block; */
+      cursor: pointer;
     }
 
     &__line {
