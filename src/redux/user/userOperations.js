@@ -12,6 +12,7 @@ import {
 } from "./userActions";
 import { endpoint } from "../../db.json";
 import { refreshAuthSuccess } from "../auth/authActions";
+import getDailyRate from "../../services/getDailyRate";
 
 export const getUserData = () => async (dispatch) => {
   try {
@@ -92,6 +93,7 @@ export const dailyRateForAuthUser =
         `${endpoint.dailyRate}/${usersId}`,
         preparedData
       );
+      console.log(data);
       const {
         dailyRate,
         date,
@@ -110,7 +112,9 @@ export const dailyRateForAuthUser =
         userId,
         id,
       };
+      const notAllowedProducts = data.notAllowedProducts.slice(0, 10);
       dispatch(userSummarySuccess(daySummary));
+      dispatch(userDataSuccess({ notAllowedProducts }));
     } catch (error) {
       dispatch(userDayInfoError(error.response.data.message));
     }

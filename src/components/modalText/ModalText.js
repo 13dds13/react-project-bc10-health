@@ -45,6 +45,7 @@ const ModalText = ({ modalData, onHandleSetModal }) => {
               onClick={() => {
                 let path = `/singup`;
                 history.push(path);
+                onHandleSetModal();
               }}
               type={`button`}
             />

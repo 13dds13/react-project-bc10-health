@@ -7,7 +7,6 @@ const EatenProductsList = ({
   isCurrentDay,
   handleClick,
 }) => {
-  console.log(typeof []);
   return (
     //         <p>За данный день данные отсутствуют</p>
     //       ) : (
@@ -26,30 +25,31 @@ const EatenProductsList = ({
     <EatenProductsListStyles>
       {!eatenProductsList.length && <p>За данный день данные отсутствуют</p>}
       <ul className="EatenProductsList">
-        {eatenProductsList.map((product) => (
-          <li className="EatenProductsList__item" key={product.id}>
-            <p className="EatenProductsList__item_border EatenProductsList__item_widthTitle">
-              {product.title}
-            </p>
-            <p className="EatenProductsList__item_border EatenProductsList__item_widthGramKcal">
-              грами
-            </p>
-            <p className="EatenProductsList__item_border EatenProductsList__item_widthGramKcal">
-              ккал
-            </p>
-            {isCurrentDay && (
-              <button
-                className="EatenProductsList__item-button"
-                type="button"
-                onClick={() => handleClick(product.id)}
-              >
-                <svg width="12" height="12" fill="#9B9FAA">
-                  <use href={sprite + "#close"} />
-                </svg>
-              </button>
-            )}
-          </li>
-        ))}
+        {eatenProductsList[0] &&
+          eatenProductsList.map((product) => (
+            <li className="EatenProductsList__item" key={product.id}>
+              <p className="EatenProductsList__item_border EatenProductsList__item_widthTitle">
+                {product.title}
+              </p>
+              <p className="EatenProductsList__item_border EatenProductsList__item_widthGramKcal">
+                Вес: {product.weight}
+              </p>
+              <p className="EatenProductsList__item_border EatenProductsList__item_widthGramKcal">
+                Ккал: {Math.round(product.kcal)}
+              </p>
+              {isCurrentDay && (
+                <button
+                  className="EatenProductsList__item-button"
+                  type="button"
+                  onClick={() => handleClick(product.id)}
+                >
+                  <svg width="12" height="12" fill="#9B9FAA">
+                    <use href={sprite + "#close"} />
+                  </svg>
+                </button>
+              )}
+            </li>
+          ))}
       </ul>
     </EatenProductsListStyles>
   );
