@@ -29,11 +29,14 @@ export const ModalTextStyled = styled.div`
     }
 
     &__title {
-      padding-top: 140px;
+      padding-top: 120px;
       font-size: 18px;
       line-height: 26px;
       margin-bottom: 40px;
       color: var(--bold-text-colour);
+      @media screen and (max-width: 767px) {
+        margin-left: 15px;
+      }
       @media screen and (min-width: 768px) {
         padding: 0;
         line-height: 32px;
@@ -45,6 +48,9 @@ export const ModalTextStyled = styled.div`
   }
 
   .modal-products {
+    @media screen and (max-width: 767px) {
+        margin-left: 15px;
+      }
     &__count {
       font-size: 48px;
       line-height: 58px;
@@ -55,6 +61,8 @@ export const ModalTextStyled = styled.div`
       margin-bottom: 20px;
       margin-left: auto;
       margin-right: auto;
+   
+
       @media screen and (min-width: 768px) {
         width: 330px;
       }

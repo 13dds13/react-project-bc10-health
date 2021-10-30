@@ -27,6 +27,16 @@ const DiaryPage = () => {
   const dayId = useSelector(getDayId);
   const [errorMsg, setErrorMsg] = useState("");
   const [startDate, setStartDate] = useState(new Date());
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const handleResizeWindow = () => setWidth(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResizeWindow);
+    return () => {
+      window.removeEventListener("resize", handleResizeWindow);
+    };
+  }, []);
 
   const isModalOpen = useSelector(getIsOpenModal);
 
@@ -86,39 +96,42 @@ const DiaryPage = () => {
   return (
     <>
       <DiaryPageStyled>
-      <div className={"dataPicker__box"}>
-        <DatePicker
-          dateFormat="dd.MM.yyyy"
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-        />
-        <svg className="dataPicker__svg" width="18" height="20">
-          <use href={sprite + "#calendar"} />
-        </svg>
-      </div>
+        <div className={"dataPicker__box"}>
+          <DatePicker
+            dateFormat="dd.MM.yyyy"
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
+          <svg className="dataPicker__svg" width="18" height="20">
+            <use href={sprite + "#calendar"} />
+          </svg>
+        </div>
 
-      {isCurrentDay && (
-        <ProductForm
-          productName={productName}
-          productWeight={productWeight}
-          productsVariants={productsVariants}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          errorMsg={errorMsg}
-        />
-      )}
-      <div className="diaryFlexBox">
-      <EatenProductsList
-        eatenProductsList={eatenProductsList}
-        isCurrentDay={isCurrentDay}
-        handleClick={handleClick}
-      />
-        <CalloriesText />
-      </div>
+        {isCurrentDay && width > 767 && (
+          <ProductForm
+            productName={productName}
+            productWeight={productWeight}
+            productsVariants={productsVariants}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            errorMsg={errorMsg}
+          />
+        )}
+        <div className="diaryFlexBox">
+          <EatenProductsList
+            eatenProductsList={eatenProductsList}
+            isCurrentDay={isCurrentDay}
+            handleClick={handleClick}
+          />
+          {width < 768 && (
+            <button type="button" onClick={onHandleCliсk}>
+              "добавить" => openModal
+            </button>
+          )}
+          <CalloriesText />
+        </div>
       </DiaryPageStyled>
-      <button type="button" onClick={onHandleCliсk}>
-        openModal
-      </button>
+
       {isModalOpen && (
         <Modal hideModal={onHandleCliсk} showModal={onHandleCliсk}>
           <ProductForm
