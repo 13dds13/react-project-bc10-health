@@ -29,7 +29,7 @@ export const ModalTextStyled = styled.div`
     }
 
     &__title {
-      padding-top: 120px;
+      padding-top: 40px;
       font-size: 18px;
       line-height: 26px;
       margin-bottom: 40px;

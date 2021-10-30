@@ -22,6 +22,7 @@ const isOpenDiaryModal = useSelector(getIsOpenModal)
     window.addEventListener("keydown", onEsc);
     const body = document.querySelector("body");
     body.style.overflow = "hidden";
+    window.scrollTo(0, 0);
     return () => {
       window.removeEventListener("keydown", onEsc);
       const body = document.querySelector("body");
