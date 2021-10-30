@@ -49,8 +49,8 @@ export const ModalTextStyled = styled.div`
 
   .modal-products {
     @media screen and (max-width: 767px) {
-        margin-left: 15px;
-      }
+      margin-left: 15px;
+    }
     &__count {
       font-size: 48px;
       line-height: 58px;
@@ -61,7 +61,6 @@ export const ModalTextStyled = styled.div`
       margin-bottom: 20px;
       margin-left: auto;
       margin-right: auto;
-   
 
       @media screen and (min-width: 768px) {
         width: 330px;
@@ -107,5 +106,8 @@ export const ModalTextStyled = styled.div`
     &__btn {
       text-align: center;
     }
+  }
+  .btn-location {
+
   }
 `;

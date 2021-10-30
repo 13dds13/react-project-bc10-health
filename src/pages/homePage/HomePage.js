@@ -13,7 +13,6 @@ import { setModalValue } from "../../redux/modal/modalAction";
 // import styles from "./HomePage.module.css"
 
 const HomePage = () => {
-
   const dispatch = useDispatch();
   const isOpenModal = useSelector(getIsOpenModal);
   const onHandleSetModal = () => dispatch(setModalValue());
@@ -35,7 +34,10 @@ const HomePage = () => {
       </HomePageStyled>
       {isOpenModal && (
         <Modal showModal={onHandleSetModal}>
-          <ModalText modalData={modalData} />
+          <ModalText
+            modalData={modalData}
+            onHandleSetModal={onHandleSetModal}
+          />
         </Modal>
       )}
     </>

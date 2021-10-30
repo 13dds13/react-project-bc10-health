@@ -2,12 +2,22 @@ import React from "react";
 import { Button } from "../button/Button";
 import { ModalTextStyled } from "./ModalTextStyled";
 import { useHistory } from "react-router-dom";
+import sprite from "../../images/sprite.svg";
 
-const ModalText = ({ modalData }) => {
+const ModalText = ({ modalData, onHandleSetModal }) => {
   const history = useHistory();
 
   return (
     <ModalTextStyled>
+      <button
+        className="EatenProductsList__item-button btn-location"
+        type="button"
+        onClick={() => onHandleSetModal()}
+      >
+        <svg width="12" height="12" fill="#9B9FAA">
+          <use href={sprite + "#close"} />
+        </svg>
+      </button>
       <div className="modal-text-box">
         <h2 className="modal-text-box__title">
           Ваша рекомендуемая суточная норма калорий составляет
