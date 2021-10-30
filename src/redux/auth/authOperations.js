@@ -41,7 +41,7 @@ export const authLogin = (requestData) => async (dispatch) => {
     const { email: userEmail, username, id, userData } = user;
     const {
       notAllowedProducts: needToPrepare,
-      weigth,
+      weight,
       height,
       age,
       bloodType,
@@ -59,12 +59,12 @@ export const authLogin = (requestData) => async (dispatch) => {
     const notAllowedProducts = needToPrepare.slice(0, 10);
     const preparedUserData = {
       notAllowedProducts,
-      userStat: { weigth, height, age, bloodType, desiredWeight, dailyRate },
+      userStat: { weight, height, age, bloodType, desiredWeight, dailyRate },
     };
     dispatch(loginAuthSuccess(authData));
     dispatch(userDataSuccess(preparedUserData));
   } catch (error) {
-    dispatch(loginAuthError(error.response.data.message));
+    dispatch(loginAuthError(error?.response?.data?.message));
   }
 };
 
@@ -102,14 +102,14 @@ export const authRefresh = (refreshToken, sid) => async (dispatch) => {
       sid,
     } = data;
     token.set(accessToken);
-    dispatch(
+    await dispatch(
       refreshAuthSuccess({
         accessToken,
         refreshToken,
         sid,
       })
     );
-    dispatch(getUserData());
+    await dispatch(getUserData());
   } catch (error) {
     if (error.response.status === 401) {
       dispatch(logoutAuthSuccess());

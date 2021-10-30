@@ -3,13 +3,21 @@ import { Formik } from "formik";
 // import * as yup from "yup";
 // import { setLocale } from "yup";
 import { DailyCaloriesFormStyled } from "./DailyCaloriesForm.styled";
-import axios from "axios";
 import { Button } from "../button/Button";
 import { useEffect } from "react";
 import { validationsSchema } from "./validationSchema";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserStat } from "../../redux/user/userSelectors";
+import { getIsAuth, getUserId } from "../../redux/auth/authSelectors";
+import getDailyRate from "../../services/getDailyRate";
+import { dailyRateForAuthUser } from "../../redux/user/userOperations";
 
-const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
+const DailyCaloriesForm = ({ getCalloriesData, showModal }) => {
   const [data, setData] = useState({});
+  const userStat = useSelector(getUserStat);
+  const isAuth = useSelector(getIsAuth);
+  const userId = useSelector(getUserId);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!data.weight) {
@@ -23,18 +31,27 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
       desiredWeight: Number(data.desiredWeight),
       bloodType: Number(data.bloodType),
     };
-    axios
-      .post(url, preparedData)
-      .then(({ data }) => {
-        const readyObj = {
-          dailyRate: data.dailyRate,
-          notAllowedProducts: data.notAllowedProducts.slice(0, 5),
-        };
-        getCalloriesData(readyObj);
-        // actions.resetForm();
-      })
-      .catch((error) => console.log(error));
+
+    !isAuth
+      ? getDailyRate(getCalloriesData, preparedData)
+      : dispatch(dailyRateForAuthUser(userId, preparedData));
   }, [data]);
+
+  // const {
+  //   weight = "",
+  //   height = "",
+  //   age = "",
+  //   desiredWeight = "",
+  //   bloodType = "",
+  // } = userStat;
+
+  // const formikInitData = {
+  //   weight,
+  //   height,
+  //   age,
+  //   desiredWeight,
+  //   bloodType,
+  // };
 
   return (
     <DailyCaloriesFormStyled>
@@ -49,8 +66,9 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, url }) => {
             height: "",
             age: "",
             desiredWeight: "",
-            bloodType: "1",
+            bloodType: "",
           }}
+          // initialValues={formikInitData}
           validateOnBlur
           onSubmit={(values) => {
             showModal();

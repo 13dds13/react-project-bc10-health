@@ -21,7 +21,7 @@ export const getUserData = () => async (dispatch) => {
     const authData = { userEmail, username, id };
     const {
       notAllowedProducts: needToPrepare,
-      weigth,
+      weight,
       height,
       age,
       bloodType,
@@ -31,7 +31,7 @@ export const getUserData = () => async (dispatch) => {
     const notAllowedProducts = needToPrepare.slice(0, 10);
     const preparedUserData = {
       notAllowedProducts,
-      userStat: { weigth, height, age, bloodType, desiredWeight, dailyRate },
+      userStat: { weight, height, age, bloodType, desiredWeight, dailyRate },
     };
     dispatch(refreshAuthSuccess(authData));
     dispatch(userDataSuccess(preparedUserData));
@@ -83,3 +83,35 @@ export const deleteProduct = (dataToDelete) => async (dispatch) => {
     dispatch(userDayInfoError(error.response.data.message));
   }
 };
+
+export const dailyRateForAuthUser =
+  (usersId, preparedData) => async (dispatch) => {
+    try {
+      dispatch(userDayInfoRequest());
+      const { data } = await axios.post(
+        `${endpoint.dailyRate}/${usersId}`,
+        preparedData
+      );
+      const {
+        dailyRate,
+        date,
+        kcalConsumed,
+        kcalLeft,
+        percentsOfDailyRate,
+        userId,
+        _id: id,
+      } = data;
+      const daySummary = {
+        dailyRate,
+        date,
+        kcalConsumed,
+        kcalLeft,
+        percentsOfDailyRate,
+        userId,
+        id,
+      };
+      dispatch(userSummarySuccess(daySummary));
+    } catch (error) {
+      dispatch(userDayInfoError(error.response.data.message));
+    }
+  };
