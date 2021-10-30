@@ -22,12 +22,14 @@ import { DiaryPageStyled } from "./DiaryPageStyles";
 import productSearch from "../../services/productSearch";
 import { getIsOpenModal } from "../../redux/modal/modalSelectors";
 import { setModalValue } from "../../redux/modal/modalAction";
+import { mainRoutes } from "../../routes/mainRoutes";
+import { NavLink } from "react-router-dom";
 
 const DiaryPage = () => {
   const dayId = useSelector(getDayId);
   const [errorMsg, setErrorMsg] = useState("");
   const [startDate, setStartDate] = useState(new Date());
-  
+
   const [width, setWidth] = useState(window.innerWidth);
 
   const handleResizeWindow = () => setWidth(window.innerWidth);
@@ -44,7 +46,7 @@ const DiaryPage = () => {
   const [productWeight, setProductWeight] = useState("");
   const [productsVariants, setProductsVariants] = useState([]);
   const eatenProductsList = useSelector(getEatenProductsList);
-  const { percentsOfDailyRate } = useSelector(getDaySummary);
+  const { percentsOfDailyRate, dailyRate } = useSelector(getDaySummary);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -106,7 +108,18 @@ const DiaryPage = () => {
             <use href={sprite + "#calendar"} />
           </svg>
         </div>
+        {!dailyRate && (
+          <>
+            <p>
+              Перед первым использованием "Дневника" заполните, пожалуйста, свои
+              данные на странице:
+            </p>
 
+            <NavLink to={mainRoutes[2].path}>
+              <b>{mainRoutes[2].name}</b>
+            </NavLink>
+          </>
+        )}
         {isCurrentDay && width > 767 && (
           <ProductForm
             productName={productName}
@@ -125,7 +138,7 @@ const DiaryPage = () => {
           />
           {width < 768 && (
             <button type="button" onClick={onHandleCliсk}>
-              "добавить" => openModal
+              Добавить
             </button>
           )}
           <CalloriesText />

@@ -1,8 +1,6 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { ButtonAdd } from "../button/Button";
 import { ProductFormStyled } from "./ProductForm.styled";
-import { mainRoutes } from "../../routes/mainRoutes";
 import { useSelector } from "react-redux";
 import { getDaySummary } from "../../redux/user/userSelectors";
 
@@ -27,52 +25,39 @@ const ProductForm = ({
 
   return (
     <ProductFormStyled>
-      {!dailyRate && (
-        <>
-          <p>
-            Перед первым использованием "Дневника" заполните, пожалуйста, свои
-            данные на странице:
-          </p>
-
-          <NavLink to={mainRoutes[2].path}>
-            <b>{mainRoutes[2].name}</b>
-          </NavLink>
-        </>
-      )}
       <form className="productForm-form" onSubmit={onSubmit}>
         {errorMsg && <p>{errorMsg}</p>}
         <div className="productForm-form__box">
-        <label className="productForm-form__label">
-          Введите название продукта
-          <input
-            name="productName"
-            type="text"
-            list="productSearch"
-            className="productForm-form__input"
-            value={productName}
-            onChange={onChange}
-            autoComplete="off"
-          />
-          <datalist className="datalist" id="productSearch">
-            {productsVariants &&
-              productsVariants.map((product) => (
-                <option value={product.title.ru} key={product._id} />
-              ))}
-          </datalist>
-        </label>
-        <label className="productForm-form__label productForm-form__label_size">
-          Граммы
-          <input
-            name="productWeight"
-            type="number"
-            value={productWeight}
-            className="productForm-form__input"
-            onChange={onChange}
-          />
+          <label className="productForm-form__label">
+            Введите название продукта
+            <input
+              name="productName"
+              type="text"
+              list="productSearch"
+              className="productForm-form__input"
+              value={productName}
+              onChange={onChange}
+              autoComplete="off"
+            />
+            <datalist className="datalist" id="productSearch">
+              {productsVariants &&
+                productsVariants.map((product) => (
+                  <option value={product.title.ru} key={product._id} />
+                ))}
+            </datalist>
           </label>
-          <ButtonAdd/>
+          <label className="productForm-form__label productForm-form__label_size">
+            Граммы
+            <input
+              name="productWeight"
+              type="number"
+              value={productWeight}
+              className="productForm-form__input"
+              onChange={onChange}
+            />
+          </label>
+          <ButtonAdd type={"submit"} />
         </div>
-        
       </form>
     </ProductFormStyled>
   );

@@ -26,15 +26,21 @@ const CalloriesText = () => {
           <div>
             <div className="callories-text__item-box">
               <p className="callories-text__item">Осталось</p>
-              <span className="callories-text__count">{kcalLeft} ккал</span>
+              <span className="callories-text__count">
+                {Math.round(kcalLeft)} ккал
+              </span>
             </div>
             <div className="callories-text__item-box">
               <p className="callories-text__item">Употреблено</p>
-              <span className="callories-text__count">{kcalConsumed} ккал</span>
+              <span className="callories-text__count">
+                {Math.round(kcalConsumed)} ккал
+              </span>
             </div>
             <div className="callories-text__item-box">
               <p className="callories-text__item">Дневная норма</p>
-              <span className="callories-text__count">{dailyRate} ккал</span>
+              <span className="callories-text__count">
+                {Math.round(dailyRate)} ккал
+              </span>
             </div>
             <div className="callories-text__item-box">
               <p className="callories-text__item"> n% от нормы</p>

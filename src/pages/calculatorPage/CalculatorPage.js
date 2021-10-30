@@ -1,28 +1,41 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DailyCaloriesForm from "../../components/dailyCaloriesForm/DailyCaloriesForm";
 import Modal from "../../components/modal";
 import ModalText from "../../components/modalText";
-import { getUserId } from "../../redux/auth/authSelectors";
+import { getIsAuth, getUserId } from "../../redux/auth/authSelectors";
+import { setModalValue } from "../../redux/modal/modalAction";
+import { getIsOpenModal } from "../../redux/modal/modalSelectors";
+import {
+  getDaySummary,
+  getNotAllowedProducts,
+} from "../../redux/user/userSelectors";
 
 const CalculatorPage = () => {
-  const [isModal, setIsModal] = useState(false);
   const [modalData, setModalData] = useState({});
   const getCalloriesData = (data) => setModalData(data);
+  const notAllowedProducts = useSelector(getNotAllowedProducts);
+  const { dailyRate } = useSelector(getDaySummary);
+  const dispatch = useDispatch();
+  const isOpenModal = useSelector(getIsOpenModal);
+  const onHandleSetModal = () => dispatch(setModalValue());
+  const loggetDataModal = {
+    notAllowedProducts,
+    dailyRate,
+  };
 
-  const showModal = () => setIsModal(!isModal);
-
-  const id = useSelector(getUserId);
   return (
     <>
       <DailyCaloriesForm
         getCalloriesData={getCalloriesData}
-        showModal={showModal}
-        url={`/daily-rate/${id}`}
+        showModal={onHandleSetModal}
       />
-      {isModal && (
-        <Modal showModal={showModal}>
-          <ModalText modalData={modalData} />
+      {isOpenModal && (
+        <Modal showModal={onHandleSetModal}>
+          <ModalText
+            modalData={loggetDataModal}
+            onHandleSetModal={onHandleSetModal}
+          />
         </Modal>
       )}
     </>
