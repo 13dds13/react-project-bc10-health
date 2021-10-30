@@ -2,16 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import { mainRoutes } from "../../routes/mainRoutes";
 import { Formik } from "formik";
-import { RegistrationFormStyled } from "./RegistrationForm.styled";
+import { AuthFormStyled } from "./AuthTempForm.styled";
 import {
   validationsSchemaRegistration,
   validationsSchemaSignIn,
 } from "./validationSchema";
 import { Button } from "../button/Button";
+import { useHistory } from "react-router-dom";
 
 const AuthForm = ({ handleSubmit, btnName }) => {
+  const history = useHistory();
+
   return (
-    <RegistrationFormStyled>
+    <AuthFormStyled>
       <form className="registration-form">
         <h1 className="registration-form__title">{btnName}</h1>
         <Formik
@@ -131,20 +134,38 @@ const AuthForm = ({ handleSubmit, btnName }) => {
               </div>
 
               <hr className="registration-form__line" />
+              <div className="registration-form__btn-wrapper">
+                <Button
+                  isValid={isValid}
+                  dirty={dirty}
+                  onClick={handleSubmit}
+                  type={`submit`}
+                  className="registration-form__btn"
+                  buttonName={btnName}
+                />
 
-              <Button
-                isValid={isValid}
-                dirty={dirty}
-                onClick={handleSubmit}
-                type={`submit`}
-                className="registration-form__btn"
-                buttonName={btnName}
-              />
+                {btnName === mainRoutes[3].name && (
+                  <div className="registration-form__second-btn-wrapper">
+                    <Button
+                      isValid={true}
+                      dirty={true}
+                      onClick={() => {
+                        let path = `/singup`;
+                        history.push(path);
+                      }}
+                      type={`button`}
+                      className="registration-form__second-btn"
+                      buttonName={`Регистрация`}
+                      btn_mod="btn_white"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </Formik>
       </form>
-    </RegistrationFormStyled>
+    </AuthFormStyled>
   );
 };
 

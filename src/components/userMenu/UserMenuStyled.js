@@ -23,6 +23,7 @@ export const UserMenuStyled = styled.div`
     &__button {
       font-size: 14px;
       font-family: "Montserrat", sans-serif;
+      cursor: pointer;
     }
 
     &__text {

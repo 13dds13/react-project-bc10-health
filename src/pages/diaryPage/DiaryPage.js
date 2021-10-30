@@ -18,6 +18,7 @@ import {
 } from "../../redux/user/userSelectors";
 import CalloriesText from "../../components/calloriesText/CalloriesText";
 import Modal from "../../components/modal";
+import { DiaryPageStyled } from "./DiaryPageStyles";
 import productSearch from "../../services/productSearch";
 import { getIsOpenModal } from "../../redux/modal/modalSelectors";
 import { setModalValue } from "../../redux/modal/modalAction";
@@ -26,6 +27,18 @@ const DiaryPage = () => {
   const dayId = useSelector(getDayId);
   const [errorMsg, setErrorMsg] = useState("");
   const [startDate, setStartDate] = useState(new Date());
+  
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const handleResizeWindow = () => setWidth(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResizeWindow);
+    return () => {
+      window.removeEventListener("resize", handleResizeWindow);
+    };
+  }, []);
+
   const isModalOpen = useSelector(getIsOpenModal);
   const [productName, setProductName] = useState("");
   const [productWeight, setProductWeight] = useState("");
@@ -82,36 +95,43 @@ const DiaryPage = () => {
 
   return (
     <>
-      <div className={"dataPicker__box"}>
-        <DatePicker
-          dateFormat="dd.MM.yyyy"
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-        />
-        <svg className="dataPicker__svg" width="18" height="20">
-          <use href={sprite + "#calendar"} />
-        </svg>
-      </div>
+      <DiaryPageStyled>
+        <div className={"dataPicker__box"}>
+          <DatePicker
+            dateFormat="dd.MM.yyyy"
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
+          <svg className="dataPicker__svg" width="18" height="20">
+            <use href={sprite + "#calendar"} />
+          </svg>
+        </div>
 
-      {isCurrentDay && (
-        <ProductForm
-          productName={productName}
-          productWeight={productWeight}
-          productsVariants={productsVariants}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          errorMsg={errorMsg}
-        />
-      )}
-      <EatenProductsList
-        eatenProductsList={eatenProductsList}
-        isCurrentDay={isCurrentDay}
-        handleClick={handleClick}
-      />
-      <CalloriesText />
-      <button type="button" onClick={onHandleCliсk}>
-        openModal
-      </button>
+        {isCurrentDay && width > 767 && (
+          <ProductForm
+            productName={productName}
+            productWeight={productWeight}
+            productsVariants={productsVariants}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            errorMsg={errorMsg}
+          />
+        )}
+        <div className="diaryFlexBox">
+          <EatenProductsList
+            eatenProductsList={eatenProductsList}
+            isCurrentDay={isCurrentDay}
+            handleClick={handleClick}
+          />
+          {width < 768 && (
+            <button type="button" onClick={onHandleCliсk}>
+              "добавить" => openModal
+            </button>
+          )}
+          <CalloriesText />
+        </div>
+      </DiaryPageStyled>
+
       {isModalOpen && (
         <Modal hideModal={onHandleCliсk} showModal={onHandleCliсk}>
           <ProductForm
