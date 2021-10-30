@@ -55,7 +55,7 @@ export const ModalStyled = styled.div`
 
   @media screen and (max-width: 767px) {
     .modal {
-      margin-top: auto;
+      /* margin-top: auto; */
     }
   }
 `;

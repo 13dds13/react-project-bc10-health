@@ -8,7 +8,7 @@ export const CalloriesTextStyled = styled.div`
     }
     @media screen and (min-width: 1280px) {
       display: block;
-      margin-left: 90px;
+      margin-left: 500px;
       margin-top: -200px;
     }
     &__box {
@@ -28,7 +28,8 @@ export const CalloriesTextStyled = styled.div`
       }
 
       @media screen and (min-width: 1280px) {
-        /* width: 330px;
+        text-align: right;
+         width: 330px;
         height: 168px; */
         margin-right: 0px;
         margin-bottom: 60px;
@@ -52,7 +53,7 @@ export const CalloriesTextStyled = styled.div`
 
     &__item-box {
       display: flex;
-      justify-content: space-between;
+      justify-content: right;
       align-items: center;
     }
   }

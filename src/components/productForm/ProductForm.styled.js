@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const ProductFormStyled = styled.div`
-margin-top: 60px;
+  margin-top: 60px;
   .productForm-form {
-    display: none;
-    margin: 0;
     width: 290px;
     @media screen and (min-width: 768px) {
       width: 605px;
@@ -13,6 +11,10 @@ margin-top: 60px;
     &__box {
       display: flex;
       margin-bottom: 60px;
+      @media screen and (max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+      }
     }
     &__title {
       color: var(--bold-text-colour);
@@ -55,6 +57,9 @@ margin-top: 60px;
       line-height: 1.22;
       letter-spacing: 0.04em;
       /* display: block; */
+      @media screen and (max-width: 767px) {
+        margin-bottom: 15px;
+      }
       &_size {
         width: 105px;
         text-align: right;
@@ -153,7 +158,6 @@ margin-top: 60px;
       width: 240px;
     }
   }
-  
 `;
 
 // @media screen and (min-width: 768px) {

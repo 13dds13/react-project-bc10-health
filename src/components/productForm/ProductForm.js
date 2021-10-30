@@ -54,6 +54,7 @@ const ProductForm = ({
               value={productWeight}
               className="productForm-form__input"
               onChange={onChange}
+              placeholder='100'
             />
           </label>
           <ButtonAdd type={"submit"} />
