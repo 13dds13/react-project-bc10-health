@@ -52,4 +52,10 @@ export const ModalStyled = styled.div`
       max-height: calc(100vh - 24px);
     }
   }
+
+  @media screen and (max-width: 767px) {
+    .modal {
+      margin-top: auto;
+    }
+  }
 `;
