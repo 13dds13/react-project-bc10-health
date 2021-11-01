@@ -6,6 +6,9 @@ import AuthTempForm from "../../components/authTempForm/";
 import { useLocation } from "react-router";
 import { getAuthError } from "../../redux/auth/authSelectors";
 
+import { Notification } from "../../components/notification/Notification";
+// import { NotificationManager } from "react-notifications";
+
 const AuthPage = () => {
   const dispatch = useDispatch();
   const errorMsg = useSelector(getAuthError);
@@ -16,11 +19,15 @@ const AuthPage = () => {
       : dispatch(authLogin(userData));
   };
   console.log(errorMsg);
+
+  errorMsg && Notification(errorMsg);
   return (
     <>
       <div className="bg-img">
         <div className="container">
-          {errorMsg && <p>{errorMsg}</p>}
+          {/* {errorMsg && NotificationManager.error(errorMsg, "Info", 5000)} */}
+          {/* {errorMsg && <p>{errorMsg}</p>} */}
+          {/* {errorMsg && Notification(errorMsg)} */}
           {mainRoutes
             .filter(({ isRestricted }) => isRestricted)
             .map(
