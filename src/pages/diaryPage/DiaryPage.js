@@ -108,71 +108,79 @@ const DiaryPage = () => {
 
   return (
     <>
-      <DiaryPageStyled>
-        <div className="diaryFlexBox">
-          <div className="diaryFlexBox__left">
-        <div className={"dataPicker__box"}>
-          <DatePicker
-            dateFormat="dd.MM.yyyy"
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-          />
-          <svg className="dataPicker__svg" width="18" height="20">
-            <use href={sprite + "#calendar"} />
-          </svg>
-        </div>
-        {!dailyRate && (
-          <>
-            <p>
-              Перед первым использованием "Дневника" заполните, пожалуйста, свои
-              данные на странице:
-            </p>
+      <div className="container">
+        <DiaryPageStyled>
+          <div className="diaryFlexBox">
+            <div className="diaryFlexBox__left">
+              <div className={"dataPicker__box"}>
+                <DatePicker
+                  dateFormat="dd.MM.yyyy"
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                />
+                <svg className="dataPicker__svg" width="18" height="20">
+                  <use href={sprite + "#calendar"} />
+                </svg>
+              </div>
+              {!dailyRate && (
+                <>
+                  <p>
+                    Перед первым использованием "Дневника" заполните,
+                    пожалуйста, свои данные на странице:
+                  </p>
 
-            <NavLink to={mainRoutes[2].path}>
-              <b>{mainRoutes[2].name}</b>
-            </NavLink>
-          </>
-        )}
-        {isCurrentDay && width > 767 && (
-          <ProductForm
-            productName={productName}
-            productWeight={productWeight}
-            productsVariants={productsVariants}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            errorMsg={errorMsg}
-          />
-        )}
-        
-          <EatenProductsList
-            eatenProductsList={eatenProductsList}
-            isCurrentDay={isCurrentDay}
-            handleClick={handleClick}
-          />
-            {width < 768 && (
-              <Button type="button" isValid={true}
-                      dirty={true} onClick={onHandleCliсk} buttonName="Добавить"></Button>
-            // <button type="button" onClick={onHandleCliсk}>
-            //   Добавить
-            // </button>
-          )}
+                  <NavLink to={mainRoutes[2].path}>
+                    <b>{mainRoutes[2].name}</b>
+                  </NavLink>
+                </>
+              )}
+              {isCurrentDay && width > 767 && (
+                <ProductForm
+                  productName={productName}
+                  productWeight={productWeight}
+                  productsVariants={productsVariants}
+                  handleChange={handleChange}
+                  handleSubmit={handleSubmit}
+                  errorMsg={errorMsg}
+                />
+              )}
+
+              <EatenProductsList
+                eatenProductsList={eatenProductsList}
+                isCurrentDay={isCurrentDay}
+                handleClick={handleClick}
+              />
+              {width < 768 && (
+                <Button
+                  type="button"
+                  isValid={true}
+                  dirty={true}
+                  onClick={onHandleCliсk}
+                  buttonName="Добавить"
+                ></Button>
+                // <button type="button" onClick={onHandleCliсk}>
+                //   Добавить
+                // </button>
+              )}
+            </div>
+            <CalloriesText />
           </div>
-          <CalloriesText />
-        </div>
-      </DiaryPageStyled>
+        </DiaryPageStyled>
 
-      {isModalOpen && (
-        <Modal hideModal={onHandleCliсk} showModal={onHandleCliсk}>
-          <ProductForm
-            productName={productName}
-            productWeight={productWeight}
-            productsVariants={productsVariants}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            errorMsg={errorMsg}
-          />
-        </Modal>
-      )}
+        {isModalOpen && (
+          <Modal hideModal={onHandleCliсk} showModal={onHandleCliсk}>
+            <ProductForm
+              productName={productName}
+              productWeight={productWeight}
+              productsVariants={productsVariants}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              errorMsg={errorMsg}
+              
+            />
+          </Modal>
+        )}
+      </div>
     </>
   );
 };

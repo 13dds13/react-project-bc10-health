@@ -21,7 +21,7 @@ export const ModalTextStyled = styled.div`
       padding-top: 24px;
       padding-bottom: 28px;
     }
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 1280px) {
       text-align: center;
       /* /* height: 580px; */
       width: 690px;
@@ -115,5 +115,6 @@ export const ModalTextStyled = styled.div`
     height: 12px;
     border: none;
     background-color: inherit;
+    cursor: pointer;
   }
 `;

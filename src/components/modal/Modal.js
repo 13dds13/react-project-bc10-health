@@ -7,6 +7,7 @@ const Modal = ({ children, showModal }) => {
 
 const isOpenDiaryModal = useSelector(getIsOpenModal)
 
+
   const onEsc = (e) => {
     if (e.code === "Escape") {
       showModal();

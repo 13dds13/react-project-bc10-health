@@ -21,7 +21,7 @@ const Header = () => {
 
   const breakPointTabletMobile = 320;
   const breakPointTablet = 768;
-  const breakPointTabletDesktop = 1024;
+  const breakPointTabletDesktop = 1280;
 
   const goHomePage = () => history.push("/");
   const setModalState = () => setIsOpenModal((prev) => !prev);
@@ -37,7 +37,7 @@ const Header = () => {
 
   return (
     <>
-      <>
+      <div className="container">
         <HeaderStyled>
           <div className="header__wrap" onClick={goHomePage}>
             <img className="header__logo" src={logo} alt={"logo"} />
@@ -72,7 +72,7 @@ const Header = () => {
             )}
           </div>
 
-          {width > 1023 && isAuth && <UserMenu />}
+          {width > 1279 && isAuth && <UserMenu />}
 
           {isOpenModal && (
             <Modal hideModal={setIsOpenModal}>
@@ -84,8 +84,8 @@ const Header = () => {
             </Modal>
           )}
         </HeaderStyled>
-      </>
-      {width < 1024 && (
+      </div>
+      {width < 1280 && (
         <hr
           style={{
             backgroundColor: "#e0e0e0",
@@ -95,17 +95,19 @@ const Header = () => {
           }}
         />
       )}
-      <div
-        className="container"
-        style={{
-          paddingLeft: "0",
-          paddingRight: "0",
-        }}
-      >
-        {width < breakPointTablet && isAuth && <UserMenu width={width} />}
-        {width < breakPointTablet && !isAuth && isOpenModalFromState && (
-          <UserMenu width={width} />
-        )}
+      <div style={{ backgroundColor: "#f0f1f3" }}>
+        <div
+          className="container"
+          style={{
+            paddingLeft: "0",
+            paddingRight: "0",
+          }}
+        >
+          {width < breakPointTablet && isAuth && <UserMenu width={width} />}
+          {width < breakPointTablet && !isAuth && isOpenModalFromState && (
+            <UserMenu width={width} />
+          )}
+        </div>
       </div>
     </>
   );

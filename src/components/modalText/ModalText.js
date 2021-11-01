@@ -9,7 +9,7 @@ const ModalText = ({ modalData, onHandleSetModal }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const breakPointTabletMobile = 320;
   const breakPointTablet = 768;
-  const breakPointTabletDesktop = 1024;
+  const breakPointTabletDesktop = 1280;
   const handleResizeWindow = () => setWidth(window.innerWidth);
 
   useEffect(() => {

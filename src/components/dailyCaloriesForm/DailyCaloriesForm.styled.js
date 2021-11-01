@@ -8,6 +8,10 @@ export const DailyCaloriesFormStyled = styled.div`
     width: 290px;
     @media screen and (min-width: 768px) {
       width: 605px;
+      margin-top: 50px;
+    }
+    @media screen and (min-width: 1280px) {
+      margin-top: 100px;
     }
     &__title {
       color: var(--bold-text-colour);
@@ -166,6 +170,7 @@ export const DailyCaloriesFormStyled = styled.div`
       text-align: center;
       @media screen and (min-width: 768px) {
         text-align: left;
+        padding-bottom: 42px;
       }
       @media screen and (min-width: 1280px) {
         text-align: right;

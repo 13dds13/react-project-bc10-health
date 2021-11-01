@@ -18,19 +18,23 @@ const AuthPage = () => {
   console.log(errorMsg);
   return (
     <>
-      {errorMsg && <p>{errorMsg}</p>}
-      {mainRoutes
-        .filter(({ isRestricted }) => isRestricted)
-        .map(
-          ({ path, name }) =>
-            path === pathname && (
-              <AuthTempForm
-                handleSubmit={handleSubmit}
-                btnName={name}
-                key={path}
-              />
-            )
-        )}
+      <div className="bg-img">
+        <div className="container">
+          {errorMsg && <p>{errorMsg}</p>}
+          {mainRoutes
+            .filter(({ isRestricted }) => isRestricted)
+            .map(
+              ({ path, name }) =>
+                path === pathname && (
+                  <AuthTempForm
+                    handleSubmit={handleSubmit}
+                    btnName={name}
+                    key={path}
+                  />
+                )
+            )}
+        </div>
+      </div>
     </>
   );
 };

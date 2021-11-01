@@ -44,19 +44,21 @@ const CalculatorPage = () => {
 
   return (
     <>
-      <DailyCaloriesForm
-        getCalloriesData={getCalloriesData}
-        showModal={onHandleSetModal}
-        formikData={{ ...formikData }}
-      />
-      {isOpenModal && (
-        <Modal showModal={onHandleSetModal}>
-          <ModalText
-            modalData={loggetDataModal}
-            onHandleSetModal={onHandleSetModal}
-          />
-        </Modal>
-      )}
+      <div className="container">
+        <DailyCaloriesForm
+          getCalloriesData={getCalloriesData}
+          showModal={onHandleSetModal}
+          formikData={{ ...formikData }}
+        />
+        {isOpenModal && (
+          <Modal showModal={onHandleSetModal}>
+            <ModalText
+              modalData={loggetDataModal}
+              onHandleSetModal={onHandleSetModal}
+            />
+          </Modal>
+        )}
+      </div>
     </>
   );
 };

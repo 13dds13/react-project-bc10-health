@@ -7,6 +7,12 @@ export const AuthFormStyled = styled.div`
     @media screen and (min-width: 768px) {
       text-align: left;
       width: 382px;
+      margin-top: 50px;
+    }
+    @media screen and (min-width: 1280px) {
+      margin-top: 100px;
+      text-align: left;
+      width: 382px;
     }
     &__title {
       color: var(--accent-colour);
@@ -23,7 +29,7 @@ export const AuthFormStyled = styled.div`
         font-size: 30px;
         line-height: 1.2;
       }
-      @media screen and (min-width: 1024px) {
+      @media screen and (min-width: 1280px) {
         margin-bottom: 68px;
         font-size: 34px;
         line-height: 1.2;

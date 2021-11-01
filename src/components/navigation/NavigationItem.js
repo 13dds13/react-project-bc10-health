@@ -13,7 +13,7 @@ const NavigationItem = ({
   isOpenModal,
 }) => {
   const onHandleClick = () => {
-    if (width < 1024 && isOpenModal) {
+    if (width < 1280 && isOpenModal) {
       hideModal((prev) => !prev);
     }
   };
@@ -35,7 +35,7 @@ const NavigationItem = ({
       {isPrivate && !isRestricted && isAuth && (
         <li
           className={
-            width < 1024 && isOpenModal ? "nav__item-for-modal" : "nav__item"
+            width < 1280 && isOpenModal ? "nav__item-for-modal" : "nav__item"
           }
         >
           <NavLink
@@ -43,10 +43,10 @@ const NavigationItem = ({
             to={path}
             exact={exact}
             className={
-              width < 1024 && isOpenModal ? "nav__link-for-modal" : "nav__link"
+              width < 1280 && isOpenModal ? "nav__link-for-modal" : "nav__link"
             }
             activeClassName={
-              width < 1024 && isOpenModal
+              width < 1280 && isOpenModal
                 ? "nav__link-active-for-modal"
                 : "nav__link-active"
             }

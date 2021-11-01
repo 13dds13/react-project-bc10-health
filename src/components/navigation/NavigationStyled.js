@@ -65,7 +65,7 @@ export const NavigationStyled = styled.nav`
     }
 
     &__link-active-for-modal {
-      color:var(--btn-text-color) ;
+      color: var(--btn-text-color);
     }
   }
 
@@ -86,7 +86,7 @@ export const NavigationStyled = styled.nav`
     }
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1280px) {
     margin: 0;
     padding-left: 22px;
   }

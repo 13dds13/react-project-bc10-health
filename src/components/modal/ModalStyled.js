@@ -13,11 +13,12 @@ export const ModalStyled = styled.div`
       /* ================= */
 
       width: 100vw;
-      height: 100vh;
-      display: flex;
+      height: 700px;
+      padding-left: 20px;
+      /* display: flex;
       justify-content: center;
 
-      align-items: center;
+      align-items: center; */
       /* ================= */
       background-color: ${(props) =>
         props.isOpenDiaryModal
@@ -25,7 +26,7 @@ export const ModalStyled = styled.div`
           : "var(--bg-modal-accent-colour)"};
       /* ================= */
 
-      z-index: 2200;
+      z-index: 1200;
       overflow: hidden;
 
       .Modal {

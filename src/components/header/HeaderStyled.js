@@ -6,7 +6,6 @@ export const HeaderStyled = styled.header`
   align-items: center;
   justify-content: space-between;
   background-color: inherit;
-  margin-bottom: 20px;
 
   /* padding: 0 15px; */
 
@@ -35,6 +34,7 @@ export const HeaderStyled = styled.header`
   }
 
   .header__icon-menu {
+    cursor: pointer;
     width: 18px;
     height: 12px;
   }
@@ -49,7 +49,7 @@ export const HeaderStyled = styled.header`
     margin: 0;
     padding: 0;
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1280px) {
     justify-content: flex-start;
     align-items: flex-end;
 
