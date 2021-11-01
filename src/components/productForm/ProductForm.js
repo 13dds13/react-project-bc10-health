@@ -27,38 +27,39 @@ const ProductForm = ({
     <ProductFormStyled>
       <form className="productForm-form" onSubmit={onSubmit}>
         {errorMsg && <p>{errorMsg}</p>}
-        <div className="productForm-form__box">
-          <label className="productForm-form__label">
-            Введите название продукта
-            <input
-              name="productName"
-              type="text"
-              list="productSearch"
-              className="productForm-form__input"
-              value={productName}
-              onChange={onChange}
-              autoComplete="off"
-            />
-            <datalist className="datalist" id="productSearch">
-              {productsVariants &&
-                productsVariants.map((product) => (
-                  <option value={product.title.ru} key={product._id} />
-                ))}
-            </datalist>
-          </label>
-          <label className="productForm-form__label productForm-form__label_size">
-            Граммы
-            <input
-              name="productWeight"
-              type="number"
-              value={productWeight}
-              className="productForm-form__input"
-              onChange={onChange}
-              placeholder='100'
-            />
-          </label>
-          <ButtonAdd type={"submit"} />
-        </div>
+        {dailyRate && (
+          <div className="productForm-form__box">
+            <label className="productForm-form__label">
+              Введите название продукта
+              <input
+                name="productName"
+                type="text"
+                list="productSearch"
+                className="productForm-form__input"
+                value={productName}
+                onChange={onChange}
+                autoComplete="off"
+              />
+              <datalist className="datalist" id="productSearch">
+                {productsVariants &&
+                  productsVariants.map((product) => (
+                    <option value={product.title.ru} key={product._id} />
+                  ))}
+              </datalist>
+            </label>
+            <label className="productForm-form__label productForm-form__label_size">
+              Граммы
+              <input
+                name="productWeight"
+                type="number"
+                value={productWeight}
+                className="productForm-form__input"
+                onChange={onChange}
+              />
+            </label>
+            <ButtonAdd type={"submit"} />
+          </div>
+        )}
       </form>
     </ProductFormStyled>
   );

@@ -30,7 +30,7 @@ const AuthForm = ({ handleSubmit, btnName }) => {
               email: values.email,
               password: values.password,
             });
-            console.log(values);
+            // console.log(values);
           }}
           validationSchema={
             btnName === mainRoutes[4].name
