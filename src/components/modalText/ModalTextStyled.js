@@ -23,7 +23,7 @@ export const ModalTextStyled = styled.div`
     }
     @media screen and (min-width: 1024px) {
       text-align: center;
-      height: 580px;
+      /* /* height: 580px; */
       width: 690px;
       padding-right: 91px;
       padding-left: 91px;
@@ -32,14 +32,14 @@ export const ModalTextStyled = styled.div`
     &__title {
       font-size: 18px;
       line-height: 26px;
-      margin-bottom: 40px;
+      /* margin-bottom: 40px; */
       color: var(--bold-text-colour);
       @media screen and (max-width: 767px) {
         margin-left: 15px;
       }
       @media screen and (min-width: 768px) {
         padding: 0;
-        padding-top: 40px;
+        /* padding-top: 40px; */
         line-height: 32px;
         margin-bottom: 22px;
         font-size: 26px;
@@ -92,7 +92,7 @@ export const ModalTextStyled = styled.div`
       color: var(--not-bold-text-colour);
       margin: 0;
       padding-left: 20px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
       @media screen and (min-width: 768px) {
         padding-left: 110px;
         text-align: left;
