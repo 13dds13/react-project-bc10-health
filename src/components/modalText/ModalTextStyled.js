@@ -12,6 +12,10 @@ export const ModalTextStyled = styled.div`
     padding-right: 15px;
     padding-left: 15px;
 
+    @media screen and (max-width: 767px) {
+       margin-top: 40px;
+    }
+
     @media screen and (min-width: 768px) {
       text-align: center;
       /* height: 580px; */
