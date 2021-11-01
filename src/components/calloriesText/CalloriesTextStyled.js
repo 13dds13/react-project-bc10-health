@@ -8,8 +8,8 @@ export const CalloriesTextStyled = styled.div`
     }
     @media screen and (min-width: 1280px) {
       display: block;
-      margin-left: 500px;
-      margin-top: -200px;
+      /* margin-left: 500px; */
+      margin-top: 0px;
     }
     &__box {
       color: var(--not-bold-text-colour);
@@ -20,17 +20,17 @@ export const CalloriesTextStyled = styled.div`
       letter-spacing: 0.04em;
       /* width: 290px; */
       margin-bottom: 40px;
-      margin-top: 40px;
+      /* margin-top: 40px; */
       @media screen and (min-width: 768px) {
-        margin-top: 0px;
+        /* margin-top: 0px; */
         margin-right: 60px;
         height: 152px;
       }
 
       @media screen and (min-width: 1280px) {
-        text-align: right;
+        text-align: left;
          width: 330px;
-        height: 168px; */
+        height: 168px; 
         margin-right: 0px;
         margin-bottom: 60px;
         /* padding-right: 60px; */
@@ -53,8 +53,9 @@ export const CalloriesTextStyled = styled.div`
 
     &__item-box {
       display: flex;
-      justify-content: right;
+      justify-content: left;
       align-items: center;
+      
     }
   }
 `;

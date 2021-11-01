@@ -2,14 +2,11 @@ import styled from "styled-components";
 
 export const DiaryPageStyled = styled.div`
 margin-top: 40px;
-@media screen and (min-width: 768px) {
-      margin-top: 100px;
-    }
+font-family: Verdana;
 @media screen and (min-width: 1280px) {
       margin-top: 146px;
     }   
 input {
-  font-family: Verdana;
   border: none;
   font-style: normal;
   font-weight: bold;
@@ -37,8 +34,13 @@ color: #212121;
 }
 .diaryFlexBox {
     display: block;
+    &__left {
+      display: block;
+      padding-bottom: 60px;
+    }
     @media screen and (min-width: 1280px) {
       display: flex;
+      justify-content: space-between;
     }
 }
 

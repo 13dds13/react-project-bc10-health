@@ -2,13 +2,10 @@ import styled from "styled-components";
 
 export const EatenProductsListStyles = styled.div`
     margin-top: 31px;
-    margin-bottom: 170px;
+    margin-bottom: 60px;
     @media screen and (min-width: 768px) {
       margin-top: 0px;
       margin-bottom: 60px;
-    }
-    @media screen and (min-width: 1280px) {
-      margin-right: 78px;
     }
 .EatenProductsList {
     &__item{
