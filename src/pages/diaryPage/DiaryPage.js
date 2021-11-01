@@ -24,6 +24,7 @@ import { getIsOpenModal } from "../../redux/modal/modalSelectors";
 import { setModalValue } from "../../redux/modal/modalAction";
 import { mainRoutes } from "../../routes/mainRoutes";
 import { NavLink } from "react-router-dom";
+import { Button } from "../../components/button/Button";
 
 const DiaryPage = () => {
   const dayId = useSelector(getDayId);
@@ -106,6 +107,8 @@ const DiaryPage = () => {
   return (
     <>
       <DiaryPageStyled>
+        <div className="diaryFlexBox">
+          <div className="diaryFlexBox__left">
         <div className={"dataPicker__box"}>
           <DatePicker
             dateFormat="dd.MM.yyyy"
@@ -138,17 +141,20 @@ const DiaryPage = () => {
             errorMsg={errorMsg}
           />
         )}
-        <div className="diaryFlexBox">
+        
           <EatenProductsList
             eatenProductsList={eatenProductsList}
             isCurrentDay={isCurrentDay}
             handleClick={handleClick}
           />
-          {width < 768 && (
-            <button type="button" onClick={onHandleCliсk}>
-              Добавить
-            </button>
+            {width < 768 && (
+              <Button type="button" isValid={true}
+                      dirty={true} onClick={onHandleCliсk} buttonName="Добавить"></Button>
+            // <button type="button" onClick={onHandleCliсk}>
+            //   Добавить
+            // </button>
           )}
+          </div>
           <CalloriesText />
         </div>
       </DiaryPageStyled>
