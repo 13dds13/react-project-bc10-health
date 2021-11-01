@@ -6,6 +6,7 @@ export const AuthFormStyled = styled.div`
     padding-top: 30px;
     /* width: 290px; */
     @media screen and (min-width: 768px) {
+      text-align: left;
       padding-top: 100px;
       width: 382px;
     }
