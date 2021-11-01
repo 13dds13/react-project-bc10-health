@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const AuthFormStyled = styled.div`
   .registration-form {
-    margin: 0;
+    text-align: center;
     padding-top: 30px;
-    width: 290px;
+    /* width: 290px; */
     @media screen and (min-width: 768px) {
+      text-align: left;
       padding-top: 100px;
       width: 382px;
     }
@@ -35,7 +36,7 @@ export const AuthFormStyled = styled.div`
     }
 
     &__input-wrapper {
-      margin-right: 50px;
+      /* margin-right: 50px; */
       @media screen and (min-width: 768px) {
         margin-right: 95px;
       }
