@@ -170,14 +170,16 @@ const DiaryPage = () => {
 
         {isModalOpen && (
           <Modal hideModal={onHandleCliсk} showModal={onHandleCliсk}>
-            <ProductForm
-              productName={productName}
-              productWeight={productWeight}
-              productsVariants={productsVariants}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-              errorMsg={errorMsg}
-            />
+            <div className='container'>
+              <ProductForm
+                productName={productName}
+                productWeight={productWeight}
+                productsVariants={productsVariants}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                errorMsg={errorMsg}
+              />
+            </div>
           </Modal>
         )}
       </div>

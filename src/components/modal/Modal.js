@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { getIsAuth } from "../../redux/auth/authSelectors";
 import { getIsOpenModal } from "../../redux/modal/modalSelectors";
 import { ModalStyled } from "./ModalStyled";
+
 
 const Modal = ({ children, showModal }) => {
 
 const isOpenDiaryModal = useSelector(getIsOpenModal)
+const isAuth = useSelector(getIsAuth)
 
 
   const onEsc = (e) => {
@@ -21,13 +24,18 @@ const isOpenDiaryModal = useSelector(getIsOpenModal)
 
   useEffect(() => {
     window.addEventListener("keydown", onEsc);
-    // const body = document.querySelector("body");
-    // body.style.overflow = "hidden";
-    // window.scrollTo(0, 0);
+    if(isAuth && isOpenDiaryModal){
+      const body = document.querySelector("body");
+      body.style.overflow = "hidden";
+      window.scrollTo(0, 0);
+    }
+
     return () => {
       window.removeEventListener("keydown", onEsc);
-      // const body = document.querySelector("body");
-      // body.style.overflow = "auto";
+        const body = document.querySelector("body");
+        body.style.overflow = "auto";
+
+
     };
   }, []);
 

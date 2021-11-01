@@ -14,7 +14,7 @@ export const ModalStyled = styled.div`
 
       width: 100vw;
       height: 700px;
-      padding-left: 20px;
+      /* padding-left: 20px; */
       /* display: flex;
       justify-content: center;
 
