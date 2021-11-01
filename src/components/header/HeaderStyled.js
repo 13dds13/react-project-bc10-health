@@ -7,6 +7,8 @@ export const HeaderStyled = styled.header`
   justify-content: space-between;
   background-color: inherit;
 
+  z-index: 1;
+
   /* padding: 0 15px; */
 
   .header__wrap {
