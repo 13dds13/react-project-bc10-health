@@ -8,6 +8,7 @@ import {
   addEatenProduct,
   deleteProduct,
   getDayInfo,
+  getUserData,
 } from "../../redux/user/userOperations";
 import EatenProductsList from "../../components/eatenProductsList/EatenProductsList";
 import getDateInFormat from "../../services/getDateInFormat";
@@ -99,6 +100,7 @@ const DiaryPage = () => {
     const weight = productWeight;
     const date = getDateInFormat(startDate);
     dispatch(addEatenProduct({ date, productId, weight }));
+    dispatch(getUserData());
   };
 
   const handleClick = (eatenProductId) =>

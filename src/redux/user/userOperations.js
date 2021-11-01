@@ -49,6 +49,7 @@ export const addEatenProduct = (dataToPost) => async (dispatch) => {
     );
     const { daySummary } = data;
     dispatch(userSummarySuccess(daySummary));
+    dispatch(getUserData());
   } catch (error) {
     dispatch(userSummaryError(error.response.data.message));
   }
