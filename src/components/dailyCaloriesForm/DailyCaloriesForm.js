@@ -85,6 +85,7 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal }) => {
             isValid,
             handleSubmit,
             dirty,
+            setFieldValue,
           }) => (
             <div className="dailyCalories-form__input-wrapper">
               <div className="group">
@@ -101,7 +102,14 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal }) => {
                       id={`height`}
                       // type={`number`}
                       name={`height`}
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        e.preventDefault();
+                        const { value } = e.target;
+                        const regex = /^[0-9]*$/;
+                        if (regex.test(value.toString())) {
+                          setFieldValue("height", value);
+                        }
+                      }}
                       onBlur={handleBlur}
                       value={values.height}
                       className="dailyCalories-form__input"
@@ -130,7 +138,14 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal }) => {
                       id={`age`}
                       // type={`number`}
                       name={`age`}
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        e.preventDefault();
+                        const { value } = e.target;
+                        const regex = /^[0-9]*$/;
+                        if (regex.test(value.toString())) {
+                          setFieldValue("age", value);
+                        }
+                      }}
                       onBlur={handleBlur}
                       value={values.age}
                       className="dailyCalories-form__input"
@@ -158,7 +173,14 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal }) => {
                       id={`weight`}
                       // type={`number`}
                       name={`weight`}
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        e.preventDefault();
+                        const { value } = e.target;
+                        const regex = /^[0-9]*$/;
+                        if (regex.test(value.toString())) {
+                          setFieldValue("weight", value);
+                        }
+                      }}
                       onBlur={handleBlur}
                       value={values.weight}
                       className="dailyCalories-form__input"
@@ -188,7 +210,14 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal }) => {
                       id={`desiredWeight`}
                       // type={`number`}
                       name={`desiredWeight`}
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        e.preventDefault();
+                        const { value } = e.target;
+                        const regex = /^[0-9]*$/;
+                        if (regex.test(value.toString())) {
+                          setFieldValue("desiredWeight", value);
+                        }
+                      }}
                       onBlur={handleBlur}
                       value={values.desiredWeight}
                       className="dailyCalories-form__input"
