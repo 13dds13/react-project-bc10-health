@@ -37,7 +37,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="container">
+      <>
         <HeaderStyled>
           <div className="header__wrap" onClick={goHomePage}>
             <img className="header__logo" src={logo} alt={"logo"} />
@@ -84,7 +84,7 @@ const Header = () => {
             </Modal>
           )}
         </HeaderStyled>
-      </div>
+      </>
       {width < 1024 && (
         <hr
           style={{
@@ -103,7 +103,9 @@ const Header = () => {
         }}
       >
         {width < breakPointTablet && isAuth && <UserMenu width={width} />}
-        {width < breakPointTablet && !isAuth && isOpenModalFromState && <UserMenu width={width} />}
+        {width < breakPointTablet && !isAuth && isOpenModalFromState && (
+          <UserMenu width={width} />
+        )}
       </div>
     </>
   );

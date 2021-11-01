@@ -20,13 +20,13 @@ const isOpenDiaryModal = useSelector(getIsOpenModal)
 
   useEffect(() => {
     window.addEventListener("keydown", onEsc);
-    const body = document.querySelector("body");
-    body.style.overflow = "hidden";
-    window.scrollTo(0, 0);
+    // const body = document.querySelector("body");
+    // body.style.overflow = "hidden";
+    // window.scrollTo(0, 0);
     return () => {
       window.removeEventListener("keydown", onEsc);
-      const body = document.querySelector("body");
-      body.style.overflow = "auto";
+      // const body = document.querySelector("body");
+      // body.style.overflow = "auto";
     };
   }, []);
 

@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const ModalTextStyled = styled.div`
   .modal-text-box {
+    position: relative;
     background-color: var(--main-bg-color);
-    height: 820px;
+    /* height: 820px; */
     font-family: Verdana;
     letter-spacing: 0.04em;
     width: 320px;
@@ -13,12 +14,12 @@ export const ModalTextStyled = styled.div`
 
     @media screen and (min-width: 768px) {
       text-align: center;
-      height: 580px;
+      /* height: 580px; */
       width: 594px;
       padding-right: 42px;
       padding-left: 42px;
-      padding-top: 64px;
-      padding-bottom: 68px;
+      padding-top: 24px;
+      padding-bottom: 28px;
     }
     @media screen and (min-width: 1024px) {
       text-align: center;
@@ -29,7 +30,6 @@ export const ModalTextStyled = styled.div`
     }
 
     &__title {
-      padding-top: 40px;
       font-size: 18px;
       line-height: 26px;
       margin-bottom: 40px;
@@ -39,6 +39,7 @@ export const ModalTextStyled = styled.div`
       }
       @media screen and (min-width: 768px) {
         padding: 0;
+        padding-top: 40px;
         line-height: 32px;
         margin-bottom: 22px;
         font-size: 26px;
@@ -52,11 +53,10 @@ export const ModalTextStyled = styled.div`
       margin-left: 15px;
     }
     &__count {
-      font-size: 48px;
+      font-size: 28px;
       line-height: 58px;
       text-align: center;
       color: var(--accent-bold-text-colour);
-      padding-bottom: 30px;
       border-bottom: 1px solid var(--border-colour);
       margin-bottom: 20px;
       margin-left: auto;
@@ -107,7 +107,13 @@ export const ModalTextStyled = styled.div`
       text-align: center;
     }
   }
-  .btn-location {
-
+  .modal-btn-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 12px;
+    height: 12px;
+    border: none;
+    background-color: inherit;
   }
 `;

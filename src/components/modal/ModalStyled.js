@@ -3,14 +3,14 @@ import styled from "styled-components";
 export const ModalStyled = styled.div`
   @media screen and (max-width: 767px) {
     .overlay {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
+      
 
       /* ================= */
-      margin-top: ${(props) => (props.isOpenDiaryModal ? "122px" : "100px")};
+      margin-top: ${(props) => (props.isOpenDiaryModal ? "125px" : "100px")};
       /* ================= */
-
 
       width: 100vw;
       height: 100vh;
@@ -18,18 +18,21 @@ export const ModalStyled = styled.div`
       justify-content: center;
 
       align-items: center;
-       /* ================= */
-       background-color: ${(props) => (props.isOpenDiaryModal ? "var(--main-bg-color)" : "var(--bg-modal-accent-colour)")};
+      /* ================= */
+      background-color: ${(props) =>
+        props.isOpenDiaryModal
+          ? "var(--main-bg-color)"
+          : "var(--bg-modal-accent-colour)"};
       /* ================= */
 
       z-index: 1200;
-      overflow: auto;
+      overflow: hidden;
 
       .Modal {
-        position: relative;
+        position: absolute;
         /* background-color: #3d3d3d; */
         border-radius: 14px;
-      z-index: 999;
+        z-index: 999;
       }
     }
   }
@@ -56,6 +59,7 @@ export const ModalStyled = styled.div`
   @media screen and (max-width: 767px) {
     .modal {
       /* margin-top: auto; */
+      /* overflow: scroll; */
     }
   }
 `;

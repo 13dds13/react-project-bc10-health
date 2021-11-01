@@ -22,10 +22,11 @@ const App = () => {
 
   return (
     <>
-      <div className="bg-img"></div>
-      <Header />
-      <div className="container">
-        <Main />
+      <div className="bg-img">
+        <div className="container">
+          <Header />
+          <Main />
+        </div>
       </div>
     </>
   );

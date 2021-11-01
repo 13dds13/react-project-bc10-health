@@ -20,6 +20,7 @@ const HomePage = () => {
   const [isModal, setIsModal] = useState(false);
   const [modalData, setModalData] = useState({});
   const getCalloriesData = (data) => setModalData(data);
+  
 
   // const showModal = () => setIsModal(!isModal);
 
