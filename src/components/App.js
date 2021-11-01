@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { authLogout, authRefresh } from "../redux/auth/authOperations";
+import { authRefresh } from "../redux/auth/authOperations";
 import {
   getIsAuth,
   getRefreshToken,
@@ -20,11 +20,9 @@ const App = () => {
     !isAuth && refreshToken && dispatch(authRefresh(refreshToken, sid));
   }, [dispatch, isAuth, refreshToken, sid]);
 
-  // const onClick = () => dispatch(authLogout());
   return (
     <>
       <div className="bg-img"></div>
-      {/* {isAuth && <button onClick={onClick}>Sign out</button>} */}
       <Header />
       <div className="container">
         <Main />

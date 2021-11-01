@@ -20,8 +20,8 @@ const Button = ({
         disabled={!isValid || !dirty}
         onClick={(e) => {
           e.preventDefault();
-          console.log(isValid);
-          console.log(dirty);
+          // console.log(isValid);
+          // console.log(dirty);
           onClick();
           // if (!dirty) {
           //   alert('Set the values')
@@ -41,12 +41,12 @@ const Button = ({
 const ButtonAdd = ({ type }) => {
   return (
     <ButtonStyled>
-    <button className="btn_add btn_orange_add" type={type}>
-      <svg width="20" height="20" fill="white">
-        <use href={sprite + "#add"} />
-      </svg>
+      <button className="btn_add btn_orange_add" type={type}>
+        <svg width="20" height="20" fill="white">
+          <use href={sprite + "#add"} />
+        </svg>
       </button>
-      </ButtonStyled>
+    </ButtonStyled>
   );
 };
 

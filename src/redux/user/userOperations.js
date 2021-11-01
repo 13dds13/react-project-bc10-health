@@ -12,7 +12,6 @@ import {
 } from "./userActions";
 import { endpoint } from "../../db.json";
 import { refreshAuthSuccess } from "../auth/authActions";
-import getDailyRate from "../../services/getDailyRate";
 
 export const getUserData = () => async (dispatch) => {
   try {
@@ -93,7 +92,6 @@ export const dailyRateForAuthUser =
         `${endpoint.dailyRate}/${usersId}`,
         preparedData
       );
-      console.log(data);
       const {
         dailyRate,
         date,

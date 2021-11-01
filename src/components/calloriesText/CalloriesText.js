@@ -10,48 +10,49 @@ const CalloriesText = () => {
   const daySummary = useSelector(getDaySummary);
   const notAllowedProducts = useSelector(getNotAllowedProducts);
 
-  const {
-    date = "",
-    kcalLeft = "000",
-    kcalConsumed = "000",
-    dailyRate = "000",
-    percentsOfDailyRate = "000",
-  } = daySummary;
+  const { date, kcalConsumed, dailyRate, percentsOfDailyRate } = daySummary;
+
+  const normalizedKcalLeft = dailyRate - kcalConsumed;
 
   return (
     <CalloriesTextStyled>
       <div className="callories-text">
         <div className="callories-text__box">
-          <p className="callories-text__title">Сводка за {date}</p>
+          <p className="callories-text__title">
+            Сводка {date ? `за ${date}` : "недоступна"}
+          </p>
           <div>
             <div className="callories-text__item-box">
               <p className="callories-text__item">Осталось</p>
               <span className="callories-text__count">
-                {Math.round(kcalLeft)} ккал
+                {normalizedKcalLeft <= 0 || !dailyRate
+                  ? ": 000"
+                  : `: ${Math.round(normalizedKcalLeft)}`}{" "}
+                ккал
               </span>
             </div>
             <div className="callories-text__item-box">
               <p className="callories-text__item">Употреблено</p>
               <span className="callories-text__count">
-                {Math.round(kcalConsumed)} ккал
+                : {Math.round(kcalConsumed) || "000"} ккал
               </span>
             </div>
             <div className="callories-text__item-box">
               <p className="callories-text__item">Дневная норма</p>
               <span className="callories-text__count">
-                {Math.round(dailyRate)} ккал
+                : {Math.round(dailyRate) || "000"} ккал
               </span>
             </div>
             <div className="callories-text__item-box">
               <p className="callories-text__item"> n% от нормы</p>
               <span className="callories-text__count">
-                {Math.round(percentsOfDailyRate)} %
+                : {Math.round(percentsOfDailyRate) || "000"} %
               </span>
             </div>
           </div>
         </div>
         <div className="callories-text__box">
-          <p className="callories-text__title">Нерекомендуемые продукты</p>
+          <p className="callories-text__title">Нерекомендуемые продукты:</p>
           {notAllowedProducts && !notAllowedProducts.length ? (
             <p className="callories-text__item">
               Здесь будет отображаться Ваш рацион

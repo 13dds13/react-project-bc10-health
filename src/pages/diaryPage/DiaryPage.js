@@ -29,18 +29,7 @@ const DiaryPage = () => {
   const dayId = useSelector(getDayId);
   const [errorMsg, setErrorMsg] = useState("");
   const [startDate, setStartDate] = useState(new Date());
-
   const [width, setWidth] = useState(window.innerWidth);
-
-  const handleResizeWindow = () => setWidth(window.innerWidth);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResizeWindow);
-    return () => {
-      window.removeEventListener("resize", handleResizeWindow);
-    };
-  }, []);
-
   const isModalOpen = useSelector(getIsOpenModal);
   const [productName, setProductName] = useState("");
   const [productWeight, setProductWeight] = useState("");
@@ -55,6 +44,19 @@ const DiaryPage = () => {
     const date = getDateInFormat(startDate);
     dispatch(getDayInfo(date));
   }, [dispatch, startDate, percentsOfDailyRate]);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResizeWindow);
+    return () => {
+      window.removeEventListener("resize", handleResizeWindow);
+    };
+  }, []);
+
+  useEffect(() => {
+    productName === "" && setErrorMsg("");
+  }, [productName]);
+
+  const handleResizeWindow = () => setWidth(window.innerWidth);
 
   useEffect(() => {
     setErrorMsg("");
@@ -81,13 +83,19 @@ const DiaryPage = () => {
       (prod) => prod.title.ru === productName
     );
     if (!curProd) {
-      setErrorMsg(
-        "Выбирети продукт из предложенного списка или введите заново"
-      );
+      setErrorMsg("Укажите название продукта.");
+      return;
+    }
+    if (!productWeight) {
+      setErrorMsg("Укажите вес продукта.");
+      return;
+    }
+    if (productWeight < 0) {
+      setErrorMsg("Значение веса продукта должно быть больше ноля.");
       return;
     }
     const productId = curProd._id;
-    const weight = productWeight ? Math.round(productWeight) : 100;
+    const weight = productWeight;
     const date = getDateInFormat(startDate);
     dispatch(addEatenProduct({ date, productId, weight }));
   };
