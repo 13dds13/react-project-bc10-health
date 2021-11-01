@@ -7,14 +7,12 @@ import { Button } from "../button/Button";
 import { useEffect } from "react";
 import { validationsSchema } from "./validationSchema";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserStat } from "../../redux/user/userSelectors";
 import { getIsAuth, getUserId } from "../../redux/auth/authSelectors";
 import getDailyRate from "../../services/getDailyRate";
 import { dailyRateForAuthUser } from "../../redux/user/userOperations";
 
-const DailyCaloriesForm = ({ getCalloriesData, showModal }) => {
+const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
   const [data, setData] = useState({});
-  const userStat = useSelector(getUserStat);
   const isAuth = useSelector(getIsAuth);
   const userId = useSelector(getUserId);
   const dispatch = useDispatch();
@@ -37,22 +35,6 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal }) => {
       : dispatch(dailyRateForAuthUser(userId, preparedData));
   }, [data]);
 
-  // const {
-  //   weight = "",
-  //   height = "",
-  //   age = "",
-  //   desiredWeight = "",
-  //   bloodType = "",
-  // } = userStat;
-
-  // const formikInitData = {
-  //   weight,
-  //   height,
-  //   age,
-  //   desiredWeight,
-  //   bloodType,
-  // };
-
   return (
     <DailyCaloriesFormStyled>
       <form className="dailyCalories-form">
@@ -61,14 +43,15 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal }) => {
           Просчитай свою суточную норму калорий прямо сейчас
         </h1>
         <Formik
-          initialValues={{
-            weight: "",
-            height: "",
-            age: "",
-            desiredWeight: "",
-            bloodType: "",
-          }}
-          // initialValues={formikInitData}
+          initialValues={
+            formikData || {
+              weight: "",
+              height: "",
+              age: "",
+              desiredWeight: "",
+              bloodType: "",
+            }
+          }
           validateOnBlur
           onSubmit={(values) => {
             showModal();

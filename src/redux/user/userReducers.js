@@ -15,7 +15,7 @@ import {
 const userDataReducer = createReducer(
   {},
   {
-    [userDataSuccess]: (_, { payload }) => payload,
+    [userDataSuccess]: (state, { payload }) => ({ ...state, ...payload }),
     [logoutAuthSuccess]: () => ({}),
   }
 );
