@@ -4,14 +4,9 @@ export const AuthFormStyled = styled.div`
   .registration-form {
     text-align: center;
     padding-top: 30px;
-    /* width: 290px; */
     @media screen and (min-width: 768px) {
       text-align: left;
-      padding-top: 100px;
       width: 382px;
-    }
-    @media screen and (min-width: 1024px) {
-      padding-top: 137px;
     }
     &__title {
       color: var(--accent-colour);
