@@ -4,6 +4,7 @@ import { ProductFormStyled } from "./ProductForm.styled";
 import { useSelector } from "react-redux";
 import { getDaySummary } from "../../redux/user/userSelectors";
 
+
 const ProductForm = ({
   productName,
   productWeight,

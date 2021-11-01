@@ -101,6 +101,7 @@ const DiaryPage = () => {
     const date = getDateInFormat(startDate);
     dispatch(addEatenProduct({ date, productId, weight }));
     dispatch(getUserData());
+    isModalOpen && onHandleCliсk();
   };
 
   const handleClick = (eatenProductId) =>
@@ -176,7 +177,6 @@ const DiaryPage = () => {
               handleChange={handleChange}
               handleSubmit={handleSubmit}
               errorMsg={errorMsg}
-              
             />
           </Modal>
         )}
