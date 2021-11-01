@@ -16,7 +16,7 @@ export const ModalStyled = styled.div`
       height: 100vh;
       display: flex;
       justify-content: center;
-
+ 
       align-items: center;
        /* ================= */
        background-color: ${(props) => (props.isOpenDiaryModal ? "var(--main-bg-color)" : "var(--bg-modal-accent-colour)")};
@@ -33,6 +33,13 @@ export const ModalStyled = styled.div`
       }
     }
   }
+  @media screen and (max-width: 767px) {
+    .modal {
+      margin-top: auto;
+    }
+  }
+
+
   @media screen and (min-width: 767px) {
     .overlay {
       position: fixed;

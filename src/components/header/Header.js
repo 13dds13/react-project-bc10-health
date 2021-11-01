@@ -85,25 +85,36 @@ const Header = () => {
           )}
         </HeaderStyled>
       </div>
-      {width < 1024 && (
-        <hr
+      <div className="header__bottom-part">
+        {width < 1024 && (
+          <hr className="header__bottom-part__bottom-line"
+            style={{
+              backgroundColor: "#e0e0e0",
+              height: "2px",
+              margin: "0",
+              border: "none",
+            }}
+          />
+        )}
+        <div
+          className="user-menu__bg"
           style={{
-            backgroundColor: "#e0e0e0",
-            height: "2px",
-            margin: "0",
-            border: "none",
+            backgroundColor: "#f0f1f3",
           }}
-        />
-      )}
-      <div
-        className="container"
-        style={{
-          paddingLeft: "0",
-          paddingRight: "0",
-        }}
-      >
-        {width < breakPointTablet && isAuth && <UserMenu width={width} />}
-        {width < breakPointTablet && !isAuth && isOpenModalFromState && <UserMenu width={width} />}
+        >
+          <div
+            className="container"
+            style={{
+              paddingLeft: "0",
+              paddingRight: "0",
+            }}
+          >
+            {width < breakPointTablet && isAuth && <UserMenu width={width} />}
+            {width < breakPointTablet && !isAuth && isOpenModalFromState && (
+              <UserMenu width={width} />
+            )}
+          </div>
+        </div>
       </div>
     </>
   );

@@ -5,7 +5,7 @@ export const HeaderStyled = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
+
   /* padding: 0 15px; */
 
   .header__wrap {
@@ -47,6 +47,7 @@ export const HeaderStyled = styled.header`
     margin: 0;
     padding: 0;
   }
+
   @media screen and (min-width: 1024px) {
     justify-content: flex-start;
     align-items: flex-end;
