@@ -25,7 +25,7 @@ export const ModalStyled = styled.div`
           : "var(--bg-modal-accent-colour)"};
       /* ================= */
 
-      z-index: 1200;
+      z-index: 2200;
       overflow: hidden;
 
       .Modal {

@@ -16,8 +16,8 @@ export const ModalTextStyled = styled.div`
       text-align: center;
       /* height: 580px; */
       width: 594px;
-      padding-right: 42px;
-      padding-left: 42px;
+      /* padding-right: 42px;
+      padding-left: 42px; */
       padding-top: 24px;
       padding-bottom: 28px;
     }
@@ -25,8 +25,8 @@ export const ModalTextStyled = styled.div`
       text-align: center;
       /* /* height: 580px; */
       width: 690px;
-      padding-right: 91px;
-      padding-left: 91px;
+      /* padding-right: 91px;
+      padding-left: 91px; */
     }
 
     &__title {
