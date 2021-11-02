@@ -8,14 +8,14 @@ import {
   addEatenProduct,
   deleteProduct,
   getDayInfo,
-  getUserData,
 } from "../../redux/user/userOperations";
 import EatenProductsList from "../../components/eatenProductsList/EatenProductsList";
-import getDateInFormat from "../../services/getDateInFormat";
+import getDateInFormat from "../../helpers/getDateInFormat";
 import {
   getDayId,
   getDaySummary,
   getEatenProductsList,
+  getIsLoadingUserData,
 } from "../../redux/user/userSelectors";
 import CalloriesText from "../../components/calloriesText/CalloriesText";
 import Modal from "../../components/modal";
@@ -27,18 +27,23 @@ import { mainRoutes } from "../../routes/mainRoutes";
 import { NavLink } from "react-router-dom";
 import { Button } from "../../components/button/Button";
 import { notification } from "../../helpers/notification";
+import Loader from "react-loader-spinner";
 
 const DiaryPage = () => {
-  const dayId = useSelector(getDayId);
   const [errorMsg, setErrorMsg] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [width, setWidth] = useState(window.innerWidth);
-  const isModalOpen = useSelector(getIsOpenModal);
   const [productName, setProductName] = useState("");
   const [productWeight, setProductWeight] = useState("");
   const [productsVariants, setProductsVariants] = useState([]);
+  const [isSearchingProduct, setIsSearchingProduct] = useState(false);
+
+  const isModalOpen = useSelector(getIsOpenModal);
   const eatenProductsList = useSelector(getEatenProductsList);
   const { percentsOfDailyRate, dailyRate } = useSelector(getDaySummary);
+  const dayId = useSelector(getDayId);
+  const isLoadingUserData = useSelector(getIsLoadingUserData);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -62,11 +67,13 @@ const DiaryPage = () => {
   useEffect(() => {
     setErrorMsg("");
     if (!productName) return;
-    productSearch(productName).then((searchData) =>
+    setIsSearchingProduct(true);
+    productSearch(productName).then((searchData) => {
       typeof searchData === "string"
         ? setErrorMsg(searchData)
-        : setProductsVariants(searchData)
-    );
+        : setProductsVariants(searchData);
+      setIsSearchingProduct(false);
+    });
   }, [productName]);
 
   useEffect(() => {
@@ -146,16 +153,28 @@ const DiaryPage = () => {
                   productName={productName}
                   productWeight={productWeight}
                   productsVariants={productsVariants}
+                  isSearchingProduct={isSearchingProduct}
                   handleChange={handleChange}
                   handleSubmit={handleSubmit}
                 />
               )}
-
-              <EatenProductsList
-                eatenProductsList={eatenProductsList}
-                isCurrentDay={isCurrentDay}
-                handleClick={handleClick}
-              />
+              {isLoadingUserData ? (
+                <Loader
+                  type="ThreeDots"
+                  color="var(--accent-colour)"
+                  height={40}
+                  width={40}
+                  style={{
+                    textAlign: "center",
+                  }}
+                />
+              ) : (
+                <EatenProductsList
+                  eatenProductsList={eatenProductsList}
+                  isCurrentDay={isCurrentDay}
+                  handleClick={handleClick}
+                />
+              )}
               {width < 768 && (
                 <Button
                   type="button"
@@ -180,6 +199,7 @@ const DiaryPage = () => {
                 productName={productName}
                 productWeight={productWeight}
                 productsVariants={productsVariants}
+                isSearchingProduct={isSearchingProduct}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
                 errorMsg={errorMsg}

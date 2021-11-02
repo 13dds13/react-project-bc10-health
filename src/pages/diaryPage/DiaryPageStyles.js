@@ -6,7 +6,7 @@ export const DiaryPageStyled = styled.div`
   /* background-color: white; */
   /* background: linear-gradient(90deg, rgba(255,255,255,1) 60%, rgba(240,241,243,1) 60%); */
   @media screen and (min-width: 1280px) {
-    margin-top: 146px;
+    margin-top: 85px;
   }
   input {
     border: none;

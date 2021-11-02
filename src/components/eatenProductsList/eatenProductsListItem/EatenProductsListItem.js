@@ -11,10 +11,10 @@ const EatenProductsListItem = ({ product, handleClick, isCurrentDay }) => {
           {product.title}
         </p>
         <p className="EatenProductsList__item_border EatenProductsList__item_widthGramKcal">
-          Вес: {product.weight}
+          {product.weight} г
         </p>
         <p className="EatenProductsList__item_border EatenProductsList__item_widthGramKcal">
-          Ккал: {Math.round(product.kcal)}
+          {Math.round(product.kcal)} ккал
         </p>
         {isCurrentDay && (
           <button
