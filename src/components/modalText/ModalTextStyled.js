@@ -13,7 +13,7 @@ export const ModalTextStyled = styled.div`
     padding-left: 15px;
 
     @media screen and (max-width: 767px) {
-       margin-top: 40px;
+      margin-top: 40px;
     }
 
     @media screen and (min-width: 768px) {
@@ -95,8 +95,9 @@ export const ModalTextStyled = styled.div`
       line-height: 17px;
       color: var(--not-bold-text-colour);
       margin: 0;
-      padding-left: 20px;
+      /* padding-left: 0px; */
       margin-bottom: 20px;
+
       @media screen and (min-width: 768px) {
         padding-left: 110px;
         text-align: left;
