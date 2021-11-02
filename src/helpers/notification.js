@@ -1,8 +1,5 @@
 import { NotificationManager } from "react-notifications";
 
-// export const notification = (msg) =>
-//   NotificationManager.error(msg, "Info:", 1500);
-
 export const notification = (type, msg) => {
   switch (type) {
     case "info":
