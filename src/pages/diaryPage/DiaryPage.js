@@ -26,6 +26,7 @@ import { setModalValue } from "../../redux/modal/modalAction";
 import { mainRoutes } from "../../routes/mainRoutes";
 import { NavLink } from "react-router-dom";
 import { Button } from "../../components/button/Button";
+import { notification } from "../../helpers/notification";
 
 const DiaryPage = () => {
   const dayId = useSelector(getDayId);
@@ -67,6 +68,12 @@ const DiaryPage = () => {
         : setProductsVariants(searchData)
     );
   }, [productName]);
+
+  useEffect(() => {
+    if (errorMsg) {
+      notification("warning", errorMsg);
+    }
+  }, [errorMsg]);
 
   const handleResizeWindow = () => setWidth(window.innerWidth);
 
@@ -141,7 +148,6 @@ const DiaryPage = () => {
                   productsVariants={productsVariants}
                   handleChange={handleChange}
                   handleSubmit={handleSubmit}
-                  errorMsg={errorMsg}
                 />
               )}
 
@@ -169,7 +175,7 @@ const DiaryPage = () => {
 
         {isModalOpen && (
           <Modal hideModal={onHandleCliсk} showModal={onHandleCliсk}>
-            <div className='container'>
+            <div className="container">
               <ProductForm
                 productName={productName}
                 productWeight={productWeight}
