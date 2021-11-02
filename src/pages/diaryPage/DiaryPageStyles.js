@@ -27,6 +27,7 @@ export const DiaryPageStyled = styled.div`
   }
   .dataPicker__box {
     display: flex;
+    margin-bottom: 10px;
     /* justify-content: center; */
   }
   .dataPicker__svg {
