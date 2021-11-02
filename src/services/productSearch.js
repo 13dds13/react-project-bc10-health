@@ -10,10 +10,8 @@ const productSearch = async (productName) => {
   if (productName.includes("(") && productName.includes(")")) {
     correctProdName = productName.slice(
       productName.indexOf("(") + 1,
-      productName.length - 1
+      productName.indexOf(")")
     );
-    // productName.slice(0, productName.indexOf("(")) +
-    // productName.slice(productName.indexOf("(") + 1, productName.length - 1);
   }
   try {
     const { data } = await axios(`${endpoint.productSearch}${correctProdName}`);

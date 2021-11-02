@@ -75,7 +75,7 @@ export const authRegistration = (requestData) => async (dispatch) => {
     dispatch(registerAuthSuccess());
     dispatch(authLogin(requestData));
   } catch (error) {
-    dispatch(registerAuthError(error.response.data.message));
+    dispatch(registerAuthError(error?.response?.data?.message));
   }
 };
 
@@ -86,7 +86,7 @@ export const authLogout = () => async (dispatch) => {
     token.unset();
     dispatch(logoutAuthSuccess());
   } catch (error) {
-    dispatch(logoutAuthError(error.response.data.message));
+    dispatch(logoutAuthError(error?.response?.data?.message));
   }
 };
 
@@ -115,6 +115,6 @@ export const authRefresh = (refreshToken, sid) => async (dispatch) => {
       dispatch(logoutAuthSuccess());
       return;
     }
-    dispatch(refreshAuthError(error.response.data.message));
+    dispatch(refreshAuthError(error?.response?.data?.message));
   }
 };

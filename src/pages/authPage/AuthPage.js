@@ -17,16 +17,17 @@ const AuthPage = () => {
       ? dispatch(authRegistration(userData))
       : dispatch(authLogin(userData));
   };
-  console.log(errorMsg);
+  
   useEffect(() => {
     if (errorMsg) {
       notification("error", errorMsg);
     }
   }, [errorMsg]);
 
+
   return (
     <>
-      <div className="bg-img">
+      {/* <div className="bg-img"> */}
         <div className="container">
           {mainRoutes
             .filter(({ isRestricted }) => isRestricted)
@@ -42,7 +43,7 @@ const AuthPage = () => {
                 )
             )}
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 };

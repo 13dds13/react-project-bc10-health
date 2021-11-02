@@ -30,7 +30,7 @@ const userSummaryReducer = createReducer(
 
 const userEatenProducts = createReducer([], {
   [userDayInfoSuccess]: (_, { payload }) => payload,
-  [logoutAuthSuccess]: () => ({}),
+  [logoutAuthSuccess]: () => [],
 });
 const errorUserReducer = createReducer("", {
   [userDataError]: (_, { payload }) => payload,

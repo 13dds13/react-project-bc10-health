@@ -36,22 +36,7 @@ export const getUserData = () => async (dispatch) => {
     dispatch(refreshAuthSuccess(authData));
     dispatch(userDataSuccess(preparedUserData));
   } catch (error) {
-    dispatch(userDataError(error.response.data.message));
-  }
-};
-
-export const addEatenProduct = (dataToPost) => async (dispatch) => {
-  try {
-    dispatch(userSummaryRequest());
-    const { data } = await axios.post(
-      endpoint.postOrDeleteEatenProduct,
-      dataToPost
-    );
-    const { daySummary } = data;
-    dispatch(userSummarySuccess(daySummary));
-    dispatch(getUserData());
-  } catch (error) {
-    dispatch(userSummaryError(error.response.data.message));
+    dispatch(userDataError(error?.response?.data?.message));
   }
 };
 
@@ -68,7 +53,30 @@ export const getDayInfo = (date) => async (dispatch) => {
     dispatch(userSummarySuccess({ ...daySummary, dayId: data.id }));
     dispatch(userDayInfoSuccess(eatenProducts));
   } catch (error) {
-    dispatch(userDayInfoError(error.response.data.message));
+    dispatch(userDayInfoError(error?.response?.data?.message));
+  }
+};
+
+export const addEatenProduct = (dataToPost) => async (dispatch) => {
+  try {
+    dispatch(userSummaryRequest());
+    const { data } = await axios.post(
+      endpoint.postOrDeleteEatenProduct,
+      dataToPost
+    );
+    if (data?.day) {
+      console.log(data);
+      dispatch(userSummarySuccess(data.daySummary));
+      dispatch(userDayInfoSuccess(data.eatenProducts));
+      return;
+    }
+    if (data?.newDay) {
+      console.log(data);
+      dispatch(userSummarySuccess(data.newSummary));
+      dispatch(userDayInfoSuccess([data.eatenProduct]));
+    }
+  } catch (error) {
+    dispatch(userSummaryError(error?.response?.data?.message));
   }
 };
 
@@ -81,7 +89,7 @@ export const deleteProduct = (dataToDelete) => async (dispatch) => {
     const daySummary = data.newDaySummary;
     dispatch(userSummarySuccess(daySummary));
   } catch (error) {
-    dispatch(userDayInfoError(error.response.data.message));
+    dispatch(userDayInfoError(error?.response?.data?.message));
   }
 };
 
@@ -115,6 +123,6 @@ export const dailyRateForAuthUser =
       dispatch(userSummarySuccess(daySummary));
       dispatch(userDataSuccess({ notAllowedProducts }));
     } catch (error) {
-      dispatch(userDayInfoError(error.response.data.message));
+      dispatch(userDayInfoError(error?.response?.data?.message));
     }
   };

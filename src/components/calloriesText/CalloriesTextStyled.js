@@ -1,10 +1,20 @@
 import styled from "styled-components";
 
 export const CalloriesTextStyled = styled.div`
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 7%,
+    rgba(240, 241, 243, 1) 100%
+  );
+  padding-top: 45px;
+  @media screen and (min-width: 768px) {
+    padding-top: 15px;
+  }
+
   .callories-text {
     @media screen and (min-width: 768px) {
       display: flex;
-      margin-top: 90px;
+      /* margin-top: 90px; */
     }
     @media screen and (min-width: 1280px) {
       display: block;
@@ -24,13 +34,13 @@ export const CalloriesTextStyled = styled.div`
       @media screen and (min-width: 768px) {
         /* margin-top: 0px; */
         margin-right: 60px;
-        height: 152px;
+        height: 162px;
       }
 
       @media screen and (min-width: 1280px) {
         text-align: left;
-         width: 330px;
-        height: 168px; 
+        width: 330px;
+        height: 168px;
         margin-right: 0px;
         margin-bottom: 60px;
         /* padding-right: 60px; */
@@ -55,7 +65,6 @@ export const CalloriesTextStyled = styled.div`
       display: flex;
       justify-content: left;
       align-items: center;
-      
     }
   }
 `;

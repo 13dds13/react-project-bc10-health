@@ -238,7 +238,11 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
                           // onBlur={handleBlur}
                           value={1}
                           className="dailyCalories-form__blood-selector"
-                          checked={values.bloodType === "1" ? true : false}
+                          checked={
+                            values.bloodType === "1" ||
+                            values.bloodType === 1 ||
+                            true
+                          }
                         />
                         <span className="dailyCalories-form__blood-selector-name">
                           1
@@ -259,7 +263,9 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
                           // onBlur={handleBlur}
                           value={2}
                           className="dailyCalories-form__blood-selector"
-                          checked={values.bloodType === "2" ? true : false}
+                          checked={
+                            values.bloodType === "2" || values.bloodType === 2
+                          }
                         />
                         <span className="dailyCalories-form__blood-selector-name">
                           2
@@ -280,7 +286,9 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
                           // onBlur={handleBlur}
                           value={3}
                           className="dailyCalories-form__blood-selector"
-                          checked={values.bloodType === "3" ? true : false}
+                          checked={
+                            values.bloodType === "3" || values.bloodType === 3
+                          }
                         />
                         <span className="dailyCalories-form__blood-selector-name">
                           3
@@ -301,7 +309,9 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
                           // onBlur={handleBlur}
                           value={4}
                           className="dailyCalories-form__blood-selector"
-                          checked={values.bloodType === "4" ? true : false}
+                          checked={
+                            values.bloodType === "4" || values.bloodType === 4
+                          }
                         />
                         <span className="dailyCalories-form__blood-selector-name">
                           4

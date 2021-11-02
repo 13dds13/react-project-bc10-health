@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProductFormStyled = styled.div`
-  margin-top: 60px;
+  margin-top: 30px;
   .productForm-form {
     width: 290px;
     @media screen and (min-width: 768px) {
@@ -10,10 +10,12 @@ export const ProductFormStyled = styled.div`
     }
     &__box {
       display: flex;
-      margin-bottom: 60px;
+      /* margin-bottom: 60px; */
+
       @media screen and (max-width: 767px) {
         display: flex;
         flex-direction: column;
+        align-items: center;
       }
     }
     &__title {
@@ -47,7 +49,7 @@ export const ProductFormStyled = styled.div`
     &__label {
       display: flex;
       flex-direction: column;
-      margin-right: 30px;
+      margin-right: 60px;
       width: auto;
       color: var(--not-bold-text-colour);
       font-family: Verdana;
@@ -59,10 +61,16 @@ export const ProductFormStyled = styled.div`
       /* display: block; */
       @media screen and (max-width: 767px) {
         margin-bottom: 15px;
+        margin-right: 0;
+        align-self: stretch;
       }
       &_size {
-        width: 105px;
+        /* width: 105px; */
         text-align: right;
+        margin-bottom: 60px;
+        @media screen and (max-width: 767px) {
+        margin-bottom: 60px;
+      }
       }
     }
 
@@ -100,8 +108,9 @@ export const ProductFormStyled = styled.div`
       background-color: inherit;
       /* border: 1px solid #000000; */
       border: none;
-      border-bottom: 1px solid #000000;
+      border-bottom: 1px solid var(--border-colour);
       outline: none;
+      margin-right: 0px;
     }
 
     &__sub-wrapper {
