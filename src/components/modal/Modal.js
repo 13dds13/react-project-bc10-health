@@ -4,22 +4,19 @@ import { getIsAuth } from "../../redux/auth/authSelectors";
 import { getIsOpenModal } from "../../redux/modal/modalSelectors";
 import { ModalStyled } from "./ModalStyled";
 import { useLocation } from "react-router-dom";
-import { createPortal } from 'react-dom'
-
+import { createPortal } from "react-dom";
 
 const Modal = ({ children, showModal }) => {
+  const modalRoot = document.querySelector("#modal-root");
 
-  const modalRoot = document.querySelector('#modal-root')
-
-  const isOpenModal = useSelector(getIsOpenModal)
-  const isAuth = useSelector(getIsAuth)
+  const isOpenModal = useSelector(getIsOpenModal);
+  const isAuth = useSelector(getIsAuth);
   const location = useLocation();
   const [width, setWidth] = useState(window.innerWidth);
 
   const pathDiary = location.pathname === "/diary";
   const pathHome = location.pathname === "/";
-  const pathCalculator = location.pathname === '/calculator'
-
+  const pathCalculator = location.pathname === "/calculator";
 
   const onEsc = (e) => {
     if (e.code === "Escape") {
@@ -37,7 +34,11 @@ const Modal = ({ children, showModal }) => {
   useEffect(() => {
     window.addEventListener("keydown", onEsc);
     window.addEventListener("resize", handleResizeWindow);
-    if ((isAuth && isOpenModal && pathDiary && width < 768) || (isAuth && isOpenModal && pathCalculator && width > 767 ) || (isOpenModal && pathHome && width > 768)) {
+    if (
+      (isAuth && isOpenModal && pathDiary && width < 768) ||
+      (isAuth && isOpenModal && pathCalculator && width > 767) ||
+      (isOpenModal && pathHome && width > 768)
+    ) {
       const body = document.querySelector("body");
       body.style.overflow = "hidden";
       window.scrollTo(0, 0);
@@ -48,17 +49,16 @@ const Modal = ({ children, showModal }) => {
       const body = document.querySelector("body");
       body.style.overflow = "auto";
       window.removeEventListener("resize", handleResizeWindow);
-
-
     };
-  }, []);
+  });
 
   return createPortal(
     <ModalStyled isOpenDiaryModal={isOpenModal}>
       <div className="overlay" onClick={handleBackdropClick}>
         <div className="modal">{children}</div>
       </div>
-    </ModalStyled>, modalRoot
+    </ModalStyled>,
+    modalRoot
   );
 };
 
