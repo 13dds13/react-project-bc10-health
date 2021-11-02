@@ -8,7 +8,7 @@ export const CalloriesTextStyled = styled.div`
   );
   padding-top: 45px;
   @media screen and (min-width: 768px) {
-    padding-top: 15px;
+    padding: 15px;
   }
 
   .callories-text {

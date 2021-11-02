@@ -5,7 +5,7 @@ export const EatenProductsListStyles = styled.div`
   margin-bottom: 60px;
   @media screen and (min-width: 768px) {
     margin-top: 0px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
   .EatenProductsList {
     &__item {
