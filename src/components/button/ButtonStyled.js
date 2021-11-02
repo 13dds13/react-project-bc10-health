@@ -13,10 +13,10 @@ export const ButtonStyled = styled.div`
     box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
     cursor: pointer;
   }
-.btn:hover {
-  /* background-color: #fc846d; */
-  background-color: #fc7514;
-}
+  .btn:hover {
+    /* background-color: #fc846d; */
+    background-color: #fc7514;
+  }
   .btn_orange {
     background-color: #fc842d;
     color: #fff;
@@ -39,6 +39,10 @@ export const ButtonStyled = styled.div`
   .btn_orange_add {
     background-color: #fc842d;
     color: #fff;
+    cursor: pointer;
+    &:hover {
+      background-color: #fc7514;
+    }
   }
 
   .btn_white_add {

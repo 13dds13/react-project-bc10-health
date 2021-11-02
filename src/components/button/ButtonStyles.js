@@ -36,6 +36,10 @@ export const ButtonStyled = styled.div`
   .btn_orange_add {
     background-color: #fc842d;
     color: #fff;
+    cursor: pointer;
+    &:hover {
+      background-color: #fc7514;
+    }
   }
 
   .btn_white_add {

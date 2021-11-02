@@ -15,7 +15,7 @@ const AuthPage = () => {
       ? dispatch(authRegistration(userData))
       : dispatch(authLogin(userData));
   };
-  console.log(errorMsg);
+
   return (
     <>
       <div className="bg-img">

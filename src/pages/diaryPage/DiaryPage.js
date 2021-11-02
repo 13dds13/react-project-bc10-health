@@ -58,8 +58,6 @@ const DiaryPage = () => {
     productName === "" && setErrorMsg("");
   }, [productName]);
 
-  const handleResizeWindow = () => setWidth(window.innerWidth);
-
   useEffect(() => {
     setErrorMsg("");
     if (!productName) return;
@@ -69,6 +67,8 @@ const DiaryPage = () => {
         : setProductsVariants(searchData)
     );
   }, [productName]);
+
+  const handleResizeWindow = () => setWidth(window.innerWidth);
 
   const isCurrentDay =
     getDateInFormat(startDate) === getDateInFormat(new Date());
@@ -100,7 +100,6 @@ const DiaryPage = () => {
     const weight = productWeight;
     const date = getDateInFormat(startDate);
     dispatch(addEatenProduct({ date, productId, weight }));
-    dispatch(getUserData());
     isModalOpen && onHandleCliсk();
   };
 
@@ -117,7 +116,7 @@ const DiaryPage = () => {
                 <DatePicker
                   dateFormat="dd.MM.yyyy"
                   selected={startDate}
-                  onChange={(date) => setStartDate(date)}
+                  onChange={setStartDate}
                 />
                 <svg className="dataPicker__svg" width="18" height="20">
                   <use href={sprite + "#calendar"} />
