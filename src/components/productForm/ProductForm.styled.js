@@ -49,7 +49,7 @@ export const ProductFormStyled = styled.div`
     &__label {
       display: flex;
       flex-direction: column;
-      margin-right: 30px;
+      margin-right: 60px;
       width: auto;
       color: var(--not-bold-text-colour);
       font-family: Verdana;
@@ -65,9 +65,12 @@ export const ProductFormStyled = styled.div`
         align-self: stretch;
       }
       &_size {
-        /* width: 105px;
-        text-align: right; */
+        /* width: 105px; */
+        text-align: right;
         margin-bottom: 60px;
+        @media screen and (max-width: 767px) {
+        margin-bottom: 60px;
+      }
       }
     }
 
@@ -107,6 +110,7 @@ export const ProductFormStyled = styled.div`
       border: none;
       border-bottom: 1px solid var(--border-colour);
       outline: none;
+      margin-right: 0px;
     }
 
     &__sub-wrapper {

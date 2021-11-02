@@ -4,6 +4,7 @@ export const DiaryPageStyled = styled.div`
   margin-top: 40px;
   font-family: Verdana;
   /* background-color: white; */
+  /* background: linear-gradient(90deg, rgba(255,255,255,1) 60%, rgba(240,241,243,1) 60%); */
   @media screen and (min-width: 1280px) {
     margin-top: 146px;
   }
@@ -39,9 +40,13 @@ export const DiaryPageStyled = styled.div`
       display: block;
       padding-bottom: 60px;
     }
+    @media screen and (min-width: 768px) {
+      padding-bottom: 0px;
+    }
     @media screen and (min-width: 1280px) {
       display: flex;
       justify-content: space-between;
+      
     }
   }
 `;

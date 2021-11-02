@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 export const CalloriesTextStyled = styled.div`
+/* background-color: var(--secondary-bg-colour); */
+background: linear-gradient(180deg, rgba(255,255,255,1) 7%, rgba(240,241,243,1) 100%);
+padding:40px;
+/* box-shadow: 0px 75px 76px 29px rgba(142, 142, 142, 0.2); */
+/* background: radial-gradient(circle, rgba(240,241,243,1) 42%, rgba(255,255,255,1) 68%); */
   .callories-text {
     @media screen and (min-width: 768px) {
       display: flex;
