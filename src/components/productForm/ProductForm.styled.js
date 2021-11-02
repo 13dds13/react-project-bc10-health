@@ -49,7 +49,7 @@ export const ProductFormStyled = styled.div`
     &__label {
       display: flex;
       flex-direction: column;
-      margin-right: 60px;
+      margin-right: 55px;
       width: auto;
       color: var(--not-bold-text-colour);
       font-family: Verdana;
@@ -70,6 +70,7 @@ export const ProductFormStyled = styled.div`
         margin-bottom: 60px;
         @media screen and (max-width: 767px) {
         margin-bottom: 60px;
+        text-align: left;
       }
       }
     }
