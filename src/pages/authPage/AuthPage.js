@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { mainRoutes } from "../../routes/mainRoutes";
 import { authLogin, authRegistration } from "../../redux/auth/authOperations";
@@ -6,8 +6,8 @@ import AuthTempForm from "../../components/authTempForm/";
 import { useLocation } from "react-router";
 import { getAuthError } from "../../redux/auth/authSelectors";
 
-import { Notification } from "../../components/notification/Notification";
-// import { NotificationManager } from "react-notifications";
+import { notification } from "../../components/notification/Notification";
+import { NotificationManager } from "react-notifications";
 
 const AuthPage = () => {
   const dispatch = useDispatch();
@@ -19,10 +19,40 @@ const AuthPage = () => {
       : dispatch(authLogin(userData));
   };
   console.log(errorMsg);
+  useEffect(() => {
+    if (errorMsg) {
+      notification("error", errorMsg);
+    }
+  }, [errorMsg]);
 
-  errorMsg && Notification(errorMsg);
+  // errorMsg && notification(errorMsg);
+
+  // const createNotification = (type) => {
+  //   // return () => {
+  //   switch (type) {
+  //     case "info":
+  //       NotificationManager.info(errorMsg);
+  //       break;
+  //     default:
+  //       return;
+  //     // case 'success':
+  //     //   NotificationManager.success('Success message', 'Title here');
+  //     //   break;
+  //     // case 'warning':
+  //     //   NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+  //     //   break;
+  //     // case 'error':
+  //     //   NotificationManager.error('Error message', 'Click me!', 5000, () => {
+  //     //     alert('callback');
+  //     // });
+  //     // break;
+  //     // }
+  //   }
+  // };
+
   return (
     <>
+      {/* {errorMsg && notification(errorMsg)} */}
       <div className="bg-img">
         <div className="container">
           {/* {errorMsg && NotificationManager.error(errorMsg, "Info", 5000)} */}
@@ -37,6 +67,7 @@ const AuthPage = () => {
                     handleSubmit={handleSubmit}
                     btnName={name}
                     key={path}
+                    errorMsg={errorMsg}
                   />
                 )
             )}
