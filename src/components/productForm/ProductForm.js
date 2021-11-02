@@ -3,6 +3,7 @@ import { ButtonAdd } from "../button/Button";
 import { ProductFormStyled } from "./ProductForm.styled";
 import { useSelector } from "react-redux";
 import { getDaySummary } from "../../redux/user/userSelectors";
+import Loader from "react-loader-spinner";
 
 const ProductForm = ({
   productName,
@@ -10,6 +11,7 @@ const ProductForm = ({
   productsVariants,
   handleChange,
   handleSubmit,
+  isSearchingProduct,
 }) => {
   const { dailyRate } = useSelector(getDaySummary);
   const onChange = (e) => {
@@ -38,12 +40,24 @@ const ProductForm = ({
                 onChange={onChange}
                 autoComplete="off"
               />
-              <datalist className="datalist" id="productSearch">
-                {productsVariants &&
-                  productsVariants.map((product) => (
-                    <option value={product.title.ru} key={product._id} />
-                  ))}
-              </datalist>
+              {isSearchingProduct ? (
+                <Loader
+                  type="ThreeDots"
+                  color="var(--accent-colour)"
+                  height={40}
+                  width={40}
+                  style={{
+                    textAlign: "center",
+                  }}
+                />
+              ) : (
+                <datalist className="datalist" id="productSearch">
+                  {productsVariants &&
+                    productsVariants.map((product) => (
+                      <option value={product.title.ru} key={product._id} />
+                    ))}
+                </datalist>
+              )}
             </label>
             <label className="productForm-form__label productForm-form__label_size">
               Граммы

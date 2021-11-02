@@ -10,11 +10,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getIsAuth, getUserId } from "../../redux/auth/authSelectors";
 import getDailyRate from "../../services/getDailyRate";
 import { dailyRateForAuthUser } from "../../redux/user/userOperations";
+import { getIsOpenModal } from "../../redux/modal/modalSelectors";
 
 const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
   const [data, setData] = useState({});
   const isAuth = useSelector(getIsAuth);
   const userId = useSelector(getUserId);
+  const isOpenModal = useSelector(getIsOpenModal);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
     !isAuth
       ? getDailyRate(getCalloriesData, preparedData)
       : dispatch(dailyRateForAuthUser(userId, preparedData));
-  }, [data]);
+  }, [data, dispatch, getCalloriesData, isAuth, isOpenModal, userId]);
 
   return (
     <DailyCaloriesFormStyled>
@@ -49,7 +51,7 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
               height: "",
               age: "",
               desiredWeight: "",
-              bloodType: "",
+              bloodType: "1",
             }
           }
           validateOnBlur
@@ -239,9 +241,7 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
                           value={1}
                           className="dailyCalories-form__blood-selector"
                           checked={
-                            values.bloodType === "1" ||
-                            values.bloodType === 1 ||
-                            true
+                            values.bloodType === "1" || values.bloodType === 1
                           }
                         />
                         <span className="dailyCalories-form__blood-selector-name">

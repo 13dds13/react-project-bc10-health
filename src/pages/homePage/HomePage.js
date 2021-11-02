@@ -16,31 +16,30 @@ const HomePage = () => {
   const onHandleSetModal = () => dispatch(setModalValue());
   const isAuth = useSelector(getIsAuth);
   const [modalData, setModalData] = useState({});
-  const getCalloriesData = (data) => setModalData(data);
 
   return (
     <>
       {/* <div className="bg-img"> */}
-        <div className="container">
-          {!isAuth ? (
-            <HomePageStyled>
-              <DailyCaloriesForm
-                getCalloriesData={getCalloriesData}
-                showModal={onHandleSetModal}
-              />
-            </HomePageStyled>
-          ) : (
-            <Redirect to={mainRoutes[1].path} />
-          )}
-          {isOpenModal && (
-            <Modal showModal={onHandleSetModal}>
-              <ModalText
-                modalData={modalData}
-                onHandleSetModal={onHandleSetModal}
-              />
-            </Modal>
-          )}
-        </div>
+      <div className="container">
+        {!isAuth ? (
+          <HomePageStyled>
+            <DailyCaloriesForm
+              getCalloriesData={setModalData}
+              showModal={onHandleSetModal}
+            />
+          </HomePageStyled>
+        ) : (
+          <Redirect to={mainRoutes[1].path} />
+        )}
+        {isOpenModal && (
+          <Modal showModal={onHandleSetModal}>
+            <ModalText
+              modalData={modalData}
+              onHandleSetModal={onHandleSetModal}
+            />
+          </Modal>
+        )}
+      </div>
       {/* </div> */}
     </>
   );

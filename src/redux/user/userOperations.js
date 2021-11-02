@@ -65,7 +65,6 @@ export const addEatenProduct = (dataToPost) => async (dispatch) => {
       dataToPost
     );
     if (data?.day) {
-      console.log(data);
       dispatch(userSummarySuccess(data.daySummary));
       dispatch(userDayInfoSuccess(data.eatenProducts));
       return;
