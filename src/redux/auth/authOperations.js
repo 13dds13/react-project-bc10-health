@@ -64,6 +64,13 @@ export const authLogin = (requestData) => async (dispatch) => {
     dispatch(loginAuthSuccess(authData));
     dispatch(userDataSuccess(preparedUserData));
   } catch (error) {
+    if (error.response.status === 403) {
+      dispatch(
+        loginAuthError("Пользователь с такими данными не зарегистрирован")
+      );
+      dispatch(loginAuthRequest());
+      return;
+    }
     dispatch(loginAuthError(error?.response?.data?.message));
   }
 };
@@ -75,6 +82,11 @@ export const authRegistration = (requestData) => async (dispatch) => {
     dispatch(registerAuthSuccess());
     dispatch(authLogin(requestData));
   } catch (error) {
+    if (error.response.status === 409) {
+      dispatch(loginAuthError("Пользователь с такими данными уже существует"));
+      dispatch(loginAuthRequest());
+      return;
+    }
     dispatch(registerAuthError(error?.response?.data?.message));
   }
 };

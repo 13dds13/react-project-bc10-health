@@ -4,14 +4,12 @@ import { ProductFormStyled } from "./ProductForm.styled";
 import { useSelector } from "react-redux";
 import { getDaySummary } from "../../redux/user/userSelectors";
 
-
 const ProductForm = ({
   productName,
   productWeight,
   productsVariants,
   handleChange,
   handleSubmit,
-  errorMsg,
 }) => {
   const { dailyRate } = useSelector(getDaySummary);
   const onChange = (e) => {
@@ -27,7 +25,6 @@ const ProductForm = ({
   return (
     <ProductFormStyled>
       <form className="productForm-form" onSubmit={onSubmit}>
-        {errorMsg && <p>{errorMsg}</p>}
         {dailyRate && (
           <div className="productForm-form__box">
             <label className="productForm-form__label">

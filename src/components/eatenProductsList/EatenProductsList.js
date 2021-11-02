@@ -17,6 +17,7 @@ const EatenProductsList = ({
               product={product}
               handleClick={handleClick}
               isCurrentDay={isCurrentDay}
+              key={product.id}
             />
           ))}
         </ul>
