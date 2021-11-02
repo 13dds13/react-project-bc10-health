@@ -18,7 +18,7 @@ const AuthPage = () => {
 
   return (
     <>
-      <div className="bg-img">
+      {/* <div className="bg-img"> */}
         <div className="container">
           {errorMsg && <p>{errorMsg}</p>}
           {mainRoutes
@@ -34,7 +34,7 @@ const AuthPage = () => {
                 )
             )}
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 };

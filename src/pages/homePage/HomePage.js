@@ -20,7 +20,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="bg-img">
+      {/* <div className="bg-img"> */}
         <div className="container">
           {!isAuth ? (
             <HomePageStyled>
@@ -41,7 +41,7 @@ const HomePage = () => {
             </Modal>
           )}
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 };

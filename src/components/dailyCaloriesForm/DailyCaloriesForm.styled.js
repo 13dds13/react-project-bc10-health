@@ -8,7 +8,7 @@ export const DailyCaloriesFormStyled = styled.div`
     width: 290px;
     @media screen and (min-width: 768px) {
       width: 605px;
-      margin-top: 50px;
+      /* margin-top: 50px; */
     }
     @media screen and (min-width: 1280px) {
       margin-top: 100px;
@@ -166,6 +166,7 @@ export const DailyCaloriesFormStyled = styled.div`
     }
 
     &__btn-wrapper {
+      margin-bottom: 20px;
       width: inherit;
       text-align: center;
       @media screen and (min-width: 768px) {

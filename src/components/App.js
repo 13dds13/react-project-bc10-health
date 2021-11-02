@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router";
 import { authRefresh } from "../redux/auth/authOperations";
 import {
   getIsAuth,
@@ -15,6 +16,7 @@ const App = () => {
   const refreshToken = useSelector(getRefreshToken);
   const sid = useSelector(getSid);
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     !isAuth && refreshToken && dispatch(authRefresh(refreshToken, sid));
@@ -22,12 +24,17 @@ const App = () => {
 
   return (
     <>
-      {/* <div className="bg-img">
-        <div className="container"> */}
+      {pathname === "/diary" || pathname === "/calculator" ? (
+        <div>
           <Header />
           <Main />
-        {/* </div>
-      </div> */}
+        </div>
+      ) : (
+        <div className="bg-img">
+          <Header />
+          <Main />
+        </div>
+      )}
     </>
   );
 };
