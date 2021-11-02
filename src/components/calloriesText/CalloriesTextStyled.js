@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const CalloriesTextStyled = styled.div`
-  background: linear-gradient(
+  /* background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 1) 7%,
     rgba(240, 241, 243, 1) 100%
-  );
+  ); */
+  background-color: var(--secondary-bg-colour);
+  border-radius: 10px;
   padding-top: 45px;
   @media screen and (min-width: 768px) {
     padding: 15px;

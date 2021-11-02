@@ -10,7 +10,7 @@ export const AuthFormStyled = styled.div`
       /* margin-top: 50px; */
     }
     @media screen and (min-width: 1280px) {
-      margin-top: 100px;
+      margin-top: 50px;
       text-align: left;
       width: 382px;
     }

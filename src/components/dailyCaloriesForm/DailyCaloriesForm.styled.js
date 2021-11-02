@@ -11,7 +11,7 @@ export const DailyCaloriesFormStyled = styled.div`
       /* margin-top: 50px; */
     }
     @media screen and (min-width: 1280px) {
-      margin-top: 100px;
+      margin-top: 50px;
     }
     &__title {
       color: var(--bold-text-colour);
