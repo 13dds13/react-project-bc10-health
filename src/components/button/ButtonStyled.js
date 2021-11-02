@@ -27,6 +27,11 @@ export const ButtonStyled = styled.div`
     color: #fc842d;
   }
 
+  .btn_white:hover {
+    color: #fff;
+    /* background-color: #fff; */
+  }
+
   .btn_add {
     /* font-family: Roboto, sans-serif; */
     border: 2px solid #fc842d;
