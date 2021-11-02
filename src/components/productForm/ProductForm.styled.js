@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProductFormStyled = styled.div`
-  margin-top: 60px;
+  margin-top: 30px;
   .productForm-form {
     width: 290px;
     @media screen and (min-width: 768px) {
@@ -10,7 +10,7 @@ export const ProductFormStyled = styled.div`
     }
     &__box {
       display: flex;
-      margin-bottom: 60px;
+      /* margin-bottom: 60px; */
 
       @media screen and (max-width: 767px) {
         display: flex;

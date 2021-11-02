@@ -38,7 +38,7 @@ export const DiaryPageStyled = styled.div`
     display: block;
     &__left {
       display: block;
-      padding-bottom: 60px;
+      /* padding-bottom: 60px; */
     }
     @media screen and (min-width: 768px) {
       padding-bottom: 0px;
