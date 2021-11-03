@@ -8,52 +8,51 @@ import { setModalValue } from "../../redux/modal/modalAction";
 import { getIsOpenModal } from "../../redux/modal/modalSelectors";
 import { getUserData } from "../../redux/user/userOperations";
 import {
-  getDaySummary,
-  getNotAllowedProducts,
   getUserStat,
+  getNotAllowedProducts,
 } from "../../redux/user/userSelectors";
 
 const CalculatorPage = () => {
   const [, setModalData] = useState({});
   const notAllowedProducts = useSelector(getNotAllowedProducts);
-  const { dailyRate } = useSelector(getDaySummary);
   const dispatch = useDispatch();
   const isOpenModal = useSelector(getIsOpenModal);
   const userStat = useSelector(getUserStat);
 
-  const getCalloriesData = (data) => setModalData(data);
+  // const getCalloriesData = (data) => setModalData(data); //функция зацикливает
+  // useEffect DailyCaloriesForm. Достаточно просто передать setModalData
 
   const onHandleSetModal = () => dispatch(setModalValue());
 
-  const loggetDataModal = {
+  const AuthUserModalData = {
     notAllowedProducts,
-    dailyRate,
+    dailyRate: userStat?.dailyRate,
   };
 
   useEffect(() => {
-    dailyRate && !userStat?.weight && dispatch(getUserData());
-  }, [dailyRate, dispatch, userStat?.weight]);
+    userStat?.dailyRate && !userStat?.weight && dispatch(getUserData());
+  }, [userStat?.dailyRate, dispatch, userStat?.weight]);
 
-  const formikData = (userStat?.weight && { ...userStat }) || {
+  const formikData = (userStat?.dailyRate && { ...userStat }) || {
     weight: "",
     height: "",
     age: "",
     desiredWeight: "",
-    bloodType: "",
+    bloodType: "1",
   };
 
   return (
     <>
       <div className="container">
         <DailyCaloriesForm
-          getCalloriesData={getCalloriesData}
+          getCalloriesData={setModalData}
           showModal={onHandleSetModal}
           formikData={{ ...formikData }}
         />
         {isOpenModal && (
           <Modal showModal={onHandleSetModal}>
             <ModalText
-              modalData={loggetDataModal}
+              modalData={AuthUserModalData}
               onHandleSetModal={onHandleSetModal}
             />
           </Modal>

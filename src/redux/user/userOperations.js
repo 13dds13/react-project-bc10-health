@@ -28,7 +28,7 @@ export const getUserData = () => async (dispatch) => {
       desiredWeight,
       dailyRate,
     } = userData;
-    const notAllowedProducts = needToPrepare.slice(0, 10);
+    const notAllowedProducts = needToPrepare.slice(0, 5);
     const preparedUserData = {
       notAllowedProducts,
       userStat: { weight, height, age, bloodType, desiredWeight, dailyRate },
@@ -70,7 +70,6 @@ export const addEatenProduct = (dataToPost) => async (dispatch) => {
       return;
     }
     if (data?.newDay) {
-      console.log(data);
       dispatch(userSummarySuccess(data.newSummary));
       dispatch(userDayInfoSuccess([data.eatenProduct]));
     }
@@ -96,31 +95,29 @@ export const dailyRateForAuthUser =
   (usersId, preparedData) => async (dispatch) => {
     try {
       dispatch(userDayInfoRequest());
-      const { data } = await axios.post(
-        `${endpoint.dailyRate}/${usersId}`,
-        preparedData
-      );
-      const {
-        dailyRate,
-        date,
-        kcalConsumed,
-        kcalLeft,
-        percentsOfDailyRate,
-        userId,
-        _id: id,
-      } = data;
-      const daySummary = {
-        dailyRate,
-        date,
-        kcalConsumed,
-        kcalLeft,
-        percentsOfDailyRate,
-        userId,
-        id,
-      };
-      const notAllowedProducts = data.notAllowedProducts.slice(0, 10);
-      dispatch(userSummarySuccess(daySummary));
-      dispatch(userDataSuccess({ notAllowedProducts }));
+      await axios.post(`${endpoint.dailyRate}/${usersId}`, preparedData);
+      dispatch(getUserData());
+      // const {
+      //   dailyRate,
+      //   date,
+      //   kcalConsumed,
+      //   kcalLeft,
+      //   percentsOfDailyRate,
+      //   userId,
+      //   _id: id,
+      // } = data;
+      // const daySummary = {
+      //   dailyRate,
+      //   date,
+      //   kcalConsumed,
+      //   kcalLeft,
+      //   percentsOfDailyRate,
+      //   userId,
+      //   id,
+      // };
+      // const notAllowedProducts = data.notAllowedProducts.slice(0, 5);
+      // dispatch(userSummarySuccess(daySummary));
+      // dispatch(userDataSuccess({ notAllowedProducts }));
     } catch (error) {
       dispatch(userDayInfoError(error?.response?.data?.message));
     }

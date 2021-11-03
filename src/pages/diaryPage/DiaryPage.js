@@ -16,6 +16,7 @@ import {
   getDaySummary,
   getEatenProductsList,
   getIsLoadingUserData,
+  getUserStat,
 } from "../../redux/user/userSelectors";
 import CalloriesText from "../../components/calloriesText/CalloriesText";
 import Modal from "../../components/modal";
@@ -30,28 +31,30 @@ import { notification } from "../../helpers/notification";
 import Loader from "react-loader-spinner";
 
 const DiaryPage = () => {
+  const userData = useSelector(getUserStat);
+  const isModalOpen = useSelector(getIsOpenModal);
+  const eatenProductsList = useSelector(getEatenProductsList);
+  const dayId = useSelector(getDayId);
+  const daySummary = useSelector(getDaySummary);
+  const isLoadingUserData = useSelector(getIsLoadingUserData);
+
+  const [width, setWidth] = useState(window.innerWidth);
   const [errorMsg, setErrorMsg] = useState("");
   const [startDate, setStartDate] = useState(new Date());
-  const [width, setWidth] = useState(window.innerWidth);
   const [productName, setProductName] = useState("");
   const [productWeight, setProductWeight] = useState("");
   const [productsVariants, setProductsVariants] = useState([]);
   const [isSearchingProduct, setIsSearchingProduct] = useState(false);
 
-  const isModalOpen = useSelector(getIsOpenModal);
-  const eatenProductsList = useSelector(getEatenProductsList);
-  const { percentsOfDailyRate, dailyRate } = useSelector(getDaySummary);
-  const dayId = useSelector(getDayId);
-  const isLoadingUserData = useSelector(getIsLoadingUserData);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!userData?.dailyRate) return;
     setProductName("");
     setProductWeight("");
     const date = getDateInFormat(startDate);
     dispatch(getDayInfo(date));
-  }, [dispatch, startDate, percentsOfDailyRate]);
+  }, [daySummary.percentsOfDailyRate, dispatch, startDate, userData]);
 
   useEffect(() => {
     window.addEventListener("resize", handleResizeWindow);
@@ -61,12 +64,12 @@ const DiaryPage = () => {
   }, []);
 
   useEffect(() => {
-    productName === "" && setErrorMsg("");
-  }, [productName]);
-
-  useEffect(() => {
     setErrorMsg("");
     if (!productName) return;
+    const isAlreadyInProdVariants = productsVariants.some(
+      (prod) => prod.title.ru === productName
+    );
+    if (isAlreadyInProdVariants) return;
     setIsSearchingProduct(true);
     productSearch(productName).then((searchData) => {
       typeof searchData === "string"
@@ -80,6 +83,7 @@ const DiaryPage = () => {
     if (errorMsg) {
       notification("warning", errorMsg);
     }
+    setErrorMsg("");
   }, [errorMsg]);
 
   const handleResizeWindow = () => setWidth(window.innerWidth);
@@ -88,6 +92,12 @@ const DiaryPage = () => {
     getDateInFormat(startDate) === getDateInFormat(new Date());
 
   const handleChange = ({ name, value }) => {
+    // if (productName === value) return;
+    if (name === "productWeight" && value > 999) {
+      setErrorMsg("Значение веса продукта должно быть от 0 до 999");
+      return;
+    }
+
     name === "productName" && setProductName(value);
     name === "productWeight" && setProductWeight(value);
   };
@@ -106,10 +116,7 @@ const DiaryPage = () => {
       setErrorMsg("Укажите вес продукта.");
       return;
     }
-    if (productWeight < 0) {
-      setErrorMsg("Значение веса продукта должно быть больше ноля.");
-      return;
-    }
+
     const productId = curProd._id;
     const weight = productWeight;
     const date = getDateInFormat(startDate);
@@ -126,7 +133,7 @@ const DiaryPage = () => {
         <DiaryPageStyled>
           <div className="diaryFlexBox">
             <div className="diaryFlexBox__left">
-                <label className={"dataPicker__box"}>
+              <label className={"dataPicker__box"}>
                 <DatePicker
                   dateFormat="dd.MM.yyyy"
                   selected={startDate}
@@ -135,12 +142,12 @@ const DiaryPage = () => {
                 <svg className="dataPicker__svg" width="18" height="20">
                   <use href={sprite + "#calendar"} />
                 </svg>
-                </label>
-              {!dailyRate && (
+              </label>
+              {!userData?.dailyRate && (
                 <>
                   <p>
-                    Перед первым использованием "Дневника" заполните,
-                    пожалуйста, свои данные на странице:
+                    Для начала использования "Дневника" заполните, пожалуйста,
+                    свои данные на странице:
                   </p>
 
                   <NavLink to={mainRoutes[2].path}>
@@ -175,7 +182,7 @@ const DiaryPage = () => {
                   handleClick={handleClick}
                 />
               )}
-              {width < 768 && (
+              {userData?.dailyRate && width < 768 && (
                 <Button
                   type="button"
                   isValid={true}
