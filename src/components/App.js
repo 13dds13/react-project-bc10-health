@@ -7,7 +7,7 @@ import {
   getRefreshToken,
   getSid,
 } from "../redux/auth/authSelectors";
-
+import { tokensLifeDuration } from "../db.json";
 import Header from "./header";
 import Main from "./main";
 
@@ -17,6 +17,12 @@ const App = () => {
   const sid = useSelector(getSid);
   const dispatch = useDispatch();
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(authRefresh(refreshToken, sid));
+    }, tokensLifeDuration);
+  }, [dispatch, refreshToken, sid]);
 
   useEffect(() => {
     !isAuth && refreshToken && dispatch(authRefresh(refreshToken, sid));

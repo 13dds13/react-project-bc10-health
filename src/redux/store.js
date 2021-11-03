@@ -16,8 +16,9 @@ const store = configureStore({
   reducer: {
     auth: authReducers,
     user: userReducers,
-    modal: modalReducer
+    modal: modalReducer,
   },
+  devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

@@ -13,13 +13,18 @@ const CalloriesText = () => {
   const { date, kcalConsumed, dailyRate, percentsOfDailyRate } = daySummary;
 
   const normalizedKcalLeft = dailyRate - kcalConsumed;
+  const normalizedDate = [
+    date?.split("-")[2],
+    date?.split("-")[1],
+    date?.split("-")[0],
+  ].join(".");
 
   return (
     <CalloriesTextStyled>
       <div className="callories-text">
         <div className="callories-text__box">
           <p className="callories-text__title">
-            Сводка {date ? `за ${date}` : "недоступна"}
+            Сводка {date ? `за ${normalizedDate}` : "недоступна"}
           </p>
           <div>
             <div className="callories-text__item-box">

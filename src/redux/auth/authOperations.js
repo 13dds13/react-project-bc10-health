@@ -56,7 +56,7 @@ export const authLogin = (requestData) => async (dispatch) => {
       userEmail,
       id,
     };
-    const notAllowedProducts = needToPrepare.slice(0, 10);
+    const notAllowedProducts = needToPrepare.slice(0, 5);
     const preparedUserData = {
       notAllowedProducts,
       userStat: { weight, height, age, bloodType, desiredWeight, dailyRate },
