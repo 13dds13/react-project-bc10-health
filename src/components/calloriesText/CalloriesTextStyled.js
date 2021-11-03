@@ -12,6 +12,7 @@ export const CalloriesTextStyled = styled.div`
   padding-top: 25px;
   padding-left: 10px;
   padding-bottom: 10px;
+  padding-right: 10px;
   @media screen and (min-width: 768px) {
     padding: 15px;
   }
