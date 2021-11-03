@@ -49,7 +49,7 @@ export const CalloriesTextStyled = styled.div`
         max-width: 330px;
         height: auto;
         margin-right: 0px;
-        margin-bottom: 0px;
+        margin-bottom: 20px;
         /* padding-right: 60px; */
       }
     }
