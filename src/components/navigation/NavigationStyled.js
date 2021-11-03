@@ -6,6 +6,7 @@ export const NavigationStyled = styled.nav`
 
   .nav {
     &__list {
+      font-family: "Montserrat", sans-serif;
       display: flex;
       list-style: none;
 

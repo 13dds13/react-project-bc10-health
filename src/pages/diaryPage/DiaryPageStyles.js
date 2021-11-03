@@ -27,6 +27,7 @@ export const DiaryPageStyled = styled.div`
   }
   .dataPicker__box {
     display: flex;
+    width: 260px;
     margin-bottom: 10px;
     /* justify-content: center; */
   }
@@ -47,7 +48,6 @@ export const DiaryPageStyled = styled.div`
     @media screen and (min-width: 1280px) {
       display: flex;
       justify-content: space-between;
-      
     }
   }
 `;

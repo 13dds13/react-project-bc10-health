@@ -37,7 +37,7 @@ const ModalText = ({ modalData, onHandleSetModal }) => {
           </button>
         )}
 
-        {isLoadingUserData || !modalData ? (
+        {isLoadingUserData || !modalData?.dailyRate ? (
           <>
             <h2 className="modal-text-box__title">
               Проводится расчет данных...

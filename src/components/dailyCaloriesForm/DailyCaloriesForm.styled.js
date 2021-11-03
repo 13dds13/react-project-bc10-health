@@ -3,15 +3,16 @@ import styled from "styled-components";
 export const DailyCaloriesFormStyled = styled.div`
   .dailyCalories-form {
     display: block;
-    margin: 0;
+    margin: 0 auto;
     padding-top: 30px;
     width: 290px;
     @media screen and (min-width: 768px) {
       width: 605px;
+      margin: 0;
       /* margin-top: 50px; */
     }
     @media screen and (min-width: 1280px) {
-      margin-top: 50px;
+      margin-top: 20px;
     }
     &__title {
       color: var(--bold-text-colour);

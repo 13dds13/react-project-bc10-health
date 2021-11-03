@@ -16,7 +16,6 @@ export const CalloriesTextStyled = styled.div`
   @media screen and (min-width: 768px) {
     padding: 15px;
   }
-
   .callories-text {
     @media screen and (min-width: 768px) {
       display: flex;
@@ -27,6 +26,7 @@ export const CalloriesTextStyled = styled.div`
       /* margin-left: 500px; */
       margin-top: 0px;
     }
+
     &__box {
       color: var(--not-bold-text-colour);
       font-family: Verdana;
@@ -39,16 +39,17 @@ export const CalloriesTextStyled = styled.div`
       /* margin-top: 40px; */
       @media screen and (min-width: 768px) {
         /* margin-top: 0px; */
-        margin-right: 60px;
-        height: 162px;
+        margin-right: 35px;
+        height: auto;
+        margin-bottom: 0px;
       }
 
       @media screen and (min-width: 1280px) {
         text-align: left;
-        width: 330px;
-        height: 168px;
+        max-width: 330px;
+        height: auto;
         margin-right: 0px;
-        margin-bottom: 60px;
+        margin-bottom: 20px;
         /* padding-right: 60px; */
       }
     }
