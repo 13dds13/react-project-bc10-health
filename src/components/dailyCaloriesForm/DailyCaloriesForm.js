@@ -5,12 +5,14 @@ import { Formik } from "formik";
 import { DailyCaloriesFormStyled } from "./DailyCaloriesForm.styled";
 import { Button } from "../button/Button";
 import { useEffect } from "react";
-import { validationsSchema } from "./validationSchema";
+import { validationsSchemaRu, validationsSchemaEn } from "./validationSchema";
 import { useDispatch, useSelector } from "react-redux";
 import { getIsAuth, getUserId } from "../../redux/auth/authSelectors";
 import getDailyRate from "../../services/getDailyRate";
 import { dailyRateForAuthUser } from "../../redux/user/userOperations";
 import { getIsOpenModal } from "../../redux/modal/modalSelectors";
+import { useTranslation } from "react-i18next";
+import i18n from "../../utils/i18next";
 
 const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
   const [data, setData] = useState({});
@@ -19,30 +21,36 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
   const isOpenModal = useSelector(getIsOpenModal);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!data.weight) {
-      return;
-    }
 
-    const preparedData = {
-      weight: Number(data.weight),
-      height: Number(data.height),
-      age: Number(data.age),
-      desiredWeight: Number(data.desiredWeight),
-      bloodType: Number(data.bloodType),
-    };
+  const { t } = useTranslation();
+  const currentLanguage = useSelector(state => state.language.languages);
+  
+  useEffect(
+    () => {
+      if (!data.weight) {
+        return;
+      }
 
-    !isAuth
-      ? getDailyRate(getCalloriesData, preparedData)
-      : dispatch(dailyRateForAuthUser(userId, preparedData));
-  }, [data, dispatch, getCalloriesData, isAuth, isOpenModal, userId]);
+      const preparedData = {
+        weight: Number(data.weight),
+        height: Number(data.height),
+        age: Number(data.age),
+        desiredWeight: Number(data.desiredWeight),
+        bloodType: Number(data.bloodType)
+      };
+
+      !isAuth ? getDailyRate(getCalloriesData, preparedData) : dispatch(dailyRateForAuthUser(userId, preparedData));
+    },
+    [data, dispatch, getCalloriesData, isAuth, isOpenModal, userId]
+  );
 
   return (
     <DailyCaloriesFormStyled>
       <form className="dailyCalories-form">
         <h1 className="dailyCalories-form__title">
           {/* {title} */}
-          Просчитай свою суточную норму калорий прямо сейчас
+          {/* Просчитай свою суточную норму калорий прямо сейчас */}
+          {t("dailyCaloriesForm.title")}
         </h1>
         <Formik
           initialValues={
@@ -51,43 +59,32 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
               height: "",
               age: "",
               desiredWeight: "",
-              bloodType: "1",
+              bloodType: "1"
             }
           }
           validateOnBlur
-          onSubmit={(values) => {
+          onSubmit={values => {
             showModal();
             setData(values);
           }}
-          validationSchema={validationsSchema}
+
+          validationSchema={currentLanguage === "ru" ? validationsSchemaRu : validationsSchemaEn}
         >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            isValid,
-            handleSubmit,
-            dirty,
-            setFieldValue,
-          }) => (
+          {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty, setFieldValue }) => (
             <div className="dailyCalories-form__input-wrapper">
               <div className="group">
                 <div className="sub-group">
                   <div className="dailyCalories-form__sub-wrapper">
-                    <label
-                      className="dailyCalories-form__label"
-                      htmlFor={`height`}
-                    >
-                      Рост, см *
+                    <label className="dailyCalories-form__label" htmlFor={`height`}>
+                      {/* Рост, см * */}
+                      {t("dailyCaloriesForm.label_1")}
                     </label>
 
                     <input
                       id={`height`}
                       // type={`number`}
                       name={`height`}
-                      onChange={(e) => {
+                      onChange={e => {
                         e.preventDefault();
                         const { value } = e.target;
                         const regex = /^[0-9]*$/;
@@ -102,28 +99,22 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
                       autoComplete="off"
                     />
 
-                    {touched.height && errors.height && (
-                      <span className="dailyCalories-form__alert">
-                        {errors.height}
-                      </span>
-                    )}
+                    {touched.height && errors.height && <span className="dailyCalories-form__alert">{errors.height}</span>}
                   </div>
 
                   <hr className="dailyCalories-form__line" />
 
                   <div className="dailyCalories-form__sub-wrapper">
-                    <label
-                      className="dailyCalories-form__label"
-                      htmlFor={`age`}
-                    >
-                      Возраст, лет *
+                    <label className="dailyCalories-form__label" htmlFor={`age`}>
+                      {/* Возраст, лет * */}
+                      {t("dailyCaloriesForm.label_2")}
                     </label>
 
                     <input
                       id={`age`}
                       // type={`number`}
                       name={`age`}
-                      onChange={(e) => {
+                      onChange={e => {
                         e.preventDefault();
                         const { value } = e.target;
                         const regex = /^[0-9]*$/;
@@ -137,28 +128,22 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
                       placeholder=" "
                       autoComplete="off"
                     />
-                    {touched.age && errors.age && (
-                      <span className="dailyCalories-form__alert">
-                        {errors.age}
-                      </span>
-                    )}
+                    {touched.age && errors.age && <span className="dailyCalories-form__alert">{errors.age}</span>}
                   </div>
 
                   <hr className="dailyCalories-form__line" />
 
                   <div className="dailyCalories-form__sub-wrapper">
-                    <label
-                      className="dailyCalories-form__label"
-                      htmlFor={`weight`}
-                    >
-                      Текущий вес, кг *
+                    <label className="dailyCalories-form__label" htmlFor={`weight`}>
+                      {/* Текущий вес, кг * */}
+                      {t("dailyCaloriesForm.label_3")}
                     </label>
 
                     <input
                       id={`weight`}
                       // type={`number`}
                       name={`weight`}
-                      onChange={(e) => {
+                      onChange={e => {
                         e.preventDefault();
                         const { value } = e.target;
                         const regex = /^[0-9]*$/;
@@ -173,29 +158,23 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
                       autoComplete="off"
                     />
 
-                    {touched.weight && errors.weight && (
-                      <span className="dailyCalories-form__alert">
-                        {errors.weight}
-                      </span>
-                    )}
+                    {touched.weight && errors.weight && <span className="dailyCalories-form__alert">{errors.weight}</span>}
                   </div>
 
                   <hr className="dailyCalories-form__line" />
                 </div>
                 <div className="sub-group">
                   <div className="dailyCalories-form__sub-wrapper">
-                    <label
-                      className="dailyCalories-form__label"
-                      htmlFor={`desiredWeight`}
-                    >
-                      Желаемый вес, кг *
+                    <label className="dailyCalories-form__label" htmlFor={`desiredWeight`}>
+                      {/* Желаемый вес, кг * */}
+                      {t("dailyCaloriesForm.label_4")}
                     </label>
 
                     <input
                       id={`desiredWeight`}
                       // type={`number`}
                       name={`desiredWeight`}
-                      onChange={(e) => {
+                      onChange={e => {
                         e.preventDefault();
                         const { value } = e.target;
                         const regex = /^[0-9]*$/;
@@ -211,27 +190,20 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
                     />
 
                     {touched.desiredWeight && errors.desiredWeight && (
-                      <span className="dailyCalories-form__alert">
-                        {errors.desiredWeight}
-                      </span>
+                      <span className="dailyCalories-form__alert">{errors.desiredWeight}</span>
                     )}
                   </div>
 
                   <hr className="dailyCalories-form__line" />
 
                   <div className="dailyCalories-form__radio-form-wrapper">
-                    <label
-                      className="dailyCalories-form__radio-label"
-                      htmlFor={`bloodType`}
-                    >
-                      Группа крови *
+                    <label className="dailyCalories-form__radio-label" htmlFor={`bloodType`}>
+                      {/* Группа крови * */}
+                      {t("dailyCaloriesForm.label_5")}
                     </label>
 
                     <div className="dailyCalories-form__radio-input-wrapper">
-                      <label
-                        className="dailyCalories-form__blood-selector-label"
-                        htmlFor="blood-1"
-                      >
+                      <label className="dailyCalories-form__blood-selector-label" htmlFor="blood-1">
                         <input
                           id="blood-1"
                           type={`radio`}
@@ -240,21 +212,14 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
                           // onBlur={handleBlur}
                           value={1}
                           className="dailyCalories-form__blood-selector"
-                          checked={
-                            values.bloodType === "1" || values.bloodType === 1
-                          }
+                          checked={values.bloodType === "1" || values.bloodType === 1}
                         />
-                        <span className="dailyCalories-form__blood-selector-name">
-                          1
-                        </span>
+                        <span className="dailyCalories-form__blood-selector-name">1</span>
                       </label>
                     </div>
 
                     <div className="dailyCalories-form__radio-input-wrapper">
-                      <label
-                        className="dailyCalories-form__blood-selector-label"
-                        htmlFor="blood-2"
-                      >
+                      <label className="dailyCalories-form__blood-selector-label" htmlFor="blood-2">
                         <input
                           id="blood-2"
                           type={`radio`}
@@ -263,21 +228,14 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
                           // onBlur={handleBlur}
                           value={2}
                           className="dailyCalories-form__blood-selector"
-                          checked={
-                            values.bloodType === "2" || values.bloodType === 2
-                          }
+                          checked={values.bloodType === "2" || values.bloodType === 2}
                         />
-                        <span className="dailyCalories-form__blood-selector-name">
-                          2
-                        </span>
+                        <span className="dailyCalories-form__blood-selector-name">2</span>
                       </label>
                     </div>
 
                     <div className="dailyCalories-form__radio-input-wrapper">
-                      <label
-                        className="dailyCalories-form__blood-selector-label"
-                        htmlFor="blood-3"
-                      >
+                      <label className="dailyCalories-form__blood-selector-label" htmlFor="blood-3">
                         <input
                           id="blood-3"
                           type={`radio`}
@@ -286,21 +244,14 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
                           // onBlur={handleBlur}
                           value={3}
                           className="dailyCalories-form__blood-selector"
-                          checked={
-                            values.bloodType === "3" || values.bloodType === 3
-                          }
+                          checked={values.bloodType === "3" || values.bloodType === 3}
                         />
-                        <span className="dailyCalories-form__blood-selector-name">
-                          3
-                        </span>
+                        <span className="dailyCalories-form__blood-selector-name">3</span>
                       </label>
                     </div>
 
                     <div className="dailyCalories-form__radio-input-wrapper">
-                      <label
-                        className="dailyCalories-form__blood-selector-label"
-                        htmlFor="blood-4"
-                      >
+                      <label className="dailyCalories-form__blood-selector-label" htmlFor="blood-4">
                         <input
                           id="blood-4"
                           type={`radio`}
@@ -309,13 +260,9 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
                           // onBlur={handleBlur}
                           value={4}
                           className="dailyCalories-form__blood-selector"
-                          checked={
-                            values.bloodType === "4" || values.bloodType === 4
-                          }
+                          checked={values.bloodType === "4" || values.bloodType === 4}
                         />
-                        <span className="dailyCalories-form__blood-selector-name">
-                          4
-                        </span>
+                        <span className="dailyCalories-form__blood-selector-name">4</span>
                       </label>
                     </div>
                   </div>
@@ -324,7 +271,8 @@ const DailyCaloriesForm = ({ getCalloriesData, showModal, formikData }) => {
               </div>
               <div className="dailyCalories-form__btn-wrapper">
                 <Button
-                  buttonName="Похудеть"
+                  // buttonName="Похудеть"
+                  buttonName={t("dailyCaloriesForm.btn_name")}
                   isValid={isValid}
                   dirty={dirty}
                   onClick={handleSubmit}

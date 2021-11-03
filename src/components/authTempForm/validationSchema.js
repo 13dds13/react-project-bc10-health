@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const validationsSchemaRegistration = yup.object().shape({
+export const validationsSchemaRegistrationRu = yup.object().shape({
   name: yup
     .string()
     .min(3, "Минимум 3 символа")
@@ -21,7 +21,7 @@ export const validationsSchemaRegistration = yup.object().shape({
     .required("Обязательное поле"),
 });
 
-export const validationsSchemaSignIn = yup.object().shape({
+export const validationsSchemaSignInRu = yup.object().shape({
 
   email: yup
     .string()
@@ -35,3 +35,40 @@ export const validationsSchemaSignIn = yup.object().shape({
     .typeError("Должно быть строкой")
     .required("Обязательное поле"),
 });
+
+export const validationsSchemaRegistrationEn = yup.object().shape({
+  name: yup
+    .string()
+    .min(3)
+    .max(15)
+    .typeError()
+    .required(),
+
+  email: yup
+    .string()
+    .email()
+    .required(),
+
+  password: yup
+    .string()
+    .min(6)
+    .max(16)
+    .typeError()
+    .required(),
+});
+
+export const validationsSchemaSignInEn = yup.object().shape({
+
+  email: yup
+    .string()
+    .email()
+    .required(),
+
+  password: yup
+    .string()
+    .min(6)
+    .max(16)
+    .typeError()
+    .required(),
+});
+

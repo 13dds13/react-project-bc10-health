@@ -4,14 +4,20 @@ import { mainRoutes } from "../../routes/mainRoutes";
 import { Formik } from "formik";
 import { AuthFormStyled } from "./AuthTempForm.styled";
 import {
-  validationsSchemaRegistration,
-  validationsSchemaSignIn,
+  validationsSchemaRegistrationRu,
+  validationsSchemaSignInRu,
+  validationsSchemaRegistrationEn,
+  validationsSchemaSignInEn
 } from "./validationSchema";
 import { Button } from "../button/Button";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
-const AuthForm = ({ handleSubmit, btnName }) => {
+const AuthForm = ({ handleSubmit, btnName, currenBtnName }) => {
   const history = useHistory();
+  const { t } = useTranslation();
+  const currentLanguage = useSelector(state => state.language.languages);
 
   return (
     <AuthFormStyled>
@@ -21,42 +27,35 @@ const AuthForm = ({ handleSubmit, btnName }) => {
           initialValues={{
             name: "",
             email: "",
-            password: "",
+            password: ""
           }}
           validateOnBlur
-          onSubmit={(values) => {
+          onSubmit={values => {
             handleSubmit({
               username: values.name,
               email: values.email,
-              password: values.password,
+              password: values.password
             });
             // console.log(values);
           }}
           validationSchema={
-            btnName === mainRoutes[4].name
-              ? validationsSchemaRegistration
-              : validationsSchemaSignIn
+            currentLanguage === "ru"
+              ? btnName === mainRoutes[4][currenBtnName]
+                ? validationsSchemaRegistrationRu
+                : validationsSchemaSignInRu
+              : btnName === mainRoutes[4][currenBtnName]
+              ? validationsSchemaRegistrationEn
+              : validationsSchemaSignInEn
           }
         >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            isValid,
-            handleSubmit,
-            dirty,
-          }) => (
+          {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
             <div className="registration-form__input-wrapper">
-              {btnName === mainRoutes[4].name && (
+              {btnName === mainRoutes[4][currenBtnName] && (
                 <>
                   <div className="registration-form__sub-wrapper">
-                    <label
-                      className="registration-form__label"
-                      htmlFor={`name`}
-                    >
-                      Имя *
+                    <label className="registration-form__label" htmlFor={`name`}>
+                      {/* Имя * */}
+                      {t("AuthTempForm.label_1")}
                     </label>
 
                     <input
@@ -71,11 +70,7 @@ const AuthForm = ({ handleSubmit, btnName }) => {
                       autoComplete="off"
                     />
 
-                    {touched.name && errors.name && (
-                      <span className="registration-form__alert">
-                        {errors.name}
-                      </span>
-                    )}
+                    {touched.name && errors.name && <span className="registration-form__alert">{errors.name}</span>}
                   </div>
                   <hr className="registration-form__line" />{" "}
                 </>
@@ -83,7 +78,8 @@ const AuthForm = ({ handleSubmit, btnName }) => {
 
               <div className="registration-form__sub-wrapper">
                 <label className="registration-form__label" htmlFor={`email`}>
-                  Email *
+                  {/* Email * */}
+                  {t("AuthTempForm.label_3")}
                 </label>
 
                 <input
@@ -97,21 +93,15 @@ const AuthForm = ({ handleSubmit, btnName }) => {
                   placeholder=" "
                   autoComplete="off"
                 />
-                {touched.email && errors.email && (
-                  <span className="registration-form__alert">
-                    {errors.email}
-                  </span>
-                )}
+                {touched.email && errors.email && <span className="registration-form__alert">{errors.email}</span>}
               </div>
 
               <hr className="registration-form__line" />
 
               <div className="registration-form__sub-wrapper">
-                <label
-                  className="registration-form__label"
-                  htmlFor={`password`}
-                >
-                  Пароль *
+                <label className="registration-form__label" htmlFor={`password`}>
+                  {/* Пароль * */}
+                  {t("AuthTempForm.label_2")}
                 </label>
 
                 <input
@@ -126,11 +116,7 @@ const AuthForm = ({ handleSubmit, btnName }) => {
                   autoComplete="off"
                 />
 
-                {touched.password && errors.password && (
-                  <span className="registration-form__alert">
-                    {errors.password}
-                  </span>
-                )}
+                {touched.password && errors.password && <span className="registration-form__alert">{errors.password}</span>}
               </div>
 
               <hr className="registration-form__line" />
@@ -144,7 +130,7 @@ const AuthForm = ({ handleSubmit, btnName }) => {
                   buttonName={btnName}
                 />
 
-                {btnName === mainRoutes[3].name && (
+                {btnName === mainRoutes[3][currenBtnName] && (
                   <div className="registration-form__second-btn-wrapper">
                     <Button
                       isValid={true}
@@ -155,7 +141,8 @@ const AuthForm = ({ handleSubmit, btnName }) => {
                       }}
                       type={`button`}
                       className="registration-form__second-btn"
-                      buttonName={`Регистрация`}
+                      // buttonName={`Регистрация`}
+                      buttonName={mainRoutes[4][currenBtnName]}
                       btn_mod="btn_white"
                     />
                   </div>
@@ -171,7 +158,7 @@ const AuthForm = ({ handleSubmit, btnName }) => {
 
 AuthForm.propTypes = {
   handleSubmit: PropTypes.func,
-  btnName: PropTypes.string,
+  btnName: PropTypes.string
 };
 
 export default AuthForm;

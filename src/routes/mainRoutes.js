@@ -12,7 +12,9 @@ export const mainRoutes = [
     isRestricted: false,
   },
   {
-    name: "Дневник",
+    // name: "Дневник",
+    name_ru: "Дневник",
+    name_en: 'Diary',
     path: "/diary",
     exact: true,
     component: lazy(() =>
@@ -22,7 +24,9 @@ export const mainRoutes = [
     isRestricted: false,
   },
   {
-    name: "Калькулятор",
+    // name: "Калькулятор",
+    name_ru: "Калькулятор",
+    name_en: "Calculator",
     path: "/calculator",
     exact: true,
     component: lazy(() =>
@@ -32,7 +36,9 @@ export const mainRoutes = [
     isRestricted: false,
   },
   {
-    name: "Вход",
+    // name: "Вход",
+    name_ru: "Вход",
+    name_en: "Log in",
     path: "/singin",
     exact: true,
     component: lazy(() =>
@@ -42,7 +48,9 @@ export const mainRoutes = [
     isRestricted: true,
   },
   {
-    name: "Регистрация",
+    // name: "Регистрация",
+    name_ru: "Регистрация",
+    name_en: "Sing up",
     path: "/singup",
     exact: true,
     component: lazy(() =>

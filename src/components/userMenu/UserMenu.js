@@ -7,6 +7,7 @@ import { getIsAuth, getUserName } from "../../redux/auth/authSelectors";
 import { useLocation } from "react-router-dom";
 import { getIsOpenModal } from "../../redux/modal/modalSelectors";
 import { setModalValue } from "../../redux/modal/modalAction";
+import { useTranslation } from "react-i18next";
 
 const UserMenu = ({ width }) => {
 
@@ -21,6 +22,8 @@ const UserMenu = ({ width }) => {
   const onHandleClick = () => dispatch(authLogout());
   const onHandleSetModal = () => dispatch(setModalValue());
 
+  const { t } = useTranslation();
+
   return (
     <UserMenuStyled>
       {width < 768 && path && isOpenModal && (
@@ -34,7 +37,8 @@ const UserMenu = ({ width }) => {
         <p className="user-menu__text">{userName}</p>
         {isAuth && (
           <button className="user-menu__button" onClick={onHandleClick}>
-            Выйти
+            {/* Выйти */}
+            {t("UserMenu.button")}
           </button>
         )}
       </div>

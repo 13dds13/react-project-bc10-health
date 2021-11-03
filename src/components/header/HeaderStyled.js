@@ -46,11 +46,29 @@ export const HeaderStyled = styled.header`
     height: 20px;
   }
 
+  .header__lang-btn {
+    width: 26px;
+    height: 16px;
+    padding: 0;
+    margin-left: 5px;
+    font-size: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--accent-colour);
+    background-color: transparent;
+    outline: none;
+    margin-right: auto;
+  }
+
+  .header__lang-btn-wrap {
+    margin-right: 10px;
+  }
+
   .border-line {
     color: var(--border-colour);
     margin: 0;
     padding: 0;
   }
+
   @media screen and (min-width: 1280px) {
     justify-content: flex-start;
     align-items: flex-end;

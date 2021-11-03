@@ -17,10 +17,12 @@ const Navigation = ({ isOpenModal, hideModal, width }) => {
             : "nav__list"
         }
       >
-        {mainRoutes.map(({ name, path, exact, isPrivate, isRestricted }) => (
+        {mainRoutes.map(({ name_ru, name_en, path, exact, isPrivate, isRestricted }) => (
           <NavigationItem
             key={path}
-            name={name}
+            name_ru={name_ru}
+            name_en={name_en}
+            // name={name}
             path={path}
             exact={exact}
             isPrivate={isPrivate}

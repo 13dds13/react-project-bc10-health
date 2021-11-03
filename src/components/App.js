@@ -2,11 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { authRefresh } from "../redux/auth/authOperations";
-import {
-  getIsAuth,
-  getRefreshToken,
-  getSid,
-} from "../redux/auth/authSelectors";
+import { getIsAuth, getRefreshToken, getSid } from "../redux/auth/authSelectors";
 
 import Header from "./header";
 import Main from "./main";
@@ -18,9 +14,12 @@ const App = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    !isAuth && refreshToken && dispatch(authRefresh(refreshToken, sid));
-  }, [dispatch, isAuth, refreshToken, sid]);
+  useEffect(
+    () => {
+      !isAuth && refreshToken && dispatch(authRefresh(refreshToken, sid));
+    },
+    [dispatch, isAuth, refreshToken, sid]
+  );
 
   return (
     <>
