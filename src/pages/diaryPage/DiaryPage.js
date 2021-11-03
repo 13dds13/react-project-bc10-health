@@ -30,6 +30,9 @@ import { Button } from "../../components/button/Button";
 import { notification } from "../../helpers/notification";
 import Loader from "react-loader-spinner";
 import { useTranslation } from "react-i18next";
+import { registerLocale } from "react-datepicker";
+import ru from "date-fns/locale/ru";
+registerLocale("ru", ru);
 
 const DiaryPage = () => {
   const userData = useSelector(getUserStat);
@@ -138,6 +141,7 @@ const DiaryPage = () => {
             <div className="diaryFlexBox__left">
               <label className={"dataPicker__box"}>
                 <DatePicker
+                  locale="ru"
                   dateFormat="dd.MM.yyyy"
                   selected={startDate}
                   onChange={setStartDate}
@@ -186,7 +190,7 @@ const DiaryPage = () => {
                   handleClick={handleClick}
                 />
               )}
-              {userData?.dailyRate && width < 768 && (
+              {userData?.dailyRate && isCurrentDay && width < 768 && (
                 <Button
                   type="button"
                   isValid={true}

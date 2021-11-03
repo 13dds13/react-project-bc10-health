@@ -10,7 +10,7 @@ export const EatenProductsListStyles = styled.div`
   .EatenProductsList {
     &__item {
       display: flex;
-      height: 33px;
+      /* height: 33px; */
       /* border-bottom: 1px solid #E0E0E0; */
       margin-bottom: 20px;
       @media screen and (min-width: 768px) {
@@ -26,6 +26,7 @@ export const EatenProductsListStyles = styled.div`
       &_border {
         border-bottom: 1px solid #e0e0e0;
         margin-right: 9px;
+        padding-bottom: 5px;
         @media screen and (min-width: 768px) {
           margin-right: 30px;
         }
