@@ -1,8 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const NavigationItem = ({
-  name,
+  // name,
   path,
   exact,
   isPrivate,
@@ -11,12 +12,16 @@ const NavigationItem = ({
   width,
   hideModal,
   isOpenModal,
+  name_en,
+  name_ru
 }) => {
   const onHandleClick = () => {
     if (width < 1280 && isOpenModal) {
       hideModal((prev) => !prev);
     }
   };
+
+  const language = useSelector((state) => state.language.languages)
 
   return (
     <>
@@ -28,7 +33,8 @@ const NavigationItem = ({
             className="nav__link"
             activeClassName="nav__link-active"
           >
-            {name}
+            {/* {name} */}
+            {language === 'ru' ? name_ru : name_en}
           </NavLink>
         </li>
       )}
@@ -51,7 +57,8 @@ const NavigationItem = ({
                 : "nav__link-active"
             }
           >
-            {name}
+            {/* {name} */}
+            {language === 'ru' ? name_ru : name_en}
           </NavLink>
         </li>
       )}
@@ -63,7 +70,8 @@ const NavigationItem = ({
             className="nav__link"
             activeClassName="nav__link-active"
           >
-            {name}
+            {/* {name} */}
+            {language === 'ru' ? name_ru : name_en}
           </NavLink>
         </li>
       )}

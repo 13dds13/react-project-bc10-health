@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect, Suspense } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Navigation from "../navigation";
 import logo from "../../images/logo-png 1.png";
 import sprite from "../../images/icons-header.svg";
@@ -9,9 +9,13 @@ import { getIsOpenModal } from "../../redux/modal/modalSelectors";
 import { getIsAuth } from "../../redux/auth/authSelectors";
 import UserMenu from "../userMenu";
 import Modal from "../modal_1";
+import { useTranslation } from "react-i18next";
+import i18n from "../../utils/i18next";
+import { setLanguages } from "../../redux/languages/languagesActions";
 
 const Header = () => {
   let history = useHistory();
+  const dispatch = useDispatch();
 
   const isAuth = useSelector(getIsAuth);
   const isOpenModalFromState = useSelector(getIsOpenModal);
@@ -24,7 +28,7 @@ const Header = () => {
   const breakPointTabletDesktop = 1280;
 
   const goHomePage = () => history.push("/");
-  const setModalState = () => setIsOpenModal((prev) => !prev);
+  const setModalState = () => setIsOpenModal(prev => !prev);
 
   const handleResizeWindow = () => setWidth(window.innerWidth);
 
@@ -34,7 +38,21 @@ const Header = () => {
       window.removeEventListener("resize", handleResizeWindow);
     };
   }, []);
+  // ============================================
+  const { t, i18n } = useTranslation();
+  const changeLanguage = language => {
+    i18n.changeLanguage(language);
+  };
 
+  const onHandleClickEn = () => {
+    changeLanguage("en");
+    dispatch(setLanguages("en"));
+  };
+  const onHandleClickRu = () => {
+    changeLanguage("ru");
+    dispatch(setLanguages("ru"));
+  };
+  // ============================================
   return (
     <>
       <div className="container">
@@ -52,10 +70,17 @@ const Header = () => {
               </p>
             )}
           </div>
+
           <div style={{ display: "flex", alignItems: "center" }}>
-            {width >= breakPointTablet &&
-              width < breakPointTabletDesktop &&
-              isAuth && <UserMenu />}
+            <div className="header__lang-btn-wrap">
+              <button className="header__lang-btn" type="button" onClick={onHandleClickEn}>
+                EN
+              </button>
+              <button className="header__lang-btn" type="button" onClick={onHandleClickRu}>
+                RU
+              </button>
+            </div>
+            {width >= breakPointTablet && width < breakPointTabletDesktop && isAuth && <UserMenu />}
 
             {width < breakPointTabletDesktop && isAuth ? (
               !isOpenModal ? (
@@ -76,11 +101,7 @@ const Header = () => {
 
           {isOpenModal && (
             <Modal hideModal={setIsOpenModal}>
-              <Navigation
-                isOpenModal={isOpenModal}
-                hideModal={setIsOpenModal}
-                width={width}
-              />
+              <Navigation isOpenModal={isOpenModal} hideModal={setIsOpenModal} width={width} />
             </Modal>
           )}
         </HeaderStyled>
@@ -91,7 +112,7 @@ const Header = () => {
             backgroundColor: "#e0e0e0",
             height: "2px",
             margin: "0",
-            border: "none",
+            border: "none"
           }}
         />
       )}
@@ -100,13 +121,11 @@ const Header = () => {
           className="container"
           style={{
             paddingLeft: "0",
-            paddingRight: "0",
+            paddingRight: "0"
           }}
         >
           {width < breakPointTablet && isAuth && <UserMenu width={width} />}
-          {width < breakPointTablet && !isAuth && isOpenModalFromState && (
-            <UserMenu width={width} />
-          )}
+          {width < breakPointTablet && !isAuth && isOpenModalFromState && <UserMenu width={width} />}
         </div>
       </div>
     </>

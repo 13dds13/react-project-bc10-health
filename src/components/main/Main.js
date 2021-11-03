@@ -23,32 +23,25 @@ const Main = () => {
               height={80}
               width={80}
               style={{
-                textAlign: "center",
+                textAlign: "center"
               }}
             />
           }
         >
           <Switch>
-            {mainRoutes.map(
-              ({ path, exact, component, isPrivate, isRestricted }) =>
-                isPrivate ? (
-                  <PrivateRoute
-                    path={path}
-                    exact={exact}
-                    component={component}
-                    isAuth={isAuth}
-                    key={path}
-                  />
-                ) : (
-                  <PublicRoute
-                    path={path}
-                    exact={exact}
-                    component={component}
-                    isAuth={isAuth}
-                    isRestricted={isRestricted}
-                    key={path}
-                  />
-                )
+            {mainRoutes.map(({ path, exact, component, isPrivate, isRestricted }) =>
+              isPrivate ? (
+                <PrivateRoute path={path} exact={exact} component={component} isAuth={isAuth} key={path} />
+              ) : (
+                <PublicRoute
+                  path={path}
+                  exact={exact}
+                  component={component}
+                  isAuth={isAuth}
+                  isRestricted={isRestricted}
+                  key={path}
+                />
+              )
             )}
           </Switch>
         </Suspense>

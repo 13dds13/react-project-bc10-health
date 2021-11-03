@@ -5,6 +5,7 @@ import {
   getNotAllowedProducts,
 } from "../../redux/user/userSelectors";
 import { CalloriesTextStyled } from "./CalloriesTextStyled";
+import { useTranslation } from "react-i18next";
 
 const CalloriesText = () => {
   const daySummary = useSelector(getDaySummary);
@@ -14,37 +15,47 @@ const CalloriesText = () => {
 
   const normalizedKcalLeft = dailyRate - kcalConsumed;
 
+  const { t } = useTranslation();
+
   return (
     <CalloriesTextStyled>
       <div className="callories-text">
         <div className="callories-text__box">
           <p className="callories-text__title">
-            Сводка {date ? `за ${date}` : "недоступна"}
+            {/* Сводка {date ? `за ${date}` : "недоступна"} */}
+            {t("CalloriesText.title_1")} {date ? `${t("CalloriesText.title_1-1")} ${date}` : `${t("CalloriesText.title_1-2")}`}
           </p>
           <div>
             <div className="callories-text__item-box">
-              <p className="callories-text__item">Осталось</p>
+              {/* <p className="callories-text__item">Осталось</p> */}
+              <p className="callories-text__item">{t("CalloriesText.item_1")}</p>
               <span className="callories-text__count">
                 {normalizedKcalLeft <= 0 || !dailyRate
                   ? ": 000"
                   : `: ${Math.round(normalizedKcalLeft)}`}{" "}
-                ккал
+                  {/* ккал */}
+                 {t("CalloriesText.count")}
               </span>
             </div>
             <div className="callories-text__item-box">
-              <p className="callories-text__item">Употреблено</p>
+              {/* <p className="callories-text__item">Употреблено</p> */}
+              <p className="callories-text__item"> {t("CalloriesText.item_2")}</p>
               <span className="callories-text__count">
-                : {Math.round(kcalConsumed) || "000"} ккал
+                {/* : {Math.round(kcalConsumed) || "000"} ккал */}
+                : {Math.round(kcalConsumed) || "000"} {t("CalloriesText.count")}
               </span>
             </div>
             <div className="callories-text__item-box">
-              <p className="callories-text__item">Дневная норма</p>
+              {/* <p className="callories-text__item">Дневная норма</p> */}
+              <p className="callories-text__item">{t("CalloriesText.item_3")}</p>
               <span className="callories-text__count">
-                : {Math.round(dailyRate) || "000"} ккал
+                {/* : {Math.round(dailyRate) || "000"} ккал */}
+                : {Math.round(dailyRate) || "000"} {t("CalloriesText.count")}
               </span>
             </div>
             <div className="callories-text__item-box">
-              <p className="callories-text__item"> n% от нормы</p>
+              {/* <p className="callories-text__item"> n% от нормы</p> */}
+              <p className="callories-text__item">  {t("CalloriesText.item_4")}</p>
               <span className="callories-text__count">
                 : {Math.round(percentsOfDailyRate) || "000"} %
               </span>
@@ -52,10 +63,13 @@ const CalloriesText = () => {
           </div>
         </div>
         <div className="callories-text__box">
-          <p className="callories-text__title">Нерекомендуемые продукты:</p>
+          {/* <p className="callories-text__title">Нерекомендуемые продукты:</p> */}
+          <p className="callories-text__title">{t("CalloriesText.title_2")}</p>
           {notAllowedProducts && !notAllowedProducts.length ? (
             <p className="callories-text__item">
-              Здесь будет отображаться Ваш рацион
+              {/* Здесь будет отображаться Ваш рацион */}
+              {t("CalloriesText.item_5")}
+
             </p>
           ) : (
             <p>{notAllowedProducts?.join(", ")}</p>

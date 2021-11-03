@@ -29,6 +29,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "../../components/button/Button";
 import { notification } from "../../helpers/notification";
 import Loader from "react-loader-spinner";
+import { useTranslation } from "react-i18next";
 
 const DiaryPage = () => {
   const userData = useSelector(getUserStat);
@@ -47,6 +48,8 @@ const DiaryPage = () => {
   const [isSearchingProduct, setIsSearchingProduct] = useState(false);
 
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!userData?.dailyRate) return;
@@ -145,10 +148,11 @@ const DiaryPage = () => {
               </label>
               {!userData?.dailyRate && (
                 <>
-                  <p>
+                  {/* <p>
                     Для начала использования "Дневника" заполните, пожалуйста,
                     свои данные на странице:
-                  </p>
+                  </p> */}
+                  {t("DiaryPage.text")}
 
                   <NavLink to={mainRoutes[2].path}>
                     <b>{mainRoutes[2].name}</b>
@@ -188,7 +192,8 @@ const DiaryPage = () => {
                   isValid={true}
                   dirty={true}
                   onClick={onHandleCliсk}
-                  buttonName="Добавить"
+                  // buttonName="Добавить"
+                  buttonName={t("DiaryPage.button")}
                 ></Button>
                 // <button type="button" onClick={onHandleCliсk}>
                 //   Добавить
