@@ -182,7 +182,7 @@ const DiaryPage = () => {
                   handleClick={handleClick}
                 />
               )}
-              {userData?.dailyRate && width < 768 && (
+              {userData?.dailyRate && isCurrentDay && width < 768 && (
                 <Button
                   type="button"
                   isValid={true}
