@@ -37,7 +37,7 @@ const ModalText = ({ modalData, onHandleSetModal }) => {
           </button>
         )}
 
-        {isLoadingUserData || !modalData.dailyRate ? (
+        {isLoadingUserData || !modalData ? (
           <>
             <h2 className="modal-text-box__title">
               Проводится расчет данных...
@@ -59,7 +59,7 @@ const ModalText = ({ modalData, onHandleSetModal }) => {
             </h2>
             <div className="modal-products">
               <p className="modal-products__count">
-                {modalData.dailyRate}
+                {Math.round(modalData.dailyRate)}
                 <span className="modal-products__count_small"> ккал</span>
               </p>
               <p className="modal-products__text">

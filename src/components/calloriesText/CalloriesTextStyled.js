@@ -8,7 +8,11 @@ export const CalloriesTextStyled = styled.div`
   ); */
   background-color: var(--secondary-bg-colour);
   border-radius: 10px;
-  padding-top: 45px;
+  margin-top: 20px;
+  padding-top: 25px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
   @media screen and (min-width: 768px) {
     padding: 15px;
   }

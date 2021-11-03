@@ -69,13 +69,18 @@ const ProductForm = ({
               Граммы
               <input
                 name="productWeight"
-                type="number"
+                type="text"
+                pattern="[0-9]{1,3}"
+                title="Значение веса продукта должно быть от 0 до 999"
                 value={productWeight}
                 className="productForm-form__input"
                 onChange={onChange}
               />
             </label>
-            <ButtonAdd type={"submit"} />
+            <ButtonAdd
+              type={"submit"}
+              disabled={!productName && !productWeight}
+            />
           </div>
         )}
       </form>

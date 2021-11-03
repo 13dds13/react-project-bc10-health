@@ -37,7 +37,7 @@ const Modal = ({ children, showModal }) => {
     if (
       (isAuth && isOpenModal && pathDiary && width < 768) ||
       (isAuth && isOpenModal && pathCalculator && width > 767) ||
-      (isOpenModal && pathHome && width > 768)
+      (isOpenModal && pathHome && width >= 768)
     ) {
       const body = document.querySelector("body");
       body.style.overflow = "hidden";
