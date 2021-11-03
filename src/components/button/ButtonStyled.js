@@ -48,6 +48,12 @@ export const ButtonStyled = styled.div`
     &:hover {
       background-color: #fc7514;
     }
+
+    &:disabled {
+      background-color: #fac9a6;
+      border: 2px solid #fac9a6;
+      cursor: not-allowed;
+    }
   }
 
   .btn_white_add {

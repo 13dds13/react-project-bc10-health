@@ -38,10 +38,14 @@ const Button = ({
   );
 };
 
-const ButtonAdd = ({ type }) => {
+const ButtonAdd = ({ type, disabled }) => {
   return (
     <ButtonStyled>
-      <button className="btn_add btn_orange_add" type={type}>
+      <button
+        className="btn_add btn_orange_add"
+        type={type}
+        disabled={disabled}
+      >
         <svg width="20" height="20" fill="white">
           <use href={sprite + "#add"} />
         </svg>

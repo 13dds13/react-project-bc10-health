@@ -7,7 +7,7 @@ export const ModalTextStyled = styled.div`
     /* height: 820px; */
     font-family: Verdana;
     letter-spacing: 0.04em;
-    width: 320px;
+    width: 290px;
     font-weight: bold;
     padding-right: 15px;
     padding-left: 15px;

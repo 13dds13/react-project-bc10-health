@@ -9,7 +9,7 @@ export const notification = (type, msg) => {
       NotificationManager.success(msg, "Info:", 1500);
       break;
     case "warning":
-      NotificationManager.warning(msg, "Info:", 2000);
+      NotificationManager.warning(msg, "Warning:", 750);
       break;
     case "error":
       NotificationManager.error(msg, "Info:", 1500);
