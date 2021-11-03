@@ -29,6 +29,9 @@ import { NavLink } from "react-router-dom";
 import { Button } from "../../components/button/Button";
 import { notification } from "../../helpers/notification";
 import Loader from "react-loader-spinner";
+import { registerLocale } from "react-datepicker";
+import ru from "date-fns/locale/ru";
+registerLocale("ru", ru);
 
 const DiaryPage = () => {
   const userData = useSelector(getUserStat);
@@ -135,6 +138,7 @@ const DiaryPage = () => {
             <div className="diaryFlexBox__left">
               <label className={"dataPicker__box"}>
                 <DatePicker
+                  locale="ru"
                   dateFormat="dd.MM.yyyy"
                   selected={startDate}
                   onChange={setStartDate}
