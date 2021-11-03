@@ -12,11 +12,8 @@ const ProductForm = ({
   productsVariants,
   handleChange,
   handleSubmit,
-<<<<<<< HEAD
   errorMsg,
-=======
   isSearchingProduct,
->>>>>>> 46aabcac54deac08c467adb95fa0259e48d42e68
 }) => {
   const { dailyRate } = useSelector(getDaySummary);
   const onChange = (e) => {
