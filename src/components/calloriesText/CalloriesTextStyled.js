@@ -9,6 +9,7 @@ export const CalloriesTextStyled = styled.div`
   background-color: var(--secondary-bg-colour);
   border-radius: 10px;
   padding-top: 45px;
+  padding-left: 10px;
   @media screen and (min-width: 768px) {
     padding: 15px;
   }
