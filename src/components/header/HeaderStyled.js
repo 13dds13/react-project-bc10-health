@@ -47,6 +47,7 @@ export const HeaderStyled = styled.header`
   }
 
   .header__lang-btn {
+    cursor: pointer;
     width: 26px;
     height: 16px;
     padding: 0;
@@ -57,12 +58,20 @@ export const HeaderStyled = styled.header`
     background-color: transparent;
     outline: none;
     margin-right: auto;
+    color: var(--accent-colour);
   }
 
   .header__lang-btn-wrap {
     margin-right: 10px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
   }
-
+  .header__lang-btn-wrap{
+  text-align: center;
+  }
+  
   .border-line {
     color: var(--border-colour);
     margin: 0;

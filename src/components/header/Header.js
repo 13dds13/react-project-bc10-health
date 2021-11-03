@@ -12,6 +12,7 @@ import Modal from "../modal_1";
 import { useTranslation } from "react-i18next";
 import i18n from "../../utils/i18next";
 import { setLanguages } from "../../redux/languages/languagesActions";
+import DarkModeToggle from "../dark-btn/DarkModeToggle";
 
 const Header = () => {
   let history = useHistory();
@@ -27,7 +28,7 @@ const Header = () => {
   const breakPointTabletDesktop = 1280;
 
   const goHomePage = () => history.push("/");
-  const setModalState = () => setIsOpenModal(prev => !prev);
+  const setModalState = () => setIsOpenModal((prev) => !prev);
 
   const handleResizeWindow = () => setWidth(window.innerWidth);
 
@@ -39,7 +40,7 @@ const Header = () => {
   }, []);
   // ============================================
   const { t, i18n } = useTranslation();
-  const changeLanguage = language => {
+  const changeLanguage = (language) => {
     i18n.changeLanguage(language);
   };
 
@@ -72,14 +73,27 @@ const Header = () => {
 
           <div style={{ display: "flex", alignItems: "center" }}>
             <div className="header__lang-btn-wrap">
-              <button className="header__lang-btn" type="button" onClick={onHandleClickEn}>
-                EN
-              </button>
-              <button className="header__lang-btn" type="button" onClick={onHandleClickRu}>
-                RU
-              </button>
+              <DarkModeToggle />
+              <div className="header__lang-btn-wrap-wrap">
+                <button
+                  className="header__lang-btn"
+                  type="button"
+                  onClick={onHandleClickEn}
+                >
+                  EN
+                </button>
+                <button
+                  className="header__lang-btn"
+                  type="button"
+                  onClick={onHandleClickRu}
+                >
+                  RU
+                </button>
+              </div>
             </div>
-            {width >= breakPointTablet && width < breakPointTabletDesktop && isAuth && <UserMenu />}
+            {width >= breakPointTablet &&
+              width < breakPointTabletDesktop &&
+              isAuth && <UserMenu />}
 
             {width < breakPointTabletDesktop && isAuth ? (
               !isOpenModal ? (
@@ -100,7 +114,11 @@ const Header = () => {
 
           {isOpenModal && (
             <Modal hideModal={setIsOpenModal}>
-              <Navigation isOpenModal={isOpenModal} hideModal={setIsOpenModal} width={width} />
+              <Navigation
+                isOpenModal={isOpenModal}
+                hideModal={setIsOpenModal}
+                width={width}
+              />
             </Modal>
           )}
         </HeaderStyled>
@@ -111,7 +129,7 @@ const Header = () => {
             backgroundColor: "#e0e0e0",
             height: "2px",
             margin: "0",
-            border: "none"
+            border: "none",
           }}
         />
       )}
@@ -120,11 +138,13 @@ const Header = () => {
           className="container"
           style={{
             paddingLeft: "0",
-            paddingRight: "0"
+            paddingRight: "0",
           }}
         >
           {width < breakPointTablet && isAuth && <UserMenu width={width} />}
-          {width < breakPointTablet && !isAuth && isOpenModalFromState && <UserMenu width={width} />}
+          {width < breakPointTablet && !isAuth && isOpenModalFromState && (
+            <UserMenu width={width} />
+          )}
         </div>
       </div>
     </>

@@ -12,6 +12,7 @@ export const NavigationStyled = styled.nav`
 
       margin: 0;
       padding: 0;
+      flex-wrap: wrap;
     }
 
     &__list-for-modal {
