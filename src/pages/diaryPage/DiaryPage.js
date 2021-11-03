@@ -126,7 +126,7 @@ const DiaryPage = () => {
         <DiaryPageStyled>
           <div className="diaryFlexBox">
             <div className="diaryFlexBox__left">
-              <div className={"dataPicker__box"}>
+                <label className={"dataPicker__box"}>
                 <DatePicker
                   dateFormat="dd.MM.yyyy"
                   selected={startDate}
@@ -135,7 +135,7 @@ const DiaryPage = () => {
                 <svg className="dataPicker__svg" width="18" height="20">
                   <use href={sprite + "#calendar"} />
                 </svg>
-              </div>
+                </label>
               {!dailyRate && (
                 <>
                   <p>
