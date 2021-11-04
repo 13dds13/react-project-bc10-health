@@ -19,15 +19,15 @@ const App = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(authRefresh(refreshToken, sid));
-    }, tokensLifeDuration);
-  }, [dispatch, refreshToken, sid]);
+    isAuth &&
+      setTimeout(() => {
+        dispatch(authRefresh(refreshToken, sid));
+      }, tokensLifeDuration);
+  }, [dispatch, isAuth, refreshToken, sid]);
 
   useEffect(() => {
     !isAuth && refreshToken && dispatch(authRefresh(refreshToken, sid));
   }, [dispatch, isAuth, refreshToken, sid]);
-
 
   return (
     <>
