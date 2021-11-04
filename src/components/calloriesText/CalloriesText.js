@@ -14,6 +14,11 @@ const CalloriesText = () => {
   const { date, kcalConsumed, dailyRate, percentsOfDailyRate } = daySummary;
 
   const normalizedKcalLeft = dailyRate - kcalConsumed;
+  const normalizedDate = [
+    date?.split("-")[2],
+    date?.split("-")[1],
+    date?.split("-")[0],
+  ].join(".");
 
   const { t } = useTranslation();
 
@@ -22,8 +27,8 @@ const CalloriesText = () => {
       <div className="callories-text">
         <div className="callories-text__box">
           <p className="callories-text__title">
-            {/* Сводка {date ? `за ${date}` : "недоступна"} */}
-            {t("CalloriesText.title_1")} {date ? `${t("CalloriesText.title_1-1")} ${date}` : `${t("CalloriesText.title_1-2")}`}
+            Сводка {date ? `за ${normalizedDate}` : "недоступна"}
+
           </p>
           <div>
             <div className="callories-text__item-box">

@@ -86,9 +86,7 @@ const DiaryPage = () => {
   }, [productName]);
 
   useEffect(() => {
-    if (errorMsg) {
-      notification("warning", errorMsg);
-    }
+    errorMsg && notification("warning", errorMsg);
     setErrorMsg("");
   }, [errorMsg]);
 
@@ -98,12 +96,10 @@ const DiaryPage = () => {
     getDateInFormat(startDate) === getDateInFormat(new Date());
 
   const handleChange = ({ name, value }) => {
-    // if (productName === value) return;
     if (name === "productWeight" && value > 999) {
       setErrorMsg("Значение веса продукта должно быть от 0 до 999");
       return;
     }
-
     name === "productName" && setProductName(value);
     name === "productWeight" && setProductWeight(value);
   };

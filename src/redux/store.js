@@ -20,6 +20,7 @@ const store = configureStore({
     modal: modalReducer,
     language: languagesReducer
   },
+  devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
