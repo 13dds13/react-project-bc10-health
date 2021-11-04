@@ -72,7 +72,7 @@ export const AuthFormStyled = styled.div`
       font-size: 14px;
       line-height: 1.22;
       letter-spacing: 0.04em;
-      width: 65%;
+      width: 60%;
       background-color: inherit;
       border: none;
       outline: none;

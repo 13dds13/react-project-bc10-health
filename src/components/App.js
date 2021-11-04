@@ -28,6 +28,7 @@ const App = () => {
     !isAuth && refreshToken && dispatch(authRefresh(refreshToken, sid));
   }, [dispatch, isAuth, refreshToken, sid]);
 
+
   return (
     <>
       {pathname === "/diary" || pathname === "/calculator" ? (

@@ -3,7 +3,8 @@
   background-repeat: no-repeat;
   z-index: -1;
   @media screen and (min-width: 768px) {
-    background-image: url("./../../images/tablet-x2-min.jpg");
+    background-image: url("./../../images/home-x2-min-removebg-preview.png"),
+      url("./../../images/Vector\ 3.png");
     // background-image: url("./../../images/tablet-x2-min.jpg");
 
     background-size: contain;
@@ -14,10 +15,11 @@
     // width: 100%;
     // height: 100%;
   }
-  @media screen and (min-width: 1280px) {
-    // height: 100%;
-    background-size: contain;
-    background-position: right;
-    background-image: url("./../../images/home-x2-min.jpg");
-  }
+  // @media screen and (min-width: 1280px) {
+  //   // height: 100%;
+  //   background-size: contain;
+  //   background-position: right;
+  //   // background-image: url("./../../images/home-x2-min.jpg");
+  //   background-image: url("./../../images/home-x2-min-removebg-preview.png");
+  // }
 }

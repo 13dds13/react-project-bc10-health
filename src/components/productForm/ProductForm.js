@@ -4,6 +4,7 @@ import { ProductFormStyled } from "./ProductForm.styled";
 import { useSelector } from "react-redux";
 import { getDaySummary } from "../../redux/user/userSelectors";
 import Loader from "react-loader-spinner";
+import { useTranslation } from "react-i18next";
 
 const ProductForm = ({
   productName,
@@ -11,26 +12,31 @@ const ProductForm = ({
   productsVariants,
   handleChange,
   handleSubmit,
-  isSearchingProduct,
+  errorMsg,
+  isSearchingProduct
 }) => {
   const { dailyRate } = useSelector(getDaySummary);
-  const onChange = (e) => {
+  const onChange = e => {
     const { name, value } = e.target;
     handleChange({ name, value });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     handleSubmit();
   };
 
+  const { t } = useTranslation();
+
   return (
     <ProductFormStyled>
       <form className="productForm-form" onSubmit={onSubmit}>
+        {errorMsg && <p>{errorMsg}</p>}
         {dailyRate && (
           <div className="productForm-form__box">
             <label className="productForm-form__label">
-              Введите название продукта
+              {/* Введите название продукта */}
+              {t("ProductForm.label_1")}
               <input
                 name="productName"
                 type="text"
@@ -47,20 +53,18 @@ const ProductForm = ({
                   height={40}
                   width={40}
                   style={{
-                    textAlign: "center",
+                    textAlign: "center"
                   }}
                 />
               ) : (
                 <datalist className="datalist" id="productSearch">
-                  {productsVariants &&
-                    productsVariants.map((product) => (
-                      <option value={product.title.ru} key={product._id} />
-                    ))}
+                  {productsVariants && productsVariants.map(product => <option value={product.title.ru} key={product._id} />)}
                 </datalist>
               )}
             </label>
             <label className="productForm-form__label productForm-form__label_size">
-              Граммы
+              {/* Граммы */}
+              {t("ProductForm.label_2")}
               <input
                 name="productWeight"
                 type="text"
@@ -71,10 +75,7 @@ const ProductForm = ({
                 onChange={onChange}
               />
             </label>
-            <ButtonAdd
-              type={"submit"}
-              disabled={!productName && !productWeight}
-            />
+            <ButtonAdd type={"submit"} disabled={!productName && !productWeight} />
           </div>
         )}
       </form>

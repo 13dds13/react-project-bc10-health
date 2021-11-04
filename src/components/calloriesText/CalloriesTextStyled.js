@@ -39,7 +39,7 @@ export const CalloriesTextStyled = styled.div`
       /* margin-top: 40px; */
       @media screen and (min-width: 768px) {
         /* margin-top: 0px; */
-        margin-right: 35px;
+        /* margin-right: 35px; */
         height: auto;
         margin-bottom: 0px;
       }

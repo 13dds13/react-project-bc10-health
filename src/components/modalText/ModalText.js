@@ -6,11 +6,13 @@ import sprite from "../../images/sprite.svg";
 import { getIsLoadingUserData } from "../../redux/user/userSelectors";
 import { useSelector } from "react-redux";
 import Loader from "react-loader-spinner";
+import { useTranslation } from "react-i18next";
 
 const ModalText = ({ modalData, onHandleSetModal }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const isLoadingUserData = useSelector(getIsLoadingUserData);
   const history = useHistory();
+  const { t } = useTranslation();
 
   const breakPointTablet = 768;
   const handleResizeWindow = () => setWidth(window.innerWidth);
@@ -40,7 +42,8 @@ const ModalText = ({ modalData, onHandleSetModal }) => {
         {isLoadingUserData || !modalData?.dailyRate ? (
           <>
             <h2 className="modal-text-box__title">
-              Проводится расчет данных...
+              {/* Проводится расчет данных... */}
+              {t("ModalText.title_1")}
             </h2>
             <Loader
               type="ThreeDots"
@@ -55,15 +58,18 @@ const ModalText = ({ modalData, onHandleSetModal }) => {
         ) : (
           <>
             <h2 className="modal-text-box__title">
-              Ваша рекомендуемая суточная норма калорий составляет
+              {/* Ваша рекомендуемая суточная норма калорий составляет */}
+              {t("ModalText.title_2")}
             </h2>
             <div className="modal-products">
               <p className="modal-products__count">
                 {Math.round(modalData.dailyRate)}
-                <span className="modal-products__count_small"> ккал</span>
+                {/* <span className="modal-products__count_small"> ккал</span> */}
+                <span className="modal-products__count_small"> {t("ModalText.count_small")}</span>
               </p>
               <p className="modal-products__text">
-                Продукты, которые вам не рекомендуется употреблять
+                {/* Продукты, которые вам не рекомендуется употреблять */}
+                {t("ModalText.text")}
               </p>
               <ol className="modal-products__list">
                 {modalData.notAllowedProducts?.slice(0, 5).map((el) => (
@@ -74,7 +80,8 @@ const ModalText = ({ modalData, onHandleSetModal }) => {
               </ol>
               <div className="modal-products__btn">
                 <Button
-                  buttonName="Начать худеть"
+                  // buttonName="Начать худеть"
+                  buttonName= {t("ModalText.btn")}
                   isValid={true}
                   dirty={true}
                   onClick={() => {

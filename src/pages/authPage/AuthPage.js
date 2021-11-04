@@ -24,6 +24,8 @@ const AuthPage = () => {
     }
   }, [errorMsg]);
 
+  const currentLanguage = useSelector((state) => state.language.languages)
+  const currenBtnName = `name_${currentLanguage}`
 
   return (
     <>
@@ -32,13 +34,14 @@ const AuthPage = () => {
           {mainRoutes
             .filter(({ isRestricted }) => isRestricted)
             .map(
-              ({ path, name }) =>
-                path === pathname && (
+              (route) =>
+              route.path === pathname && (
                   <AuthTempForm
                     handleSubmit={handleSubmit}
-                    btnName={name}
-                    key={path}
+                    btnName={route[currenBtnName]}
+                    key={route.path}
                     errorMsg={errorMsg}
+                    currenBtnName={currenBtnName}
                   />
                 )
             )}

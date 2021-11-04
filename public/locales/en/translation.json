@@ -1,0 +1,54 @@
+{
+  "title": "Интернационализация с i18next",
+  "dailyCaloriesForm": {
+    "title": "Calculate your daily calorie intake right now",
+    "label_1": "Height, cm *",
+    "label_2": "Age, years *",
+    "label_3": "Current weight, kg *",
+    "label_4": "Desired weight, kg *",
+    "label_5": "Blood type *",
+    "btn_name": "Lose weight"
+  },
+  "AuthTempForm": {
+    "label_1": "Name *",
+    "label_2": "Password *",
+    "label_3": "Email *"
+  },
+  "ProductForm": {
+    "label_1": "Enter product name",
+    "label_2": "Grams"
+  },
+  "EatenProductsList": {
+    "text": "No data are available for this period."
+  },
+  "CalloriesText": {
+    "title_1": "Result",
+    "title_1-1": "for the",
+    "title_1-2": "unavailable",
+    "title_2": "Products not recommended:",
+    "item_1": "Left",
+    "item_2": "Consumed",
+    "item_3": "Daily rate",
+    "item_4": "n% from the norm",
+    "item_5": "Your diet will be displayed here",
+    "count": "cal"
+  },
+  "EatenProductsListItem": {
+    "item_1": "g",
+    "item_2": "cal"
+  },
+  "ModalText": {
+    "title_1": "Calculation of data ...",
+    "title_2": "Your recommended daily calorie intake is",
+    "count_small": "cal",
+    "text": "Foods that you are not advised to consume",
+    "btn": "Start losing weight"
+  },
+  "UserMenu": {
+    "button": "Log out"
+  },
+  "DiaryPage": {
+    "text": "To start using the DIARY, please fill in your details on the page:",
+    "button": "Добавить"
+  }
+}

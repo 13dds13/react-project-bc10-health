@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect, Suspense } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Navigation from "../navigation";
 import logo from "../../images/logo-png 1.png";
 import sprite from "../../images/icons-header.svg";
@@ -9,9 +9,14 @@ import { getIsOpenModal } from "../../redux/modal/modalSelectors";
 import { getIsAuth } from "../../redux/auth/authSelectors";
 import UserMenu from "../userMenu";
 import Modal from "../modal_1";
+import { useTranslation } from "react-i18next";
+import i18n from "../../utils/i18next";
+import { setLanguages } from "../../redux/languages/languagesActions";
+import DarkModeToggle from "../dark-btn/DarkModeToggle";
 
 const Header = () => {
   let history = useHistory();
+  const dispatch = useDispatch();
 
   const isAuth = useSelector(getIsAuth);
   const isOpenModalFromState = useSelector(getIsOpenModal);
@@ -19,7 +24,6 @@ const Header = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  // const breakPointTabletMobile = 320;
   const breakPointTablet = 768;
   const breakPointTabletDesktop = 1280;
 
@@ -34,7 +38,21 @@ const Header = () => {
       window.removeEventListener("resize", handleResizeWindow);
     };
   }, []);
+  // ============================================
+  const { t, i18n } = useTranslation();
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
 
+  const onHandleClickEn = () => {
+    changeLanguage("en");
+    dispatch(setLanguages("en"));
+  };
+  const onHandleClickRu = () => {
+    changeLanguage("ru");
+    dispatch(setLanguages("ru"));
+  };
+  // ============================================
   return (
     <>
       <div className="container">
@@ -52,7 +70,27 @@ const Header = () => {
               </p>
             )}
           </div>
+
           <div style={{ display: "flex", alignItems: "center" }}>
+            <div className="header__lang-btn-wrap">
+              <DarkModeToggle />
+              <div className="header__lang-btn-wrap-wrap">
+                <button
+                  className="header__lang-btn"
+                  type="button"
+                  onClick={onHandleClickEn}
+                >
+                  EN
+                </button>
+                <button
+                  className="header__lang-btn"
+                  type="button"
+                  onClick={onHandleClickRu}
+                >
+                  RU
+                </button>
+              </div>
+            </div>
             {width >= breakPointTablet &&
               width < breakPointTabletDesktop &&
               isAuth && <UserMenu />}
